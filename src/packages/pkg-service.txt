@@ -1,0 +1,16 @@
+# === Login manager ===
+ly                            # TUI display/login manager (like sddm, gdm,...)
+
+# === Service tools / Useful utilities tools ===
+brightnessctl                 # Brightness control utility
+ncdu                          # Disk usage analyzer (interactive TUI)
+btop                          # Resource monitor (CPU/RAM/disk/network)
+pavucontrol                   # PulseAudio/PipeWire volume control GUI
+gparted                       # Disk partition editor GUI
+nano                          # Terminal text editor
+
+# === Network / Bluetooth ===
+nm-connection-editor          # NetworkManager interface
+network-manager-applet        # NetworkManager system tray applet
+blueman                       # Bluetooth interface
+bluez                         # Bluetooth engine

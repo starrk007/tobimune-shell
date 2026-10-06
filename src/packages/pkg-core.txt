@@ -1,0 +1,69 @@
+# === Core packages for Hakuspace ===
+waybar                        # Wayland status bar
+rofi                          # App launcher and dmenu replacement
+swaync                        # Notification daemon + notification center
+kitty                         # GPU-accelerated terminal emulator
+fastfetch                     # Fast system information display
+awww                          # Wallpaper
+mpvpaper                      # Video wallpaper
+hyprlock                      # Screen locker
+hypridle                      # Idle management
+hyprpicker                    # Color picker
+fish                          # Shell
+
+# === Hakuspace scripts needed ===
+jq                            # Command-line JSON processor
+imagemagick                   # Image processing toolkit (For Niri, generating backdrop blur)
+python-colorthief             # Extract dominant color palette from images (Function wallpaper color picker)
+python-gobject                # Python bindings for GObject
+gtk-layer-shell               # GTK library for layer shell protocol
+wlr-randr                     # Wayland output management utility
+vte3                          # Terminal widget library for GTK
+
+# === Fish Shell and related tools ===
+starship                      # Cross-shell prompt
+direnv                        # Environment variable manager
+zoxide                        # Fast directory jumper
+eza                           # Modern replacement for ls
+
+# ==== Utility tools ===
+wl-clipboard                  # Wayland clipboard tools (wl-copy/wl-paste)
+cliphist                      # Clipboard history manager
+grim                          # Screenshot utility for Wayland
+slurp                         # Select a region of the screen for screenshots
+mpv                           # Media player (video/audio)
+imv                           # Lightweight image viewer (picture)
+nwg-look                      # GTK theme and appearance configurator
+
+# === Portals / desktop integration ===
+xdg-desktop-portal            # Base desktop portal service
+xdg-desktop-portal-gtk        # GTK portal backend
+xdg-utils                     # xdg-open, xdg-mime, and related desktop helpers
+mate-polkit                   # MATE PolicyKit authentication agent
+xorg-xhost                    # X server access control utility (compat use-cases)
+
+qt6ct                         # Qt6 theme/configuration tool
+qt5ct                         # Qt5 theme/configuration tool
+qt5-wayland                   # Qt5 Wayland platform plugin
+qt6-wayland                   # Qt6 Wayland platform plugin
+
+# === File management / archive tools ===
+thunar                        # File manager
+thunar-archive-plugin         # Archive integration for Thunar
+thunar-volman                 # Auto-mount and removable media handling
+file-roller                   # Archive manager GUI
+gvfs                          # Virtual filesystem backend
+gvfs-mtp                      # MTP device support (Android phones)
+tumbler                       # Thumbnailing service
+ffmpegthumbnailer             # Video thumbnail generator
+7zip                          # 7z archive toolset
+unrar                         # RAR extraction support
+unzip                         # ZIP extraction support
+zip                           # ZIP creation utility
+
+# === Fonts ===
+rofi-emoji                    # Emoji font, Rofi menu selector
+noto-fonts                    # General Unicode font family
+noto-fonts-cjk                # CJK font coverage
+noto-fonts-emoji              # Emoji font set
+ttf-jetbrains-mono-nerd       # Nerd Font for terminal/status bar glyphs (Use Nerd Font icons)

@@ -1,0 +1,4 @@
+niri
+gammastep
+xdg-desktop-portal-gnome
+xwayland-satellite
