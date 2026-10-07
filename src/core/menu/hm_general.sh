@@ -38,7 +38,7 @@ fi
 
 chosen="$*"
 case "$chosen" in
-    *"App Menu"*) spawn rofi -show drun ;;
+    *"App Menu"*) spawn rofi -show drun -theme-str 'mainbox { children: [ inputbar, listview ]; }' ;;
     *"Code Editor"*) spawn code ;;
     *"Browser"*) spawn "$HOME/.local/bin/open_browser.sh" ;;
     *"Screen Record"*) spawn $HOME/.local/bin/record.sh ;;
