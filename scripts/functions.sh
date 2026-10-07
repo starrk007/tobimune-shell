@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Functions for script install.sh and update.sh
+# Functions for script install.sh and update.sh (Tobimune Shell)
 
 # Color
 if [[ -t 1 ]]; then
@@ -29,7 +29,6 @@ else
     C_WHITE=''
 fi
 
-
 # Logging helpers
 shorten_path() {
     echo "${1//$HOME/\~}"
@@ -43,6 +42,7 @@ log_backup() { echo -e "${C_MAGENTA}[BACKUP]${C_RESET} $(shorten_path "${1:-}")"
 log_copy()   { echo -e "${C_CYAN}[COPY]${C_RESET}   $(shorten_path "${1:-}")"; }
 log_skip()   { echo -e "${C_WHITE}[SKIP]${C_RESET}   $(shorten_path "${1:-}")"; }
 log_symlink(){ echo -e "${C_CYAN}[SYMLINK]${C_RESET} $(shorten_path "${1:-}")"; }
+
 # UI Helpers
 UI_WIDTH=60
 UI_LINE="────────────────────────────────────────────────────────────" # 60 chars
@@ -98,7 +98,6 @@ backup_item() {
     fi
 }
 
-# Copy dir to backup dir
 backup_dir() {
     local dir="${1:-}"
     [[ -d "$dir" ]] || return 0
@@ -210,7 +209,7 @@ deploy_symlink_recursive() {
 }
 
 determine_deploy_mode() {
-    if [[ -n "${HAKUSPACE_DEPLOY_MODE:-}" ]]; then
+    if [[ -n "${TOBIMUNE_DEPLOY_MODE:-}" ]]; then
         return 0
     fi
 
@@ -247,7 +246,7 @@ determine_deploy_mode() {
         fi
     }
 
-    # Check all configs that Hakuspace tracks
+    # Check all configs that Tobimune Shell tracks
     for item in "$SOURCE_CONFIG"/*; do
         [[ -e "$item" ]] || continue
         
@@ -282,21 +281,20 @@ determine_deploy_mode() {
     done
     
     if [[ $total_checked -eq 0 ]]; then
-        HAKUSPACE_DEPLOY_MODE="symlink"
+        TOBIMUNE_DEPLOY_MODE="symlink"
         return 0
     fi
     
     if [[ $symlink_count -eq $total_checked ]]; then
-        HAKUSPACE_DEPLOY_MODE="symlink"
+        TOBIMUNE_DEPLOY_MODE="symlink"
     elif [[ $copy_count -eq $total_checked ]]; then
-        HAKUSPACE_DEPLOY_MODE="copy"
+        TOBIMUNE_DEPLOY_MODE="copy"
     else
         if [[ "${1:-}" == "--silent" ]]; then
-            # Automatically guess the intended mode based on the majority
             if [[ $copy_count -lt $symlink_count ]]; then
-                HAKUSPACE_DEPLOY_MODE="symlink"
+                TOBIMUNE_DEPLOY_MODE="symlink"
             else
-                HAKUSPACE_DEPLOY_MODE="copy"
+                TOBIMUNE_DEPLOY_MODE="copy"
             fi
             return 0
         fi
@@ -325,11 +323,11 @@ determine_deploy_mode() {
             read -r -p ">>> Are you using [s]ymlink or [c]opy mode? (s/c): " choice </dev/tty >/dev/tty
             case "${choice,,}" in
                 s|symlink)
-                    HAKUSPACE_DEPLOY_MODE="symlink"
+                    TOBIMUNE_DEPLOY_MODE="symlink"
                     break
                     ;;
                 c|copy)
-                    HAKUSPACE_DEPLOY_MODE="copy"
+                    TOBIMUNE_DEPLOY_MODE="copy"
                     break
                     ;;
                 *)
@@ -340,12 +338,11 @@ determine_deploy_mode() {
     fi
 }
 
-# Wrapper for deployment: uses symlink or copy based on state
 deploy_config_item() {
     local src="${1:-}" dst="${2:-}" skip_backup="${3:-0}"
     determine_deploy_mode
     
-    if [[ "$HAKUSPACE_DEPLOY_MODE" == "symlink" ]]; then
+    if [[ "$TOBIMUNE_DEPLOY_MODE" == "symlink" ]]; then
         deploy_symlink_recursive "$src" "$dst" "$skip_backup"
     else
         if [[ -d "$src" ]]; then
@@ -356,19 +353,18 @@ deploy_config_item() {
     fi
 }
 
-deploy_hakuspace_scripts() {
+deploy_tobimune_scripts() {
     if [[ ! -d "$SOURCE_CORE" ]]; then
         log_warn "Source directory not found: $SOURCE_CORE"
         return 1
     fi
 
-    # Make all .sh and .py scripts executable in the source
     find "$SOURCE_CORE" -type f \( -name '*.sh' -o -name '*.py' \) -exec chmod +x {} +
 
     echo ">>> Deploying scripts to $DEST_BIN..."
     
     determine_deploy_mode
-    if [[ "$HAKUSPACE_DEPLOY_MODE" == "copy" ]]; then
+    if [[ "$TOBIMUNE_DEPLOY_MODE" == "copy" ]]; then
         if [[ -d "$DEST_BIN" ]]; then
             log_warn "Deployment mode is COPY. Backing up and clearing entire $DEST_BIN as requested..."
             backup_item "$DEST_BIN"
@@ -378,8 +374,6 @@ deploy_hakuspace_scripts() {
     
     ensure_dir "$DEST_BIN" || return 1
     
-    # We use deploy_config_item to deploy the files flatly into DEST_BIN
-    # It will respect the deploy_mode (symlink or copy)
     local -A seen_scripts
     while IFS= read -r -d '' file; do
         local filename
@@ -419,12 +413,11 @@ print_header() {
     print_divider
     
     cat <<'EOF'
-    __  __      __                                  
-   / / / /___ _/ /____  ___________  ____ _________ 
-  / /_/ / __ `/ //_/ / / / ___/ __ \/ __ `/ ___/ _ \
- / __  / /_/ / ,< / /_/ (__  ) /_/ / /_/ / /__/  __/
-/_/ /_/\__,_/_/|_|\__,_/____/ .___/\__,_/\___/\___/ 
-                           /_/                      
+  _______ ____  ____  _____ __  ____  ____  _____   _____ __  ████████╗
+ /_  __/ __ \/ __ )/  _/  /  |/  / / / /  |/  / /  / ___// / / / ____/
+  / / / / / / __  |/ / / /| /|_/ / / / /|_/ / /  / /__ / /_/ / __/   
+ / / / /_/ / /_/ // / / / / /  / /_/ / /  / / /__/ /___/ __  / /___   
+/_/  \____/_____/___//_/ /_/   \____/_/  /_/____/\____/_/ /_/_____/   
 EOF
     
     if [[ -n "$title" ]]; then
@@ -437,60 +430,10 @@ EOF
     print_divider
 }
 
-# Window Manager selection
-select_window_manager() {
-    echo "Current directory: $PWD"
-    echo ""
-    echo -e "${C_BOLD}[1]${C_RESET} HYPRLAND"
-    echo -e "${C_BOLD}[2]${C_RESET} NIRI"
-    echo -e "${C_BOLD}[3]${C_RESET} MANGOWM"
-    echo -e "${C_BOLD}[4]${C_RESET} LABWC"
-    echo -e "${C_BOLD}[5]${C_RESET} ALL (Niri, Mango, Hyprland, Labwc)"
-    echo ""
-    read -r -p ">>> Which Window Manager do you want to install?: " wm_choice
-
-    case "$wm_choice" in
-        1)
-            SELECTED_WMS=("hyprland")
-            SELECTED_WM_DIRS=("$SOURCE_CONFIG/hypr")
-            SELECTED_PKG_WMS=("$PKG_HYPRLAND")
-            log_info "Selected: Hyprland"
-            ;;
-        2)
-            SELECTED_WMS=("niri")
-            SELECTED_WM_DIRS=("$SOURCE_CONFIG/niri")
-            SELECTED_PKG_WMS=("$PKG_NIRI")
-            log_info "Selected: Niri"
-            ;;
-        3)
-            SELECTED_WMS=("mango")
-            SELECTED_WM_DIRS=("$SOURCE_CONFIG/mango")
-            SELECTED_PKG_WMS=("$PKG_MANGO")
-            log_info "Selected: Mango"
-            ;;
-        4)
-            SELECTED_WMS=("labwc")
-            SELECTED_WM_DIRS=("$SOURCE_CONFIG/labwc")
-            SELECTED_PKG_WMS=("$PKG_LABWC")
-            log_info "Selected: Labwc"
-            ;;
-        5)
-            SELECTED_WMS=("niri" "mango" "labwc" "hyprland")
-            SELECTED_WM_DIRS=("$SOURCE_CONFIG/niri" "$SOURCE_CONFIG/mango" "$SOURCE_CONFIG/labwc" "$SOURCE_CONFIG/hypr")
-            SELECTED_PKG_WMS=("$PKG_NIRI" "$PKG_MANGO" "$PKG_LABWC" "$PKG_HYPRLAND")
-            log_info "Selected: All Window Managers"
-            ;;
-        *)
-            log_error "Invalid choice. Please run again and choose 1, 2, 3, 4 or 5."
-            exit 1
-            ;;
-    esac
-}
-
 select_deploy_mode() {
     echo ""
     echo -e "${C_BOLD}--- DOTFILES DEPLOYMENT MODE ---${C_RESET}"
-    echo "HakuSpace can deploy your configuration files using two methods:"
+    echo "Tobimune Shell can deploy your configuration files using two methods:"
     echo -e "  ${C_BOLD}[1]${C_RESET} Symlink (Recommended) - Edits in ~/.config will directly update the repo."
     echo -e "  ${C_BOLD}[2]${C_RESET} Copy - Copies files normally. Edits in ~/.config will NOT update the repo."
     echo ""
@@ -498,15 +441,14 @@ select_deploy_mode() {
     deploy_choice="${deploy_choice:-1}"
     
     if [[ "$deploy_choice" == "2" ]]; then
-        HAKUSPACE_DEPLOY_MODE="copy"
+        TOBIMUNE_DEPLOY_MODE="copy"
         log_info "Selected deployment mode: COPY"
     else
-        HAKUSPACE_DEPLOY_MODE="symlink"
+        TOBIMUNE_DEPLOY_MODE="symlink"
         log_info "Selected deployment mode: SYMLINK"
     fi
 }
 
-# Deploy for hakuspace-archive repo (Wallpaper, icons, etc.)
 deploy_assets_from_archive_repo() {
     if ! command -v git >/dev/null 2>&1; then
         log_error "git is required to clone $ARCHIVE_REPO_URL"
@@ -522,7 +464,7 @@ deploy_assets_from_archive_repo() {
     else
         if [[ -d "$ARCHIVE_DIR" ]]; then
             log_warn "$ARCHIVE_DIR exists but is not a git repo."
-            if ask_yes_no "===> Remove and re-clone hakuspace-archive?"; then
+            if ask_yes_no "===> Remove and re-clone tobimune-archive?"; then
                 rm -rf "$ARCHIVE_DIR"
             else
                 log_warn "Cannot continue archive deployment without a valid repo."
@@ -547,17 +489,15 @@ deploy_assets_from_archive_repo() {
     (cd "$ARCHIVE_DIR" && ./setup.sh)
 }
 
-# Check ~/hakucfg directory:
+# Check ~/suzaku directory:
 check_control_dir() {
-    if [[ ! -d "$HAKUSPACE_CUSTOM_DIR" ]]; then
-        log_warn "hakucfg directory not found. Creating..."
-        mkdir -p "$HAKUSPACE_CUSTOM_DIR"
+    if [[ ! -d "$SUZAKU_CUSTOM_DIR" ]]; then
+        log_warn "suzaku directory not found. Creating..."
+        mkdir -p "$SUZAKU_CUSTOM_DIR"
     fi
 
     local required_files=(
         "setting.sh"
-        "wm/mango-custom.conf"
-        "wm/niri-custom.kdl"
         "wm/hyprland-custom.lua"
         "config/taskbar-pin-apps"
         "config/hypridle.conf"
@@ -568,8 +508,8 @@ check_control_dir() {
     )
     for file in "${required_files[@]}"; do
         if [[ ! -f "$DEST_CUSTOM_DIR/$file" ]]; then
-            log_warn "$file not found in hakucfg. Creating default..."
-            copy_file "$HAKUSPACE_CUSTOM_DIR/$file" "$DEST_CUSTOM_DIR/$file"
+            log_warn "$file not found in suzaku. Creating default..."
+            copy_file "$SUZAKU_CUSTOM_DIR/$file" "$DEST_CUSTOM_DIR/$file"
         fi
     done
 
@@ -578,35 +518,34 @@ check_control_dir() {
     chmod +x "$DEST_CUSTOM_DIR/setting.sh"
     chmod +x "$DEST_CUSTOM_DIR/general-menu.sh"
 
-    # Check HakuSpace custom settings version
     if [[ -f "$DEST_CUSTOM_DIR/setting.sh" ]]; then
         local current_version
         local source_version
-        chmod +x "$HAKUSPACE_CUSTOM_DIR/setting.sh"
+        chmod +x "$SUZAKU_CUSTOM_DIR/setting.sh"
 
-        source_version=$("$HAKUSPACE_CUSTOM_DIR/setting.sh" --version)
+        source_version=$("$SUZAKU_CUSTOM_DIR/setting.sh" --version)
         current_version=$("$DEST_CUSTOM_DIR/setting.sh" --version)
         if [[ "$current_version" != "$source_version" ]]; then
-            log_warn "Hakuspace custom settings version mismatch: $current_version (current) vs $source_version (expected). Updating..."
+            log_warn "Tobimune custom settings version mismatch: $current_version (current) vs $source_version (expected). Updating..."
             log_warn "If you choose update, your custom settings in setting.sh will be overwritten."
-            if ask_yes_no "===> Do you want to update hakucfg to the latest version?"; then
-                copy_file "$HAKUSPACE_CUSTOM_DIR/setting.sh" "$DEST_CUSTOM_DIR/setting.sh"
-                log_ok "Hakucfg updated to version $source_version."
+            if ask_yes_no "===> Do you want to update suzaku to the latest version?"; then
+                copy_file "$SUZAKU_CUSTOM_DIR/setting.sh" "$DEST_CUSTOM_DIR/setting.sh"
+                log_ok "Suzaku updated to version $source_version."
             else
-                log_warn "You chose not to update hakucfg. Some features may not work as expected."
+                log_warn "You chose not to update suzaku. Some features may not work as expected."
             fi
         else
-            log_ok "Hakuspace Control version is up-to-date: $current_version"
+            log_ok "Tobimune Control version is up-to-date: $current_version"
         fi
     else
-        log_warn "setting.sh not found in hakucfg. Creating default..."
-        copy_file "$HAKUSPACE_CUSTOM_DIR/setting.sh" "$DEST_CUSTOM_DIR/setting.sh"
+        log_warn "setting.sh not found in suzaku. Creating default..."
+        copy_file "$SUZAKU_CUSTOM_DIR/setting.sh" "$DEST_CUSTOM_DIR/setting.sh"
     fi
 }
 
 check_state_dir() {
-    local target_dir="$HOME/.local/state/hakuspace"
-    local source_dir="$HOME_SRC_DIR/.local/state/hakuspace"
+    local target_dir="$HOME/.local/state/tobimune"
+    local source_dir="$HOME_SRC_DIR/.local/state/tobimune"
     
     if [[ ! -d "$target_dir" ]]; then
         log_info "Local state directory $target_dir does not exist. Creating..."
