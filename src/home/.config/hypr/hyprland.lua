@@ -18,7 +18,7 @@ require("config/rule")
 require("config/layout")
 
 -- User custom config file.
-local ok, custom = pcall(require, "../../hakucfg/wm/hyprland-custom")
+local ok, custom = pcall(require, "../../suzaku/wm/hyprland-custom")
 if not ok then
     hl.dispatch(hl.dsp.exec_cmd("notify-send 'Hyprland' 'Load custom config failed' -t 5000"))
 end

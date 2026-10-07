@@ -1,43 +1,39 @@
 #!/usr/bin/env bash
 
-# Directories
-SOURCE_DIR="$HAKU_DIR/src"
-HOME_SRC_DIR="$SOURCE_DIR/home"
-ASSETS_DIR="$HAKU_DIR/assets"
-NIX_DIR="$HAKU_DIR/nix"
+# ==============================================================================
+# TOBIMUNE SHELL - Configuración de Variables Globales y Rutas del Sistema
+# ==============================================================================
 
-# Backup directory with timestamp
+# Directorio base del repositorio principal
+TOBIMUNE_DIR="${TOBIMUNE_DIR:-$HOME/tobimune-shell}"
+SOURCE_DIR="$TOBIMUNE_DIR/src"
+HOME_SRC_DIR="$SOURCE_DIR/home"
+ASSETS_DIR="$TOBIMUNE_DIR/assets"
+NIX_DIR="$TOBIMUNE_DIR/nix"
+
+# Directorio de respaldo con marca de tiempo
 BACKUP_TS="$(date +%Y-%m-%d_%H-%M-%S)"
 BACKUP_DIR="$HOME/.backup/Backup_$BACKUP_TS"
 
-# Arrays to handle multiple WMs
-SELECTED_WMS=()
-SELECTED_WM_DIRS=()
-SELECTED_PKG_WMS=()
-
-# Package lists
+# Lista de paquetes base (Exclusivo Hyprland)
 PKG_SERVICE="$SOURCE_DIR/packages/pkg-service.txt"
 PKG_CORE="$SOURCE_DIR/packages/pkg-core.txt"
 PKG_OPTIONAL="$SOURCE_DIR/packages/pkg-optional.txt"
 PKG_HYPRLAND="$SOURCE_DIR/packages/pkg-hyprland.txt"
-PKG_NIRI="$SOURCE_DIR/packages/pkg-niri.txt"
-PKG_MANGO="$SOURCE_DIR/packages/pkg-mango.txt"
-PKG_LABWC="$SOURCE_DIR/packages/pkg-labwc.txt"
 
-# hakuspace-archive repo URL and directory
-ARCHIVE_REPO_URL="https://github.com/hakuimaku/hakuspace-archive.git"
-ARCHIVE_DIR="$HOME/hakuspace-archive"
+# URL del repositorio de assets de respaldo
+ARCHIVE_REPO_URL="https://github.com/starrk007/tobimune-shell.git"
+ARCHIVE_DIR="$HOME/tobimune-archive"
 
-# User custom configuration directory
-HAKUSPACE_CUSTOM_DIR="$HOME_SRC_DIR/hakucfg"
-DEST_CUSTOM_DIR="$HOME/hakucfg"
+# Directorio de configuración personalizada del usuario (SUZAKU)
+SUZAKU_CUSTOM_DIR="$HOME_SRC_DIR/suzaku"
+DEST_CUSTOM_DIR="$HOME/suzaku"
 
-# Config Directories
+# Directorios de configuración (.config)
 SOURCE_CONFIG="$HOME_SRC_DIR/.config"
 DEST_CONFIG="$HOME/.config"
 
-# Once configs (to be deployed only once)
-# update.sh will skip these configs, for not overwriting user changes
+# Configuraciones que se despliegan una sola vez (update.sh no las sobrescribirá)
 ONCE_CONFIGS=(
     "$SOURCE_CONFIG/Thunar"
     "$SOURCE_CONFIG/xfce4"
@@ -47,16 +43,12 @@ ONCE_CONFIGS=(
     "$SOURCE_CONFIG/mimeapps.list"
 )
 
-# Skip configs (to be skipped during install.sh and update.sh)
-# Not deloyed together with the rest of the configs in $SOURCE_CONFIG
+# Configuraciones que se omiten del despliegue general (.config)
 SKIP_CONFIGS=(
     "$SOURCE_CONFIG/hypr"
-    "$SOURCE_CONFIG/niri"
-    "$SOURCE_CONFIG/mango"
-    "$SOURCE_CONFIG/labwc"
     "$SOURCE_CONFIG/gtk-3.0"
 )
-    
-# HakuSpace script directories
+
+# Directorio de scripts del sistema
 SOURCE_CORE="$SOURCE_DIR/core"
 DEST_BIN="$HOME/.local/bin"
