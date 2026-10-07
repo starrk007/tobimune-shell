@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Include WALL_DIR & WALL_MPV_DIR & WALL_INTERVAL & ACCENT_COLOR_BASED_ON_WALLPAPER
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 
 # Fallback WALL_DIR and WALL_INTERVAL if not set
 WALL_DIR=${WALL_DIR:-$HOME/Pictures/Wallpapers}

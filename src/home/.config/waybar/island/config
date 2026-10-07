@@ -193,14 +193,14 @@
 
     "custom/search": {
         "format": "",
-        "tooltip-format": "Haku Menu",
-        "on-click": "exec $HOME/.local/bin/hakumenu.sh"
+        "tooltip-format": "Tobimune Menu",
+        "on-click": "exec $HOME/.local/bin/tobimunemenu.sh"
     },
 
     "custom/setting": {
         "format": "",
         "tooltip-format": "Setting folder",
-        "on-click": "exec xdg-open $HOME/hakucfg/"
+        "on-click": "exec xdg-open $HOME/suzaku/"
     },
 
     "custom/power": {

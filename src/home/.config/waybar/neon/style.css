@@ -1,8 +1,8 @@
 /* ============================================================================== */
 /* GLOBAL STYLES                                                                  */
 /* ============================================================================== */
-@import url("../../.local/state/hakuspace/theme/colors.css");
-@import url("../../.local/state/hakuspace/theme/fonts.css");
+@import url("../../.local/state/tobimune/theme/colors.css");
+@import url("../../.local/state/tobimune/theme/fonts.css");
 
 * {
     font-weight: bold;
@@ -208,4 +208,4 @@ tooltip label {
     100% { opacity: 1; }
 }
 
-@import url("../../.local/state/hakuspace/theme/opaque/waybar.css");
+@import url("../../.local/state/tobimune/theme/opaque/waybar.css");

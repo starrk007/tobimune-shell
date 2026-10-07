@@ -5,7 +5,7 @@
 // /_/ |_|\____/_/ /_/   
 //                      
 
-// HakuSpace Rofi Theme
+// Tobimune Shell Rofi Theme
 // Theme: wallpaper-select.rasi, use for wallpaper selection
 
 configuration {
@@ -14,8 +14,8 @@ configuration {
     me-accept-entry: "MousePrimary";
 }
 
-@import "../../.local/state/hakuspace/theme/rofi-style.rasi"
-@import "../../.local/state/hakuspace/theme/rofi-wallpaper-select.rasi"
+@import "../../.local/state/tobimune/theme/rofi-style.rasi"
+@import "../../.local/state/tobimune/theme/rofi-wallpaper-select.rasi"
 
 /* ===== GLOBAL VARIABLES ===== */
 * {
@@ -141,4 +141,4 @@ scrollbar {
     padding: 0px 0px 0px 20px;
 }
 
-@import "../../.local/state/hakuspace/theme/opaque/rofi.rasi"
+@import "../../.local/state/tobimune/theme/opaque/rofi.rasi"

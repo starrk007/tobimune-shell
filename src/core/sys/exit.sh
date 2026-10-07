@@ -3,7 +3,7 @@
 # This script is designed to safely exit the current window manager
 
 # Include EXIT_APP_LIST_USER and RAM_THRESHOLD_MB
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 
 # Targeted apps for graceful and force kill sequence
 EXIT_APP_LIST_DEFAULT=(
@@ -75,7 +75,7 @@ pkill -9 -u "$USER" -f "$APP_PATTERN" 2>/dev/null
 # Clean sockets and lock files
 rm -f /tmp/.X11-unix/X* 2>/dev/null
 rm -f /tmp/.X*-lock 2>/dev/null
-rm -rf /tmp/hypr /tmp/niri* /tmp/sway* /tmp/waybar* 2>/dev/null
+rm -rf /tmp/hypr /tmp/sway* /tmp/waybar* 2>/dev/null
 rm -rf /tmp/cava-layer.log /tmp/cava-layer.pid 2>/dev/null
 
 # Unset environment variables
@@ -88,11 +88,4 @@ systemctl --user stop xdg-desktop-portal.service 2>/dev/null
 # Exit WM
 if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
     hyprctl eval 'hl.dispatch(hl.dsp.exit())'
-elif [[ $XDG_CURRENT_DESKTOP == "niri" ]]; then
-    niri msg action quit --skip-confirmation
-elif [[ $XDG_CURRENT_DESKTOP == "mango" ]]; then
-    mmsg dispatch quit
-    mmsg -s -q
-elif [[ $XDG_CURRENT_DESKTOP == "labwc" ]]; then
-    labwc --exit
 fi

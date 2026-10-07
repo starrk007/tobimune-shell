@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Include WALL_DIR, WALL_MPV_DIR & ACCENT_COLOR_BASED_ON_WALLPAPER
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 
 WALL_DIR=${WALL_DIR:-$HOME/Pictures/Wallpapers}
 WALL_MPV_DIR=${WALL_MPV_DIR:-$HOME/Videos/Wallpapers}
@@ -163,7 +163,7 @@ if [[ "$1" == "--exit" ]]; then
     # Restore awww wallpaper in cache
     awww restore
 
-    # Restore Accent Color | Niri backdrop
+    # Restore accent color.
     current_wall=$(awww query | sed -n 's/.*currently displaying: image: //p')
     if [[ -n "$current_wall" && -f "$current_wall" ]]; then
         "$SET_WALLPAPER_SCRIPT" "$current_wall"

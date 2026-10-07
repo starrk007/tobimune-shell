@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# Haku Theme state and rendering model:
-# - ~/.local/state/hakuspace/state/state.env is the single source of truth for
+# Tobimune Theme state and rendering model:
+# - ~/.local/state/tobimune/state/state.env is the single source of truth for
 #   ACCENT_COLOR, FONT_FAMILY, and FONT_SIZE. It is loaded when this library is
 #   sourced and updated atomically by theme_save_state().
 
-# - ~/.local/state/hakuspace/theme/ contains generated CSS, conf, Lua, and KDL
+# - ~/.local/state/tobimune/theme/ contains generated CSS, conf, and Lua
 #   files. These files are one-way render outputs and must never be parsed back
 #   to recover theme values.
 
@@ -20,16 +20,13 @@
 #   values and does not maintain its own copy of the configuration contract.
 
 # Shared theme state and rendering paths.
-THEME_ROOT="${HOME}/.local/state/hakuspace"
+THEME_ROOT="${HOME}/.local/state/tobimune"
 THEME_RENDER_DIR="${THEME_ROOT}/theme"
 STATE_DIR="${THEME_ROOT}/state"
 THEME_STATE_FILE="${STATE_DIR}/state.env"
 
 THEME_BTOP_DIR="${HOME}/.config/btop/themes"
-# THEME_LABWC_RC="${HOME}/.local/state/hakuspace/labwc-include.xml"
-THEME_LABWC_OVERRIDE="${HOME}/.themes/hakulab/labwc/themerc"
-
-# Default theme values.
+# # Default theme values.
 THEME_DEFAULT_ACCENT="#ffffff"
 THEME_DEFAULT_FONT="monospace"
 THEME_DEFAULT_SIZE="14"

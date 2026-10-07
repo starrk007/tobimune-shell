@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script is used to show the Haku Menu
+# This script is used to show the Tobimune Menu
 # Need script: hm-general.sh, hm-theme.sh, hm-setting.sh
 
 # argument --extend to set position of rofi window
@@ -12,7 +12,7 @@ else
 fi
 
 rofi -show " General" \
-  -p "Haku Menu - Search" \
+  -p "Tobimune Menu - Search" \
   -i \
   "${EXTEND[@]}" \
   -modes " General:~/.local/bin/hm_general.sh, Theme:~/.local/bin/hm_theme.sh, Setting:~/.local/bin/hm_setting.sh"

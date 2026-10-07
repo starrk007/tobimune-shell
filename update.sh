@@ -3,10 +3,10 @@ set -u
 
 
 
-HAKU_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+TOBIMUNE_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 
-source "$HAKU_DIR/scripts/variables.sh"
-source "$HAKU_DIR/scripts/functions.sh"
+source "$TOBIMUNE_DIR/scripts/variables.sh"
+source "$TOBIMUNE_DIR/scripts/functions.sh"
 
 # ======================================================================================
 # MAIN FLOW
@@ -35,21 +35,21 @@ REPO_CHANGED=0
 
 if [[ "$update_mode" == "1" ]]; then
     log_info "Switching to main branch and pulling latest changes..."
-    git -C "$HAKU_DIR" checkout main
-    git -C "$HAKU_DIR" pull origin main
+    git -C "$TOBIMUNE_DIR" checkout main
+    git -C "$TOBIMUNE_DIR" pull origin main
     log_ok "Repository updated to LATEST."
     REPO_CHANGED=1
 elif [[ "$update_mode" == "2" ]]; then
     log_info "Fetching tags from remote..."
-    git -C "$HAKU_DIR" fetch --tags
-    LATEST_TAG=$(git -C "$HAKU_DIR" describe --tags $(git -C "$HAKU_DIR" rev-list --tags --max-count=1) 2>/dev/null)
+    git -C "$TOBIMUNE_DIR" fetch --tags
+    LATEST_TAG=$(git -C "$TOBIMUNE_DIR" describe --tags $(git -C "$TOBIMUNE_DIR" rev-list --tags --max-count=1) 2>/dev/null)
     if [[ -z "$LATEST_TAG" ]]; then
         log_warn "No tags found in repository. Falling back to main branch."
-        git -C "$HAKU_DIR" checkout main
-        git -C "$HAKU_DIR" pull origin main
+        git -C "$TOBIMUNE_DIR" checkout main
+        git -C "$TOBIMUNE_DIR" pull origin main
     else
         log_info "Latest stable tag found: $LATEST_TAG"
-        git -C "$HAKU_DIR" checkout "$LATEST_TAG"
+        git -C "$TOBIMUNE_DIR" checkout "$LATEST_TAG"
         log_ok "Repository updated to STABLE ($LATEST_TAG)."
     fi
     REPO_CHANGED=1
@@ -70,9 +70,6 @@ if [[ "$REPO_CHANGED" -eq 1 && -f "$BACKUP_SCRIPT" ]]; then
     rm -f "$BACKUP_SCRIPT"
 fi
 
-# Then select window manager(s) to update configs and packages
-select_window_manager
-
 # ============================================================================
 # BLOCK 1: UPDATE PACKAGES
 # ============================================================================
@@ -82,16 +79,8 @@ PKG_LABELS=()
 PKG_FILES=()
 
 if command -v yay >/dev/null 2>&1; then
-    for i in "${!SELECTED_WMS[@]}"; do
-        wm_name="${SELECTED_WMS[$i]}"
-        wm_upper=$(echo "$wm_name" | tr '[:lower:]' '[:upper:]')
-        PKG_LABELS+=("$wm_upper")
-        PKG_FILES+=("${SELECTED_PKG_WMS[$i]}")
-    done
-
-    # Add common core, service, optional packages
-    PKG_LABELS+=("CORE" "SERVICE")
-    PKG_FILES+=("$PKG_CORE" "$PKG_SERVICE")
+    PKG_LABELS=("HYPRLAND" "CORE" "SERVICE")
+    PKG_FILES=("$PKG_HYPRLAND" "$PKG_CORE" "$PKG_SERVICE")
 
     echo ">>> Package lists to be updated automatically:"
     for i in "${!PKG_LABELS[@]}"; do
@@ -111,7 +100,7 @@ if command -v yay >/dev/null 2>&1; then
     fi
 else
     log_error "yay is not installed. Please install yay first to run this step."
-    log_error "If you're using another distro, install packages manually."
+    log_error "Install yay on Arch/CachyOS before continuing."
 fi
 
 # ============================================================================
@@ -119,7 +108,7 @@ fi
 # ============================================================================
 step_title "2 - BACKUP AND UPDATE CONFIG IN ~/.config"
 
-if ask_yes_no "===> Do you want to update hakuspace configs now?"; then
+if ask_yes_no "===> Do you want to update tobimune configs now?"; then
 
     echo ">>> Deploying configs..."
     for item in "$SOURCE_CONFIG"/*; do
@@ -142,40 +131,9 @@ if ask_yes_no "===> Do you want to update hakuspace configs now?"; then
     deploy_config_item "$SOURCE_CONFIG/hypr/hyprlock.conf" "$DEST_CONFIG/hypr/hyprlock.conf"
     deploy_config_item "$SOURCE_CONFIG/hypr/hyprlock_tiny.conf" "$DEST_CONFIG/hypr/hyprlock_tiny.conf"
 
-    # Loop through selected WMs
-    for i in "${!SELECTED_WMS[@]}"; do
-        WM_NAME="${SELECTED_WMS[$i]}"
-        WM_DIR_PATH="${SELECTED_WM_DIRS[$i]}"
-
-        case "$WM_NAME" in
-            "hyprland")
-                echo ">>> Deploying Hyprland configs..."
-                # Hyprland will symlink content in hypr/ instead of hypr dir for not overriting hyprlock and hypridle configs
-                deploy_config_item "$WM_DIR_PATH/config" "$DEST_CONFIG/hypr/config"
-                deploy_config_item "$WM_DIR_PATH/hyprland.lua" "$DEST_CONFIG/hypr/hyprland.lua"
-                ;;
-            "niri")
-                echo ">>> Deploying Niri configs..."
-                deploy_config_item "$WM_DIR_PATH" "$DEST_CONFIG/niri"
-                ;;
-            "mango")
-                echo ">>> Deploying Mango configs..."
-                deploy_config_item "$WM_DIR_PATH" "$DEST_CONFIG/mango"
-                ;;
-            "labwc")
-                echo ">>> Deploying Labwc configs..."
-                deploy_config_item "$WM_DIR_PATH" "$DEST_CONFIG/labwc"
-
-                if [[ ! -d "$HOME/.themes/hakulab" ]]; then
-                    echo ">>> Deploying Hakulab theme for Labwc..."
-                    copy_dir_content "$HOME_SRC_DIR/.themes/hakulab" "$HOME/.themes/hakulab"
-                fi
-                ;;
-            *)
-                log_warn "Unknown WM: $WM_NAME. Skipping WM config deployment."
-                ;;
-        esac
-    done
+    echo ">>> Deploying Hyprland configs..."
+    deploy_config_item "$SOURCE_CONFIG/hypr/config" "$DEST_CONFIG/hypr/config"
+    deploy_config_item "$SOURCE_CONFIG/hypr/hyprland.lua" "$DEST_CONFIG/hypr/hyprland.lua"
 
     echo ">>> Deploying Thunar gtk.css theme..."
     deploy_config_item "$SOURCE_CONFIG/gtk-3.0/gtk.css" "$DEST_CONFIG/gtk-3.0/gtk.css"
@@ -194,76 +152,43 @@ fi
 # ============================================================================
 # BLOCK 3: BACKUP AND COPY LOCAL BIN
 # ============================================================================
-step_title "3 - BACKUP AND UPDATE HAKUSPACE SCRIPTS"
+step_title "3 - BACKUP AND UPDATE TOBIMUNE SCRIPTS"
 
-if ask_yes_no "===> Do you want to update hakuspace scripts now?"; then
-    if deploy_hakuspace_scripts; then
-        log_ok "HakuSpace script update completed."
+if ask_yes_no "===> Do you want to update tobimune scripts now?"; then
+    if deploy_tobimune_scripts; then
+        log_ok "Tobimune Shell script update completed."
     else
-        log_warn "HakuSpace script update failed."
+        log_warn "Tobimune Shell script update failed."
     fi
 else
-    log_skip "Skipping HakuSpace script update."
+    log_skip "Skipping Tobimune Shell script update."
 fi
 
 # ============================================================================
 # BLOCK 4: FINALIZE UPDATE AND RELOAD
 # ============================================================================
 step_title "4 - FINALIZE UPDATE AND RELOAD"
-if command -v nixos-rebuild >/dev/null 2>&1; then
-    step_title "4 - NIXOS SYSTEM REBUILD"
-    
-    REBUILD_DONE=0
 
-    # Online mode
-    if [[ -f "/etc/nixos/flake.nix" ]] && grep -q "hakuspace.nixosModules.default" "/etc/nixos/flake.nix"; then
-        log_info "Detected NixOS with Hakuspace Flake (Online Mode)."
-        if ask_yes_no "===> Do you want to update flake inputs and rebuild NixOS now?"; then
-            cd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake .
-            log_ok "NixOS updated and rebuilt successfully via Flake."
-            REBUILD_DONE=1
-        fi
-    # Offline mode
-    elif [[ -f "/etc/nixos/hakuspace-config.nix" ]] && grep -q "./hakuspace-config.nix" "/etc/nixos/configuration.nix"; then
-        log_info "Detected NixOS with Local hakuspace-config.nix (Offline Mode)."
-        if ask_yes_no "===> Do you want to update local hakuspace-config.nix and rebuild NixOS now?"; then
-            copy_file "$NIX_DIR/hakuspace-config.nix" "/etc/nixos/hakuspace-config.nix"
-            log_info "Rebuilding NixOS system..."
-            sudo nixos-rebuild switch
-            log_ok "NixOS updated and rebuilt successfully via Local Config."
-            REBUILD_DONE=1
-        fi
-    # No Hakuspace configuration detected
-    else
-        log_warn "NixOS detected, but no Hakuspace configuration pattern found."
-        log_warn "How it could be..."
-    fi
-
-    if [[ "$REBUILD_DONE" -eq 0 ]]; then
-        log_warn "You chose not to rebuild the NixOS system. Please remember to rebuild later to apply system-level changes."
-    fi
-fi
-
-# Check if local/state/hakuspace exists, if not, deploy it
+# Check if local/state/tobimune exists, if not, deploy it
 check_state_dir
 
-# Init HakuSpace Control
+# Init Tobimune Shell Control
 check_control_dir
 
-# Gen Style if not exist ~/.local/state/hakuspace/state/state.env
-if [[ ! -f "$HOME/.local/state/hakuspace/state/state.env" ]]; then
+# Generate style if the Tobimune state is not initialized.
+if [[ ! -f "$HOME/.local/state/tobimune/state/state.env" ]]; then
     "$HOME/.local/bin/gen_style.sh" --font "JetBrainsMono Nerd Font"
     log_ok "Executed gen_style.sh"
 else
-    log_skip "Skipping gen_style.sh execution as ~/.local/state/hakuspace/state/state.env already exists."
+    log_skip "Skipping gen_style.sh execution as ~/.local/state/tobimune/state/state.env already exists."
 fi
 
-# Gen opaque theme if not exist ~/.local/state/hakuspace/opaque_theme_state
-if [[ ! -f "$HOME/.local/state/hakuspace/opaque_theme_state" ]]; then
+# Generate the opaque theme state if it does not exist.
+if [[ ! -f "$HOME/.local/state/tobimune/opaque_theme_state" ]]; then
     "$HOME/.local/bin/opaque_theme.sh" off >/dev/null 2>&1
     log_ok "Executed opaque_theme.sh"
 else
-    log_skip "Skipping opaque_theme.sh execution as ~/.local/state/hakuspace/opaque_theme_state already exists."
+    log_skip "Skipping opaque_theme.sh execution as ~/.local/state/tobimune/opaque_theme_state already exists."
 fi
 
 # Reload Waybar

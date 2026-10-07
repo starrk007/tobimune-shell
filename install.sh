@@ -12,11 +12,6 @@ source "$TOBIMUNE_DIR/scripts/functions.sh"
 
 print_header ">>> TOBIMUNE SHELL INSTALLER <<<" "Press CTRL+C to cancel at any time."
 
-# Exclusivo Hyprland
-SELECTED_WMS=("hyprland")
-SELECTED_WM_DIRS=("$SOURCE_CONFIG/hypr")
-SELECTED_PKG_WMS=("$PKG_HYPRLAND")
-
 select_deploy_mode
 
 # ============================================================================
@@ -78,16 +73,8 @@ log_info "Required: pkg-core.txt & pkg-hyprland.txt"
 log_info "CTRL+C to cancel. Edit lists in ~/tobimune-shell/src/packages/"
 
 if command -v yay >/dev/null 2>&1; then
-    for i in "${!SELECTED_WMS[@]}"; do
-        wm_name="${SELECTED_WMS[$i]}"
-        wm_upper=$(echo "$wm_name" | tr '[:lower:]' '[:upper:]')
-        PKG_LABELS+=("$wm_upper")
-        PKG_FILES+=("${SELECTED_PKG_WMS[$i]}")
-    done
-
-    # Add common core, service, optional packages
-    PKG_LABELS+=("CORE" "SERVICE" "OPTIONAL")
-    PKG_FILES+=("$PKG_CORE" "$PKG_SERVICE" "$PKG_OPTIONAL")
+    PKG_LABELS=("HYPRLAND" "CORE" "SERVICE" "OPTIONAL")
+    PKG_FILES=("$PKG_HYPRLAND" "$PKG_CORE" "$PKG_SERVICE" "$PKG_OPTIONAL")
 
     INSTALL_FLAGS=()
     for i in "${!PKG_LABELS[@]}"; do
@@ -133,7 +120,7 @@ if command -v yay >/dev/null 2>&1; then
     fi
 else
     log_error "yay is not installed. Please install yay first to run this step."
-    log_error "If you're using another distro, install packages manually."
+    log_error "Install yay on Arch/CachyOS before continuing."
 fi
 
 # ============================================================================

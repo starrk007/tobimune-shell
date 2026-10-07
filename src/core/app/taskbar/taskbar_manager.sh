@@ -4,7 +4,7 @@
 # Toggle it on/off, reload it, or restore the previous state at startup.
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 MANUAL_STATE="$STATE_DIR/taskbar_manual_state"
 
@@ -13,7 +13,7 @@ TASKBAR_LINK_DIR="$HOME/.config/waybar"
 TASKBAR_CONFIG="$TASKBAR_LINK_DIR/config-taskbar"
 TASKBAR_STYLE="$TASKBAR_LINK_DIR/style-taskbar.css"
 
-TASKBAR_PIN_APPS="$HOME/hakucfg/config/taskbar-pin-apps"
+TASKBAR_PIN_APPS="$HOME/suzaku/config/taskbar-pin-apps"
 THEME_FILE="$THEME_ROOT/taskbar-theme"
 
 mkdir -p "$STATE_DIR"

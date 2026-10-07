@@ -3,12 +3,12 @@
 # Manage Waybar modes via symlinks, Rofi selection, and mode cycling.
 
 # Include WAYBAR_MODE_USER
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 WAYBAR_DIR="$HOME/.config/waybar"
-USER_WAYBAR_DIR="$HOME/hakucfg/config/waybar"
+USER_WAYBAR_DIR="$HOME/suzaku/config/waybar"
 STATE_FILE="$STATE_DIR/waybar_current_mode"
 STATUS_FILE="$STATE_DIR/waybar_manual_state"
 CURRENT_STATE="top"

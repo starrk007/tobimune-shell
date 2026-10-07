@@ -2,15 +2,15 @@
 
 spawn() { ( "$@" & ) >/dev/null 2>&1; }
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 if [[ $# -eq 0 ]]; then
     DOCK_APP_NAME="OFF"
-    if grep -qE '"format":\s*"\{icon\} \{name\}"' $HOME/.local/state/hakuspace/taskbar-theme 2>/dev/null; then
+    if grep -qE '"format":\s*"\{icon\} \{name\}"' $HOME/.local/state/tobimune/taskbar-theme 2>/dev/null; then
         DOCK_APP_NAME="ON"
     fi
 
-    DOCK_ICON_SIZE=$(grep -oP '"icon-size":\s*\K\d+' $HOME/.local/state/hakuspace/taskbar-theme 2>/dev/null)
+    DOCK_ICON_SIZE=$(grep -oP '"icon-size":\s*\K\d+' $HOME/.local/state/tobimune/taskbar-theme 2>/dev/null)
     DOCK_ICON_SIZE_TEXT="$DOCK_ICON_SIZE"
     DOCK_ICON_SIZE_TEXT+="px"
 
@@ -38,7 +38,7 @@ if [[ $# -eq 0 ]]; then
 󰝚  Cava Dynamic Exclusive $IS_CAVA_DYNAMIC
 󰍹  Rounded Screen Dynamic Exclusive $IS_DYNAMIC
 󱁤  Settings Folder
-󱁤  HakuMenu General Tab
+󱁤  TobimuneMenu General Tab
 󰖩  Wifi
 󰂯  Bluetooth
 󰋊  Disk Manager
@@ -56,8 +56,8 @@ case "$chosen" in
     *"Cava Color Switch"*) spawn $HOME/.local/bin/cava_manager.sh --color-switch ;;
     *"Cava Dynamic Exclusive"*) spawn $HOME/.local/bin/cava_manager.sh --toggle-dynamic ;;
     *"Rounded Screen Dynamic Exclusive"*) spawn $HOME/.local/bin/rounded_screen_manager.sh --toggle-dynamic ;;
-    *"Settings Folder"*) spawn xdg-open "$HOME/hakucfg" ;;
-    *"HakuMenu General Tab"*) spawn code $HOME/hakucfg/general-menu.sh ;;
+    *"Settings Folder"*) spawn xdg-open "$HOME/suzaku" ;;
+    *"TobimuneMenu General Tab"*) spawn code $HOME/suzaku/general-menu.sh ;;
     *"Wifi"*) spawn nm-connection-editor ;;
     *"Bluetooth"*) spawn blueman-manager ;;
     *"Disk Manager"*) spawn gparted ;;

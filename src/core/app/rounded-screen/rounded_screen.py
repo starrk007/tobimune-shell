@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hakuspace rounded screen app."""
+"""Tobimune rounded screen app."""
 
 import os
 import sys
@@ -17,7 +17,7 @@ except ValueError:
 
 from gi.repository import Gtk, Gdk, GtkLayerShell
 
-CONFIG_DIR = os.path.expanduser("~/hakucfg/config")
+CONFIG_DIR = os.path.expanduser("~/suzaku/config")
 CONF_FILE = os.path.join(CONFIG_DIR, "rounded-screen.conf")
 
 # Default Constants

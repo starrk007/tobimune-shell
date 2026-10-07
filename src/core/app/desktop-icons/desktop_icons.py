@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hakuspace desktop icon manager."""
+"""Tobimune desktop icon manager."""
 
 import json
 import os
@@ -40,7 +40,7 @@ CELL_WIDTH = 100
 CELL_HEIGHT = 100
 PADDING = 6
 
-CONFIG_DIR = os.path.expanduser("~/hakucfg/config")
+CONFIG_DIR = os.path.expanduser("~/suzaku/config")
 POSITIONS_FILE = os.path.expanduser("~/.cache/desktop-icons-positions.json")
 CONF_FILE = os.path.join(CONFIG_DIR, "desktop-icons.conf")
 
@@ -1559,12 +1559,12 @@ class DesktopLayout(Gtk.Fixed):
         menu = Gtk.Menu()
         menu.get_style_context().add_class('desktop-context-menu')
 
-        # === HAKUSPACE MENU ===
-        hakumenu_item = Gtk.MenuItem(label="Menu")
-        def on_hakumenu(w):
-            subprocess.Popen([os.path.expanduser("~/.local/bin/hakumenu.sh")])
-        hakumenu_item.connect("activate", on_hakumenu)
-        menu.append(hakumenu_item)
+        # === TOBIMUNE MENU ===
+        tobimunemenu_item = Gtk.MenuItem(label="Menu")
+        def on_tobimunemenu(w):
+            subprocess.Popen([os.path.expanduser("~/.local/bin/tobimunemenu.sh")])
+        tobimunemenu_item.connect("activate", on_tobimunemenu)
+        menu.append(tobimunemenu_item)
         
         space_item = Gtk.MenuItem(label="Space")
         space_menu = Gtk.Menu()
@@ -1599,7 +1599,7 @@ class DesktopLayout(Gtk.Fixed):
 
         rs_on = False
         try:
-            with open(os.path.expanduser("~/.local/state/hakuspace/state/rounded_screen_state"), "r") as f:
+            with open(os.path.expanduser("~/.local/state/tobimune/state/rounded_screen_state"), "r") as f:
                 rs_on = (f.read().strip() == "1")
         except:
             pass
@@ -1638,14 +1638,14 @@ class DesktopLayout(Gtk.Fixed):
         
         taskbar_state = False
         try:
-            with open(os.path.expanduser("~/.local/state/hakuspace/state/taskbar_manual_state"), "r") as f:
+            with open(os.path.expanduser("~/.local/state/tobimune/state/taskbar_manual_state"), "r") as f:
                 taskbar_state = (f.read().strip() == "1")
         except:
             pass
             
         taskbar_autohide = False
         try:
-            with open(os.path.expanduser("~/.local/state/hakuspace/state/taskbar_autohide_state"), "r") as f:
+            with open(os.path.expanduser("~/.local/state/tobimune/state/taskbar_autohide_state"), "r") as f:
                 taskbar_autohide = (f.read().strip() == "1")
         except:
             pass
@@ -1693,10 +1693,10 @@ class DesktopLayout(Gtk.Fixed):
 
         ow_item = Gtk.MenuItem(label="Open Widget")
         def on_ow(w):
-            subprocess.Popen([os.path.expanduser("~/.local/bin/haku.sh"), "--do-not-exit"])
+            subprocess.Popen([os.path.expanduser("~/.local/bin/tobimune.sh"), "--do-not-exit"])
         ow_item.connect("activate", on_ow)
         space_menu.append(ow_item)
-        # === END HAKUSPACE MENU ===
+        # === END TOBIMUNE MENU ===
 
         reload_item = Gtk.MenuItem(label="Reload")
         reload_item.connect("activate", self.on_reload)

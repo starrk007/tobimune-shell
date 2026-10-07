@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script is used to set up the main settings for all hakuspace's scripts.
+# This script is used to set up the main settings for all tobimune's scripts.
 # DO NOT EDIT THIS LINE :v, used for checking setting.sh is up-to-date when run update.sh
 SETTING_VERSION="26.09-2"
 
@@ -15,11 +15,6 @@ WELCOME_MSG=true
 
 NIGHT_LIGHT_TEMPERATURE=4000
 SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
-
-# Niri use screenshot built-in, so SCREENSHOT_DIR is not used in Niri, you can customize it in ~/hakucfg/wm/niri-custom.kdl
-# But if you want to use my screenshot script, just add keybind for that
-
-
 
 # ====== Wallpaper Settings ======
 WALL_DIR="$HOME/Pictures/Wallpapers"
@@ -51,15 +46,15 @@ REC_OPTS="--max-fps 60" # wl-screenrec options, you can customize them as needed
 
 # ====== Waybar Theme Settings ======
 # Add your custom Waybar modes here, e.g., ("custom1" "custom2")
-# You just add your waybar config to ~/hakucfg/config/waybar with `config` and `style.css` files.
+# You just add your waybar config to ~/suzaku/config/waybar with `config` and `style.css` files.
 # If name between WAYBAR_MODES_DEAULT and WAYBAR_MODE_USER is the same, WAYBAR_MODE_DEAULT (my theme) will be used.
-# Example: WAYBAR_MODE_USER=("custom1"), have ~/hakucfg/config/waybar/custom1/config and ~/hakucfg/config/waybar/custom1/style.css
+# Example: WAYBAR_MODE_USER=("custom1"), have ~/suzaku/config/waybar/custom1/config and ~/suzaku/config/waybar/custom1/style.css
 WAYBAR_MODE_USER=()
 
 
 
 # ====== Rofi Theme Settings ======
-# You just add your theme "name.rasi" to the ~/hakucfg/config/rofi folder, and switch to it in Haku Menu (Theme tab)
+# You just add your theme "name.rasi" to the ~/suzaku/config/rofi folder, and switch to it in Tobimune Menu (Theme tab)
 
 # If you have issues with rofi wallpaper image (Too lowres, dupe images,...), you can try to change them.
 # What do they do? These are ImageMagick options, Generate wallpaper preview image for some Rofi themes
@@ -75,10 +70,10 @@ WAYBAR_MODE_USER=()
 
 
 
-# ====== Haku Idle Space Settings (haku.sh) ======
-HAKU_CLOCK_FONT_SIZE=10
-HAKU_GENERAL_FONT_SIZE=11
-HAKU_TERMINAL_FONT_SIZE=14
+# ====== Tobimune Idle Space Settings (tobimune.sh) ======
+TOBIMUNE_CLOCK_FONT_SIZE=10
+TOBIMUNE_GENERAL_FONT_SIZE=11
+TOBIMUNE_TERMINAL_FONT_SIZE=14
 
 
 
@@ -88,4 +83,3 @@ RAM_THRESHOLD_MB=300
 # Targeted apps for graceful and force kill sequence when exiting WM
 # Example: EXIT_APP_LIST_USER=("discord" "firefox" "code")
 EXIT_APP_LIST_USER=()
-

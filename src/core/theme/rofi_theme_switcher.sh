@@ -3,7 +3,7 @@
 # This script allows the user to switch between different Rofi themes.
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 INPUT_THEME="$THEME_ROOT/rofi-theme.rasi"
 
@@ -11,7 +11,7 @@ CONFIG_DIR="$HOME/.config/rofi"
 CONFIG_FILE="$CONFIG_DIR/config.rasi"
 
 THEME_DIR="$CONFIG_DIR/themes"
-USER_THEME_DIR="$HOME/hakucfg/config/rofi"
+USER_THEME_DIR="$HOME/suzaku/config/rofi"
 
 # Check and build available theme list
 themes_default=""

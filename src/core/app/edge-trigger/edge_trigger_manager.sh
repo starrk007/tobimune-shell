@@ -4,7 +4,7 @@
 # Toggle it on/off, reload it, or restore the previous state at startup.
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 EDGE_TRIGGER_STATE="$STATE_DIR/edge_trigger_state"
 
 EDGE_TRIGGER_BIN="$HOME/.local/bin/edge_trigger.py"

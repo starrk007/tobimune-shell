@@ -265,8 +265,8 @@ determine_deploy_mode() {
         _determine_deploy_mode_check_recursive "$item" "$dst"
     done
     
-    # Check a few scripts as well
-    for script in haku_theme.sh taskbar_manager.sh; do
+    # Check representative Hyprland scripts as well.
+    for script in tobimune_theme.sh taskbar_manager.sh; do
         local dst="$DEST_BIN/$script"
         if [[ -e "$dst" ]]; then
             total_checked=$((total_checked + 1))
@@ -498,13 +498,8 @@ check_control_dir() {
 
     local required_files=(
         "setting.sh"
-        "wm/hyprland-custom.lua"
-        "config/taskbar-pin-apps"
-        "config/hypridle.conf"
-        "config/kitty.conf"
-        "config/shell.fish"
-        "config/hyprlock.conf"
         "general-menu.sh"
+        "wm/hyprland-custom.lua"
     )
     for file in "${required_files[@]}"; do
         if [[ ! -f "$DEST_CUSTOM_DIR/$file" ]]; then
@@ -513,8 +508,7 @@ check_control_dir() {
         fi
     done
 
-    mkdir -p "$DEST_CUSTOM_DIR/config/waybar"
-    mkdir -p "$DEST_CUSTOM_DIR/config/rofi"
+    mkdir -p "$DEST_CUSTOM_DIR/config/waybar" "$DEST_CUSTOM_DIR/config/rofi"
     chmod +x "$DEST_CUSTOM_DIR/setting.sh"
     chmod +x "$DEST_CUSTOM_DIR/general-menu.sh"
 

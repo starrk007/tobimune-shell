@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# This script manages Haku Shell Mode (combining Rounded Screen dynamic, Cava dynamic, Opaque Theme and Edge Trigger).
+# This script manages Tobimune Shell Mode (combining Rounded Screen dynamic, Cava dynamic, Opaque Theme and Edge Trigger).
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-if [[ -f "$SCRIPT_DIR/haku_theme.sh" ]]; then
-    source "$SCRIPT_DIR/haku_theme.sh"
-elif [[ -f "$SCRIPT_DIR/../lib/haku_theme.sh" ]]; then
-    source "$SCRIPT_DIR/../lib/haku_theme.sh"
+if [[ -f "$SCRIPT_DIR/tobimune_theme.sh" ]]; then
+    source "$SCRIPT_DIR/tobimune_theme.sh"
+elif [[ -f "$SCRIPT_DIR/../lib/tobimune_theme.sh" ]]; then
+    source "$SCRIPT_DIR/../lib/tobimune_theme.sh"
 else
-    source "$HOME/.local/bin/haku_theme.sh"
+    source "$HOME/.local/bin/tobimune_theme.sh"
 fi
 
-SHELL_MODE_STATE="$STATE_DIR/haku_shell_state"
+SHELL_MODE_STATE="$STATE_DIR/tobimune_shell_state"
 
 if [[ ! -f "$SHELL_MODE_STATE" ]] || ! grep -qxE '0|1' "$SHELL_MODE_STATE"; then
     echo "0" > "$SHELL_MODE_STATE"
@@ -43,7 +43,7 @@ turn_on() {
     fi
 
     echo "1" > "$SHELL_MODE_STATE"
-    echo "Haku Shell Mode enabled."
+    echo "Tobimune Shell Mode enabled."
 }
 
 turn_off() {
@@ -68,7 +68,7 @@ turn_off() {
     fi
 
     echo "0" > "$SHELL_MODE_STATE"
-    echo "Haku Shell Mode disabled."
+    echo "Tobimune Shell Mode disabled."
 }
 
 toggle() {
@@ -93,9 +93,9 @@ case "${1:-}" in
     -c|--check)
         current_state=$(cat "$SHELL_MODE_STATE" 2>/dev/null || echo "0")
         if [[ "$current_state" == "1" ]]; then
-            echo "Haku Shell Mode is currently ENABLED."
+            echo "Tobimune Shell Mode is currently ENABLED."
         else
-            echo "Haku Shell Mode is currently DISABLED."
+            echo "Tobimune Shell Mode is currently DISABLED."
         fi
         ;;
     *)

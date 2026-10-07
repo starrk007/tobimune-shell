@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CUSTOM_SCRIPT="$HOME/hakucfg/general-menu.sh"
+CUSTOM_SCRIPT="$HOME/suzaku/general-menu.sh"
 
 # Check if a custom script exists and is executable
 if [[ -f "$CUSTOM_SCRIPT" ]]; then
@@ -20,7 +20,7 @@ if [[ -f "$CUSTOM_SCRIPT" ]]; then
 fi
 
 # Base fallback, use my own default :)
-notify-send "Haku Menu" "Your custom Haku Menu failed or is not present. Using default menu instead."
+notify-send "Tobimune Menu" "Your custom Tobimune Menu failed or is not present. Using default menu instead."
 spawn() { ( "$@" & ) >/dev/null 2>&1; }
 
 if [[ $# -eq 0 ]]; then

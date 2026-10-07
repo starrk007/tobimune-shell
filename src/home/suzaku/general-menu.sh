@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Haku Menu - User Custom General Menu
+# Tobimune Menu - User Custom General Menu
 # You can customize this script to add your own menu items and actions.
 
 spawn() { ( "$@" & ) >/dev/null 2>&1; }

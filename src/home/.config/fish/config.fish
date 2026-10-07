@@ -47,20 +47,17 @@ if status is-interactive
     # Common commands
     abbr c 'clear'
     abbr h 'history'
-    abbr haku '~/.local/bin/haku.sh'
-    abbr menu '~/.local/bin/hakumenu.sh'
+    abbr tobimune '~/.local/bin/tobimune.sh'
+    abbr menu '~/.local/bin/tobimunemenu.sh'
     abbr pacsize 'expac -H M "%m\t%n" $(\pacman -Qeq) | sort -h -r'
     abbr pacsizefull 'expac -H M "%m\t%n" | sort -h -r'
 
-    # Hakuspace tools
-    abbr hsdoctor '~/hakuspace/doctor.sh'
-    abbr hsupdate '~/hakuspace/update.sh'
-    abbr hsrepo 'cd ~/hakuspace/'
+    # Tobimune tools
+    abbr hsdoctor '~/tobimune/doctor.sh'
+    abbr hsupdate '~/tobimune/update.sh'
+    abbr hsrepo 'cd ~/tobimune/'
 
     # NixOS
-    command -v nixos-rebuild &> /dev/null && abbr nbs 'sudo nixos-rebuild switch'
-    command -v nixos-rebuild &> /dev/null && abbr ndir 'cd /etc/nixos'
-    command -v nixos-rebuild &> /dev/null && abbr nc 'sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +3 && sudo nix-store --gc'
 
-    test -r ~/hakucfg/config/shell.fish; and source ~/hakucfg/config/shell.fish
+    test -r ~/suzaku/config/shell.fish; and source ~/suzaku/config/shell.fish
 end

@@ -363,7 +363,7 @@ def parse_args():
     parser.add_argument(
         '-p', '--config',
         dest='config_path',
-        default='~/hakucfg/config/cava-layer',
+        default='~/suzaku/config/cava-layer',
         help="Path to a cava config file"
     )
     parser.add_argument(

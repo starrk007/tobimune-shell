@@ -13,14 +13,6 @@
         ]
     },
 
-    "niri/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "active": "",
-            "default": ""
-        }
-    },
-
     "hyprland/workspaces": {
         "all-outputs": true,
         "sort-by-number": true,
@@ -31,21 +23,6 @@
             "default": ""
 	    }
     },
-
-    "mango/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "active": "",
-            "default": "",
-            "urgent": "",
-            "empty": ""
-        },
-        "on-click": "activate",
-        "on-click-right": "toggle",
-        "overview-label": "    ",
-        "hide-empty": true
-    },
-
 
     "ext/workspaces": {
         "format": "{icon}",

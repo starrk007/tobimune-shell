@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# This script opens various configuration files in VS Code, depending on the current window manager.
+# This script opens Tobimune and Hyprland configuration files in VS Code.
 
 # Check dependency
 if ! command -v code &> /dev/null; then
@@ -19,21 +19,9 @@ paths=(
     "$HOME/.zshrc"
 )
 
-# Add WM-specific configs only if running
+# Add Hyprland configs only if running.
 if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
     paths+=("$HOME/.config/hypr")
-fi
-
-if [[ $XDG_CURRENT_DESKTOP == "niri" ]]; then
-    paths+=("$HOME/.config/niri")
-fi
-
-if [[ $XDG_CURRENT_DESKTOP == "mango" ]]; then
-    paths+=("$HOME/.config/mango")
-fi
-
-if [[ $XDG_CURRENT_DESKTOP == "labwc" ]]; then
-    paths+=("$HOME/.config/labwc")
 fi
 
 # Keep only existing paths

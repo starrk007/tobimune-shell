@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # Setup environment variables
-HAKU_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$HAKU_DIR/scripts/variables.sh"
-source "$HAKU_DIR/scripts/functions.sh"
+TOBIMUNE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$TOBIMUNE_DIR/scripts/variables.sh"
+source "$TOBIMUNE_DIR/scripts/functions.sh"
 
-print_header ">>> HAKUSPACE DOCTOR <<<"
+print_header ">>> TOBIMUNE DOCTOR <<<"
 step_title "Checking BASE Configs"
 
 determine_deploy_mode --silent
-if [[ "$HAKUSPACE_DEPLOY_MODE" == "copy" ]]; then
+if [[ "$TOBIMUNE_DEPLOY_MODE" == "copy" ]]; then
     log_info "Deployment mode is set to 'copy'. Skipping symlink integrity check."
     exit 0
 fi
@@ -111,16 +111,6 @@ if [[ -d "$DEST_CONFIG/hypr" ]]; then
     check_module "$SOURCE_CONFIG/hypr/config" "$DEST_CONFIG/hypr/config" "$DEST_CONFIG/hypr/config"
     check_module "$SOURCE_CONFIG/hypr/hyprland.lua" "$DEST_CONFIG/hypr/hyprland.lua" "$DEST_CONFIG/hypr/hyprland.lua"
 fi
-if [[ -d "$DEST_CONFIG/niri" ]]; then
-    check_module "$SOURCE_CONFIG/niri" "$DEST_CONFIG/niri" "$DEST_CONFIG/niri"
-fi
-if [[ -d "$DEST_CONFIG/mango" ]]; then
-    check_module "$SOURCE_CONFIG/mango" "$DEST_CONFIG/mango" "$DEST_CONFIG/mango"
-fi
-if [[ -d "$DEST_CONFIG/labwc" ]]; then
-    check_module "$SOURCE_CONFIG/labwc" "$DEST_CONFIG/labwc" "$DEST_CONFIG/labwc"
-fi
-
 check_module "$SOURCE_CONFIG/gtk-3.0/gtk.css" "$DEST_CONFIG/gtk-3.0/gtk.css" "$DEST_CONFIG/gtk-3.0/gtk.css"
 check_module "$HOME_SRC_DIR/.nanorc" "$HOME/.nanorc" "$HOME/.nanorc"
 
@@ -159,10 +149,10 @@ fi
 echo ""
 step_title "Checking for Missing Directories"
 
-# Check if local/state/hakuspace exists, if not, deploy it
+# Check if local/state/tobimune exists, if not, deploy it
 check_state_dir
 
-# Check ~/hakucfg directory
+# Check ~/suzaku directory
 check_control_dir
 
 echo ""

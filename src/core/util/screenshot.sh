@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Include SCREENSHOT_DIR
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 
 SCREENSHOT_DIR=${SCREENSHOT_DIR:-"$HOME/Pictures/Screenshots"}
 mkdir -p "$SCREENSHOT_DIR"

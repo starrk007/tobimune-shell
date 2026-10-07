@@ -5,10 +5,10 @@
 // /_/ |_|\____/_/ /_/   
 //                      
 
-// HakuSpace Rofi Theme
+// Tobimune Shell Rofi Theme
 // Theme: tablet.rasi
 
-@import "../../../.local/state/hakuspace/theme/rofi-style.rasi"
+@import "../../../.local/state/tobimune/theme/rofi-style.rasi"
 
 /* ===== GLOBAL VARIABLES ===== */
 * {

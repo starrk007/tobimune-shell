@@ -39,20 +39,11 @@ fallback_resolution() {
 get_resolution() {
     XDG_CURRENT_DESKTOP=$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')
 
-    case "$XDG_CURRENT_DESKTOP" in
-        "hyprland")
-            read -r WIDTH HEIGHT <<< $(hyprctl monitors -j | jq -r '.[0] | "\(.width) \(.height)"')
-            ;;
-        "niri")
-            read -r WIDTH HEIGHT <<< $(niri msg --json outputs | jq -r 'to_entries | .[0].value | .modes[.current_mode] | "\(.width) \(.height)"')
-            ;;
-        "mango")
-            read -r WIDTH HEIGHT <<< $(mmsg get all-monitors | jq -r '.monitors[] | select(.active == true) // .[0] | "\(.width) \(.height)"')
-            ;;
-        *)
-            fallback_resolution
-            ;;
-    esac
+    if [[ "$XDG_CURRENT_DESKTOP" == "hyprland" ]]; then
+        read -r WIDTH HEIGHT <<< "$(hyprctl monitors -j | jq -r '.[0] | "\(.width) \(.height)"')"
+    else
+        fallback_resolution
+    fi
 }
 
 # Main execution

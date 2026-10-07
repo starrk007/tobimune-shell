@@ -3,7 +3,7 @@
 # This script is a simple wrapper around cava-layer.py to manage its lifecycle (start/stop/toggle)
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 SCRIPT_PATH="${CAVA_LAYER_PATH:-$HOME/.local/bin/cava_layer.py}"
 RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp}"
@@ -187,7 +187,7 @@ toggle_dynamic() {
 toggle_color() {
     mkdir -p "$STATE_DIR"
     local COLOR_STATE_FILE="$STATE_DIR/cava_color_state"
-    local CAVA_CONFIG="$HOME/hakucfg/config/cava-layer"
+    local CAVA_CONFIG="$HOME/suzaku/config/cava-layer"
 
     if [[ ! -f "$CAVA_CONFIG" ]]; then
         err "Cava config file not found at $CAVA_CONFIG"

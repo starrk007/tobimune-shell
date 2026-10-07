@@ -13,7 +13,7 @@ EOF
 fi
 
 # Include AWWW_OPTS, GEN_WIDE_OPTS, and GEN_BOX_OPTS from setting.sh if it exists
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 
 AWWW_OPTS=${AWWW_OPTS:-"--transition-type random --transition-step 90 --transition-fps 60"}
 
@@ -42,26 +42,8 @@ get_active_monitor() {
     fi
 }
 
-# Generate blurred backdrop image for Niri overview and imagebox
 make_cache_img() {
-    local is_successfull=1
-
-    # Make Niri backdrop
-    if [[ "${XDG_CURRENT_DESKTOP:-}" == "niri" ]] || pgrep -x "niri" >/dev/null 2>&1; then
-        if magick "${WALLPAPER}[0]" -background black -alpha remove -set option:filter:blur 1.0 -blur 0x15 "$CACHE_DIR/backdrop.jpg" 2>/dev/null; then
-            awww img -n "awww-daemon-backdrop" --transition-type none "$CACHE_DIR/backdrop.jpg"
-            echo "Niri backdrop image generated at $CACHE_DIR/backdrop.jpg"
-        else
-            is_successfull=0
-        fi
-    fi
-
-    # Make wallpaper current image file
-    # if magick "${WALLPAPER}[0]" "$CACHE_DIR/current_wallpaper.jpg" 2>/dev/null; then
-    #     echo "Current wallpaper image generated at $CACHE_DIR/current_wallpaper.jpg"
-    # else
-    #     is_successfull=0
-    # fi
+    return 0
 
     # Make wallpaper preview image for Rofi
     if magick "${WALLPAPER}[0]" $GEN_WIDE_OPTS "$CACHE_DIR/walpaper_wide_gen.jpg" 2>/dev/null && \

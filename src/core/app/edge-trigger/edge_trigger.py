@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hakuspace edge trigger app."""
+"""Tobimune edge trigger app."""
 
 import os
 import sys
@@ -36,7 +36,7 @@ CONFIG = {
     'edge_bottom_enable': True,
     'edge_left_enable': True,
     'edge_right_enable': True,
-    'edge_top_cmd': '~/.local/bin/hakumenu.sh -e -location 2 -theme-str "window { border-radius: 0 0 20px 20px; }"',
+    'edge_top_cmd': '~/.local/bin/tobimunemenu.sh -e -location 2 -theme-str "window { border-radius: 0 0 20px 20px; }"',
     'edge_bottom_cmd': '~/.local/bin/wallpaper_select.sh -e -location 6 -theme-str "window { border-radius: 20px 20px 0 0; }"',
     'edge_left_cmd': '~/.local/bin/shutdown.sh -v -e -location 1 -theme-str "window { border-radius: 0 0 20px 0; }"',
     'edge_right_cmd': 'swaync-client -t -sw',
@@ -56,7 +56,7 @@ SAFE_ZONES = {
 
 # Hyprland grabs ALL pointer input for any layer surface with exclusive
 # keyboard-interactivity (rofi included), regardless of input region.
-# This is a known, still-open Hyprland bug (works fine on sway/niri) — the
+# This is a known, still-open Hyprland bug — the
 # guard window's enter-notify simply never fires there. As a workaround,
 # only on Hyprland we poll the compositor's own cursor position via hyprctl
 # instead of waiting for a pointer event on our surface.

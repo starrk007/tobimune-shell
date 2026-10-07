@@ -6,7 +6,7 @@ if POLKIT_BIN=$(ls -d /nix/store/*-mate-polkit-*/libexec/polkit-mate-authenticat
 # Arch Linux
 elif [ -f /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 ]; then
     exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-# Fedora
+
 elif [ -f /usr/libexec/polkit-mate-authentication-agent-1 ]; then
     exec /usr/libexec/polkit-mate-authentication-agent-1
 else

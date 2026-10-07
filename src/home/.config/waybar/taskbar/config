@@ -1,8 +1,8 @@
 {
     "include": [
         "$HOME/.config/waybar/module/notification_module",
-        "$HOME/hakucfg/config/taskbar-pin-apps",
-        "$HOME/.local/state/hakuspace/taskbar-theme"
+        "$HOME/suzaku/config/taskbar-pin-apps",
+        "$HOME/.local/state/tobimune/taskbar-theme"
     ],
     "name": "taskbar",
     "layer": "top",

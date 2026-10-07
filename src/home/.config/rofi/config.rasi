@@ -18,5 +18,5 @@ configuration {
     kb-row-down: "Down,Control+n,Control+x";
 }
 
-@import "~/.local/state/hakuspace/rofi-theme.rasi"
-@import "~/.local/state/hakuspace/theme/opaque/rofi.rasi"
+@import "~/.local/state/tobimune/rofi-theme.rasi"
+@import "~/.local/state/tobimune/theme/opaque/rofi.rasi"

@@ -4,7 +4,7 @@
 # It allows toggling the opaque theme on or off and ensures that the necessary configuration files are created or updated accordingly.
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 OPAQUE_DIR="$THEME_RENDER_DIR/opaque"
 mkdir -p "$OPAQUE_DIR"

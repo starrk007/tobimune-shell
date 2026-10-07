@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 set -u
 
-HAKU_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-source "$HAKU_DIR/scripts/variables.sh"
-source "$HAKU_DIR/scripts/functions.sh"
+TOBIMUNE_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+source "$TOBIMUNE_DIR/scripts/variables.sh"
+source "$TOBIMUNE_DIR/scripts/functions.sh"
 
 BACKUP_PREFIX="Backup_"
 BACKUP_GLOB="$HOME/.backup/${BACKUP_PREFIX}"*
 
-# Rollback only considers backups created by HakuSpace, not unrelated folders
+# Rollback only considers backups created by Tobimune Shell, not unrelated folders
 # that may also exist under ~/.backup.
 print_rollback_header() {
-    print_header ">>> CONFIG ROLLBACK <<<" "Restore files from a previous HakuSpace backup."
+    print_header ">>> CONFIG ROLLBACK <<<" "Restore files from a previous Tobimune Shell backup."
 }
 
 get_backup_dirs() {
@@ -58,7 +58,7 @@ select_backup_dir() {
     SELECTED_BACKUP="$HOME/.backup/${backup_names[$((choice - 1))]}"
 }
 
-# MANAGED_DESTINATIONS contains the home paths controlled by HakuSpace.
+# MANAGED_DESTINATIONS contains the home paths controlled by Tobimune Shell.
 # Rollback moves existing entries from this list into Rollback_Backup_*
 # before restoring the selected backup. Paths outside this list are preserved.
 add_managed_destination() {
@@ -91,7 +91,7 @@ build_managed_destinations() {
         item_name="$(basename "$source_item")"
 
         case "$item_name" in
-            hypr|niri|mango|labwc)
+            hypr)
                 continue
                 ;;
             gtk-3.0)
@@ -109,9 +109,6 @@ build_managed_destinations() {
     add_managed_destination "$DEST_CONFIG/hypr/hypridle.conf"
     add_managed_destination "$DEST_CONFIG/hypr/hyprlock.conf"
     add_managed_destination "$DEST_CONFIG/hypr/hyprlock_tiny.conf"
-    add_managed_destination "$DEST_CONFIG/niri"
-    add_managed_destination "$DEST_CONFIG/mango"
-    add_managed_destination "$DEST_CONFIG/labwc"
     while IFS= read -r -d '' source_item; do
         item_name="$(basename "$source_item")"
         [[ "$item_name" == "README.md" ]] && continue
@@ -136,7 +133,7 @@ clear_managed_destinations() {
             while IFS= read -r -d '' link; do
                 local target
                 target="$(readlink "$link")"
-                if [[ "$target" == *"/hakuspace/src/"* ]]; then
+                if [[ "$target" == *"/tobimune/src/"* ]]; then
                     rm -f "$link"
                 fi
             done < <(find "$destination" -type l -print0)
@@ -146,7 +143,7 @@ clear_managed_destinations() {
         elif [[ -L "$destination" ]]; then
             local target
             target="$(readlink "$destination")"
-            if [[ "$target" == *"/hakuspace/src/"* ]]; then
+            if [[ "$target" == *"/tobimune/src/"* ]]; then
                 rm -f "$destination"
                 continue
             fi
@@ -167,11 +164,11 @@ restore_item() {
     relative_path="${source_item#$SELECTED_BACKUP/}"
     destination="$HOME/$relative_path"
 
-    # Prevent symlink dereferencing by removing HakuSpace symlinks first
+    # Prevent symlink dereferencing by removing Tobimune Shell symlinks first
     if [[ -L "$destination" ]]; then
         local target
         target="$(readlink "$destination")"
-        if [[ "$target" == *"/hakuspace/src/"* ]]; then
+        if [[ "$target" == *"/tobimune/src/"* ]]; then
             rm -f "$destination"
         fi
     fi

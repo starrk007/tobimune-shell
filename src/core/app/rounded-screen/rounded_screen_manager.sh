@@ -4,12 +4,12 @@
 # Toggle it on/off, reload it, or restore the previous state at startup.
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 ROUNDED_SCREEN_STATE="$STATE_DIR/rounded_screen_state"
 ROUNDED_SCREEN_DYNAMIC_STATE="$STATE_DIR/rounded_screen_dynamic_state"
 
 ROUNDED_SCREEN_BIN="$HOME/.local/bin/rounded_screen.py"
-CONF_FILE="$HOME/hakucfg/config/rounded-screen.conf"
+CONF_FILE="$HOME/suzaku/config/rounded-screen.conf"
 
 mkdir -p "$STATE_DIR"
 

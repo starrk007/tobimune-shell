@@ -5,10 +5,10 @@
 // /_/ |_|\____/_/ /_/   
 //                      
 
-// HakuSpace Rofi Theme
+// Tobimune Shell Rofi Theme
 // Theme: shutdown.rasi, use for shutdown menu
 
-@import "../../.local/state/hakuspace/theme/rofi-style.rasi"
+@import "../../.local/state/tobimune/theme/rofi-style.rasi"
 
 /* ===== GLOBAL VARIABLES ===== */
 * {
@@ -84,4 +84,4 @@ element-text selected {
     vertical-align: 0.5;
 }
 
-@import "../../.local/state/hakuspace/theme/opaque/rofi.rasi"
+@import "../../.local/state/tobimune/theme/opaque/rofi.rasi"

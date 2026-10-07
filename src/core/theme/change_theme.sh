@@ -2,7 +2,7 @@
 
 spawn() { ( "$@" & ) >/dev/null 2>&1; }
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 GEN="$HOME/.local/bin/gen_style.sh"
 APPLY="$HOME/.local/bin/apply_style.sh"

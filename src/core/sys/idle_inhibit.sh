@@ -14,7 +14,7 @@ if [[ $(printf '%s\n%s' "$MIN_VERSION" "$HYPRIDLE_VERSION" | sort -V | head -n1)
 fi
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 STATE_FILE="$STATE_DIR/idle_inhibit"
 
 # Ensure the directory exists
@@ -35,7 +35,7 @@ is_audio_playing() {
         END { print (found == 1 ? "1" : "0") }
     ')
 
-    local timestamp_file="/tmp/haku_audio_timestamp"
+    local timestamp_file="/tmp/tobimune_audio_timestamp"
     local current_time=$(date +%s)
     local grace_period=5
 

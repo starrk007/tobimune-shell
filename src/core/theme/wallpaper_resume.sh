@@ -32,12 +32,6 @@ else
     echo "Resumed awww daemon"
 fi
 
-# Niri specific resume for awww backdrop daemon
-if [[ "${XDG_CURRENT_DESKTOP:-}" == "niri" ]]; then
-    awww-daemon -n awww-daemon-backdrop &
-    echo "Resumed awww backdrop daemon for Niri."
-fi
-
 # Start mpvpaper if the current wallpaper is a video file
 if [[ -f "$CURRENT_WALL" ]]; then
     WALLPAPER=$(cat "$CURRENT_WALL")

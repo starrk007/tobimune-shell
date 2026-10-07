@@ -1,5 +1,5 @@
-@import url("../../.local/state/hakuspace/theme/colors.css");
-@import url("../../.local/state/hakuspace/theme/fonts.css");
+@import url("../../.local/state/tobimune/theme/colors.css");
+@import url("../../.local/state/tobimune/theme/fonts.css");
 
 * {
     outline: none;
@@ -301,4 +301,4 @@
     transition: all 400ms ease;
 }
 
-@import url("../../.local/state/hakuspace/theme/opaque/swaync.css");
+@import url("../../.local/state/tobimune/theme/opaque/swaync.css");

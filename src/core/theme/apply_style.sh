@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/haku_theme.sh"
+source "$SCRIPT_DIR/tobimune_theme.sh"
 
 # Apply GTK font (best-effort)
 if command -v gsettings >/dev/null 2>&1; then

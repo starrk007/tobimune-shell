@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # Include Font Size Settings
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 
 if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
         cat <<'EOF'
-Usage: haku.sh [OPTION]
-Open or clear the Haku desktop widgets.
+Usage: tobimune.sh [OPTION]
+Open or clear the Tobimune desktop widgets.
 
 Options:
-    --clear             Close all Haku windows
+    --clear             Close all Tobimune windows
     --do-not-exit       Do not exit after opening windows (useful for debugging)
     -h, --help          Show this help message
 EOF
@@ -26,9 +26,9 @@ need lavat
 need jq
 
 # Main
-HAKU_CLOCK_FONT_SIZE=${HAKU_CLOCK_FONT_SIZE:-10}
-HAKU_GENERAL_FONT_SIZE=${HAKU_GENERAL_FONT_SIZE:-11}
-HAKU_TERMINAL_FONT_SIZE=${HAKU_TERMINAL_FONT_SIZE:-14}
+TOBIMUNE_CLOCK_FONT_SIZE=${TOBIMUNE_CLOCK_FONT_SIZE:-10}
+TOBIMUNE_GENERAL_FONT_SIZE=${TOBIMUNE_GENERAL_FONT_SIZE:-11}
+TOBIMUNE_TERMINAL_FONT_SIZE=${TOBIMUNE_TERMINAL_FONT_SIZE:-14}
 
 spawn() { ( setsid "$@" & ) >/dev/null 2>&1; }
 
@@ -42,22 +42,22 @@ clear() {
 }
 
 cava() {
-    spawn kitty --title "hakucava" --class "seycava" -o font_size=$HAKU_GENERAL_FONT_SIZE sh -c "cava"
+    spawn kitty --title "tobimunecava" --class "seycava" -o font_size=$TOBIMUNE_GENERAL_FONT_SIZE sh -c "cava"
     sleep 0.2
 }
 
 lavat() {
-    spawn kitty --title "hakulavat" --class "seylavat" -o font_size=$HAKU_GENERAL_FONT_SIZE sh -c "lavat -c white -k white -r1"
+    spawn kitty --title "tobimunelavat" --class "seylavat" -o font_size=$TOBIMUNE_GENERAL_FONT_SIZE sh -c "lavat -c white -k white -r1"
     sleep 0.2
 }
 
 clock() {
-    spawn kitty --title "hakuclock" --class "seyclock" -o font_size=$HAKU_CLOCK_FONT_SIZE sh -c "tty-clock -c -C 7 -r -b"
+    spawn kitty --title "tobimuneclock" --class "seyclock" -o font_size=$TOBIMUNE_CLOCK_FONT_SIZE sh -c "tty-clock -c -C 7 -r -b"
     sleep 0.2
 }
 
 cmd() {
-    spawn kitty --title "hakucmd" --class "seycmd" -o font_size=$HAKU_TERMINAL_FONT_SIZE --hold fastfetch
+    spawn kitty --title "tobimunecmd" --class "seycmd" -o font_size=$TOBIMUNE_TERMINAL_FONT_SIZE --hold fastfetch
     sleep 0.2
 }
 
@@ -121,99 +121,3 @@ if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
 
     exit 0
 fi
-
-# Exec for Niri
-if [[ $XDG_CURRENT_DESKTOP == "niri" ]]; then
-    clear
-    sleep 0.1
-
-    cmd
-
-    clock
-
-    lavat
-    niri msg action focus-column-left
-    niri msg action consume-window-into-column
-    
-    cava
-    niri msg action focus-column-left
-    niri msg action consume-window-into-column
-
-    niri msg action focus-column-left
-
-    if [[ $1 != "--do-not-exit" ]]; then
-        kill -9 $PPID
-    fi
-
-    exit 0
-fi
-
-# Exec for Mango
-if [[ $XDG_CURRENT_DESKTOP == "mango" ]]; then
-    clear
-    sleep 0.05
-
-    get_client_id_by_appid() {
-        local appid="$1"
-        mmsg get all-clients | jq -r --arg a "$appid" '
-          (.clients // []) | map(select(.appid == $a)) | last | (.id // empty)
-        '
-    }
-
-    wait_client_id_by_appid() {
-        local appid="$1"
-        local i id
-        for ((i=0; i<50; i++)); do
-            id="$(get_client_id_by_appid "$appid")"
-            [[ -n "$id" && "$id" != "null" ]] && { echo "$id"; return 0; }
-            sleep 0.02
-        done
-        return 1
-    }
-
-    stack_id() {
-        local id="$1"
-        local dir="${2:-right}"
-        [[ -n "$id" ]] && mmsg dispatch scroller_stack,"$dir" client,"$id" >/dev/null 2>&1
-    }
-
-    cmd
-    cmd_id="$(wait_client_id_by_appid "seycmd")"
-
-    clock
-    clock_id="$(wait_client_id_by_appid "seyclock")"
-
-    lavat
-    lavat_id="$(wait_client_id_by_appid "seylavat")"
-    stack_id "$lavat_id" "left"
-    sleep 0.2
-
-    cava
-    cava_id="$(wait_client_id_by_appid "seycava")"
-    stack_id "$cava_id" "left"
-    sleep 0.2
-
-    if [[ $1 != "--do-not-exit" ]]; then
-        kill -9 $PPID
-    fi
-
-    exit 0
-fi
-
-# Exec for Labwc
-if [[ $XDG_CURRENT_DESKTOP == "labwc" ]]; then
-    clear
-    sleep 0.1
-
-    cava
-    clock
-    cmd
-
-    if [[ $1 != "--do-not-exit" ]]; then
-        kill -9 $PPID
-    fi
-
-    exit 0
-fi
-
-echo "No supported window manager detected. Exiting."

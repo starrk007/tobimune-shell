@@ -5,7 +5,7 @@
 # 3 modes are available: Only Sound, Micro and Sound, No Sound
 
 # Load configurations
-[ -f "$HOME/hakucfg/setting.sh" ] && source "$HOME/hakucfg/setting.sh"
+[ -f "$HOME/suzaku/setting.sh" ] && source "$HOME/suzaku/setting.sh"
 
 # Defaults
 SCREENREC_SAVE_DIR=${SCREENREC_SAVE_DIR:-"$HOME/Videos"}
