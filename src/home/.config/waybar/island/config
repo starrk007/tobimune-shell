@@ -187,7 +187,7 @@
     "custom/search": {
         "format": "",
         "tooltip-format": "Tobimune Menu",
-        "on-click": "exec $HOME/.local/bin/tobimunemenu.sh"
+        "on-click": "exec $HOME/.local/bin/tobimune-menu.sh"
     },
 
     "custom/setting": {

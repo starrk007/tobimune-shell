@@ -168,7 +168,7 @@
         "format": "󰮯",
         "tooltip-format": "Have a nice day!",
         "tooltip": true,
-        "on-click": "$HOME/.local/bin/tobimunemenu.sh"
+        "on-click": "$HOME/.local/bin/tobimune-menu.sh"
     },
 
     "custom/monitor": {

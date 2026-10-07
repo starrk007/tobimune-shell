@@ -1562,7 +1562,7 @@ class DesktopLayout(Gtk.Fixed):
         # === TOBIMUNE MENU ===
         tobimunemenu_item = Gtk.MenuItem(label="Menu")
         def on_tobimunemenu(w):
-            subprocess.Popen([os.path.expanduser("~/.local/bin/tobimunemenu.sh")])
+            subprocess.Popen([os.path.expanduser("~/.local/bin/tobimune-menu.sh")])
         tobimunemenu_item.connect("activate", on_tobimunemenu)
         menu.append(tobimunemenu_item)
         
