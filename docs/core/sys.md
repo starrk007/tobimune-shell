@@ -2,7 +2,6 @@
 
 The scripts inside `src/core/sys/` are the backbone of your desktop's lifecycle management. While other scripts handle aesthetics or quick utilities, these scripts manage how your computer sleeps, locks, shuts down, and handles user authentication.
 
-They are designed to be completely Window Manager agnostic, meaning they work seamlessly whether you're logging into Hyprland, Niri, Mango, or Labwc!
 
 Here is a detailed breakdown of each script:
 
@@ -22,7 +21,6 @@ Your elegant replacement for typing terminal commands to reboot.
 ### `dpms_handler.sh` (Monitor Power Control)
 Managing monitor power states varies wildly between different Window Managers. This script unifies them.
 - **What it does:** It accepts `on` or `off` arguments to instantly power down or wake up your displays (DPMS).
-- **How it works:** It detects your `XDG_CURRENT_DESKTOP` and translates the command into the correct protocol: `hyprctl` for Hyprland, `niri msg` for Niri, `mmsg` for Mango, or `wlr-randr` for Labwc.
 
 ## Idle & Lock Screen
 
@@ -35,19 +33,19 @@ There's nothing more annoying than your screen turning off while you're watching
 ### `lock.sh` (The Smart Screen Locker)
 Secures your computer when you step away.
 - **What it does:** Uses `hyprlock` to lock your session. 
-- **Dynamic Resolution:** It intelligently detects your monitor's current resolution (handling differences between Hyprland, Niri, Mango, and fallback sysfs paths). If your screen is `1920x1080` or larger, it loads the beautiful default lock screen. If you're on a smaller laptop screen, it automatically loads `hyprlock_tiny.conf` so the lock screen UI doesn't look squished!
 
 ## Boot & Authentication
 
 ### `polkit_start.sh` (The Privilege Manager)
 Whenever an app needs root permissions (like GParted or a system updater), it needs an authentication window to ask for your password.
 - **What it does:** Starts the MATE Polkit authentication agent (`polkit-mate-authentication-agent-1`) in the background on startup.
-- **Cross-Distro Compatibility:** Because file paths differ across operating systems, this script dynamically hunts down the exact binary location whether you are running Arch Linux, Fedora, or NixOS, ensuring you never miss a password prompt.
 
 ### `welcome.sh` (The Greeting)
 A small quality-of-life script.
-- **What it does:** If `WELCOME_MSG=true` is set in your `~/hakucfg/setting.sh`, it waits two seconds after you log in and sends a friendly "Have a good day" system notification to greet you.
+- **What it does:** If `WELCOME_MSG=true` is set in your `~/suzaku/setting.sh`, it waits two seconds after you log in and sends a friendly "Have a good day" system notification to greet you.
 
 
 ---
 **Previous:** [Theming Engine](theme.md) | **Next:** [Utilities](util.md)
+
+

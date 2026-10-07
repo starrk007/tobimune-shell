@@ -1,6 +1,6 @@
-# The Theming Engine in HakuSpace
+# The Theming Engine in Tobimune Shell
 
-Have you ever noticed how your entire desktop environment—from Waybar and Rofi down to Kitty and SwayNC—magically changes color to match your new wallpaper? This isn't just magic; it's a carefully orchestrated pipeline of scripts working together. 
+Have you ever noticed how your entire desktop environmentfrom Waybar and Rofi down to Kitty and SwayNCmagically changes color to match your new wallpaper? This isn't just magic; it's a carefully orchestrated pipeline of scripts working together. 
 
 In this document, we'll take a deep dive into how the theming engine and the smart Accent Color extraction mechanism actually work under the hood. You can find all the related scripts nested inside the `src/core/theme/` directory.
 
@@ -12,11 +12,10 @@ Whenever you change your wallpaper (whether you trigger it manually via `wallpap
 Everything starts when you pick a new image. The system calls `wallpaper_set.sh`, which is responsible for physically displaying the wallpaper on your screen. 
 - If you select a static image (`.png`, `.jpg`, `.gif`), it uses `awww` to render it. 
 - If you pick a video wallpaper (`.mp4`), it seamlessly switches to using `mpvpaper`.
-- This script creates blurred cache versions of the wallpaper, which are used later for elements like the Niri overview backdrop or Rofi backgrounds.
 - **State Caching:** The script also saves the current wallpaper path to `~/.cache/current_wallpaper`. This allows our autostart script, `wallpaper_resume.sh`, to know what was previously set. On startup, if `wallpaper_resume.sh` detects that the last wallpaper was a video, it will automatically relaunch `wallpaper_set.sh` to resume your lively wallpaper (since static images are natively restored by the `awww-daemon`).
 
 ### 2. Extracting the Colors (`get_accent_color.py`)
-If you have the automatic color extraction enabled (which is controlled by the `ACCENT_COLOR_BASED_ON_WALLPAPER=true` flag inside your `~/hakucfg/setting.sh` file), the system calls our Python script: `get_accent_color.py`.
+If you have the automatic color extraction enabled (which is controlled by the `ACCENT_COLOR_BASED_ON_WALLPAPER=true` flag inside your `~/suzaku/setting.sh` file), the system calls our Python script: `get_accent_color.py`.
 - This script leverages the `colorthief` library to analyze the wallpaper image and generate a palette of colors.
 - It doesn't just pick a random color! It uses a specific algorithm based on your chosen `ACCENT_COLOR_MODE`. By default, it uses the **`vivid`** mode, which calculates the mathematical brightness and saturation of the extracted colors to find the most visually striking and readable option.
 - Other available modes include **`dominant`** (the most common color in the image), **`brightest`** (the lightest color), and **`saturated`** (the most colorful option).
@@ -45,10 +44,12 @@ For those who want a dynamic desktop, `random_wallpaper.sh` automatically cycles
 
 We've designed this system to be highly customizable. If you want to tweak how it behaves, you have several options:
 
-1. **Disable Auto-Theming:** If you prefer a static color scheme that doesn't change with your wallpaper, simply open `~/hakucfg/setting.sh` and set `ACCENT_COLOR_BASED_ON_WALLPAPER=false`.
-2. **Change the Extraction Mode:** Don't like the vivid colors? Open `~/hakucfg/setting.sh` and change `ACCENT_COLOR_MODE` to `dominant`, `brightest`, or `saturated` to suit your taste.
+1. **Disable Auto-Theming:** If you prefer a static color scheme that doesn't change with your wallpaper, simply open `~/suzaku/setting.sh` and set `ACCENT_COLOR_BASED_ON_WALLPAPER=false`.
+2. **Change the Extraction Mode:** Don't like the vivid colors? Open `~/suzaku/setting.sh` and change `ACCENT_COLOR_MODE` to `dominant`, `brightest`, or `saturated` to suit your taste.
 3. **Pick a Color Manually:** Sometimes you just want to choose the color yourself. You can run the `accent_color_picker.sh` script to open a graphical color picker. Whatever color you select there will immediately be pushed through `gen_style.sh` and applied to your entire system!
-4. **Opaque Theme Mode:** Want your panels and UI elements to be solid black rather than transparent/translucent? `opaque_theme.sh` provides this functionality. When enabled (via the Haku Menu's Setting tab), it dynamically writes solid `#000000` background rules into `THEME_RENDER_DIR/opaque/`. These rules are safely included at the bottom of Waybar, SwayNC, Rofi, GTK, and Kitty configs, allowing instant toggleable opaqueness without manual config editing.
+4. **Opaque Theme Mode:** Want your panels and UI elements to be solid black rather than transparent/translucent? `opaque_theme.sh` provides this functionality. When enabled (via the Tobimune Menu's Setting tab), it dynamically writes solid `#000000` background rules into `THEME_RENDER_DIR/opaque/`. These rules are safely included at the bottom of Waybar, SwayNC, Rofi, GTK, and Kitty configs, allowing instant toggleable opaqueness without manual config editing.
 
 ---
 **Previous:** [Core Libraries](lib.md) | **Next:** [System Management](sys.md)
+
+

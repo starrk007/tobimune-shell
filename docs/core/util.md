@@ -1,6 +1,6 @@
 # The Utility Toolbelt (src/core/util)
 
-While the theming engine makes HakuSpace look aesthetically pleasing, the scripts inside `src/core/util/` make it actually useful! This folder acts as your personal toolbelt, filled with handy shell scripts that automate daily tasks, manage background services, and interact with your Window Manager.
+While the theming engine makes Tobimune Shell look aesthetically pleasing, the scripts inside `src/core/util/` make it actually useful! This folder acts as your personal toolbelt, filled with handy shell scripts that automate daily tasks, manage background services, and interact with your Window Manager.
 
 Here is a detailed breakdown of what each utility script does under the hood:
 
@@ -8,7 +8,6 @@ Here is a detailed breakdown of what each utility script does under the hood:
 
 ### `clean.sh` (The Housekeeper)
 Over time, applications dump a lot of cache and system logs that silently eat up your storage space.
-- **What it does:** It forcefully wipes out everything in your `~/.cache` folder, intelligently clears unneeded package files based on your distro (gracefully handling `yay`, `dnf`, and `nix-collect-garbage`), and vacuums up `systemd` journal logs that are older than two weeks.
 - **Safety:** It prompts for your confirmation (`y/n`) in the terminal before nuking anything, ensuring you don't accidentally wipe data while you're working.
 
 ### `haku.sh` (Desktop Widgets)
@@ -19,7 +18,6 @@ Ever wanted some cool, floating widgets integrated directly into your desktop?
 ### `open_browser.sh` & `open_config.sh` (Quick Access)
 Shortcuts designed to get you into your workflow faster.
 - **`open_browser.sh`:** Queries your `xdg-mime` settings to find your default web browser and launches it. If it can't definitively find one, it falls back to a generic `xdg-open https:` command to let the system handle the routing.
-- **`open_config.sh`:** Gathers the paths to all your crucial config folders (Waybar, Rofi, Kitty, SwayNC, Cava, etc.) and seamlessly opens them all simultaneously inside a single VS Code window (`code -n`). It intelligently detects your current Window Manager (Hyprland, Niri, Mango, or Labwc) and opens its specific config folder too!
 
 ### `fix_icon_theme.sh` (Icon Theme Fixer)
 Keeps your file manager and application icons looking consistent.
@@ -46,8 +44,7 @@ Never lose copied text again.
 
 ### `nightlight_toggle.sh`
 Saves your eyes during late-night coding sessions.
-- **What it does:** Detects your current Window Manager and turns on a blue-light filter. It natively uses `hyprsunset` if you are on Hyprland, and intelligently falls back to `gammastep` for Niri, Labwc, and Mango. 
-- **Customization:** It reads the `NIGHT_LIGHT_TEMPERATURE` variable from your `~/hakucfg/setting.sh` file, allowing you to define exactly how warm you want your screen to be (defaulting to 4000K).
+- **Customization:** It reads the `NIGHT_LIGHT_TEMPERATURE` variable from your `~/suzaku/setting.sh` file, allowing you to define exactly how warm you want your screen to be (defaulting to 4000K).
 
 ### `warp_toggle.sh`
 A quick VPN switch.
@@ -59,8 +56,10 @@ The control center for your status bar.
 
 ### `gen_shortcut.sh`
 A desktop shortcut generator.
-- **What it does:** Scans common system directories (like `/usr/share/applications` and your Flatpak/Snap folders) for `.desktop` files. You can use it to query available system apps (`-q`), quickly copy an app's shortcut (`-a`) to your `~/Desktop` directory, or interactively select and add a shortcut using a Rofi menu (`-m`). Since HakuSpace has a built-in desktop icon renderer, this gives you functional app icons right on your wallpaper!
+- **What it does:** Scans common system directories (like `/usr/share/applications` and your Flatpak/Snap folders) for `.desktop` files. You can use it to query available system apps (`-q`), quickly copy an app's shortcut (`-a`) to your `~/Desktop` directory, or interactively select and add a shortcut using a Rofi menu (`-m`). Since Tobimune Shell has a built-in desktop icon renderer, this gives you functional app icons right on your wallpaper!
 
 
 ---
-**Previous:** [System Management](sys.md) | **Next:** [Haku Menu](menu.md)
+**Previous:** [System Management](sys.md) | **Next:** [Tobimune Menu](menu.md)
+
+

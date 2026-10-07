@@ -1,14 +1,14 @@
-# GantzSpace — Características
+# Tobimune Shell  Caractersticas
 
-Este documento contiene las características que se han identificado durante las pruebas de diferentes dotfiles.
+Este documento contiene las caractersticas que se han identificado durante las pruebas de diferentes dotfiles.
 
 No significa que todas deban implementarse.
 
-Cada característica debe evaluarse antes de incorporarse.
+Cada caracterstica debe evaluarse antes de incorporarse.
 
 ---
 
-# 1. HakuSpace — Base
+# 1. Tobimune Shell  Base
 
 ## Conservar
 
@@ -18,20 +18,20 @@ Cada característica debe evaluarse antes de incorporarse.
 * keybinds
 * workspaces
 * monitores
-* configuración de ventanas
-* colores dinámicos
-* estructura de configuración de usuario
+* configuracin de ventanas
+* colores dinmicos
+* estructura de configuracin de usuario
 * componentes que ya funcionen correctamente
 
 ---
 
 # 2. iNiR
 
-## Característica principal: GUI de configuración
+## Caracterstica principal: GUI de configuracin
 
-La idea que más interesa rescatar de iNiR es disponer de una interfaz gráfica desde la cual configurar el sistema.
+La idea que ms interesa rescatar de iNiR es disponer de una interfaz grfica desde la cual configurar el sistema.
 
-No se busca copiar la implementación completa.
+No se busca copiar la implementacin completa.
 
 ## General
 
@@ -51,7 +51,7 @@ No se busca copiar la implementación completa.
 * Desenfoque
 * Bordes
 * Iconos
-* Tamaño de texto
+* Tamao de texto
 * Fuente
 
 ## Aplicaciones
@@ -70,13 +70,13 @@ Posibilidad de modificar temas/colores de aplicaciones compatibles:
 
 Posibles configuraciones:
 
-* Diseño
+* Diseo
 * Forma
 * Muesca
-* Páginas
+* Pginas
 * Interactividad
 * Conexiones
-* Módulos
+* Mdulos
 
 ---
 
@@ -85,9 +85,9 @@ Posibles configuraciones:
 * Widgets
 * Wallpapers aleatorios
 * Wallpapers animados
-* Wallpaper detrás de ventanas
-* Galería
-* Menú del escritorio
+* Wallpaper detrs de ventanas
+* Galera
+* Men del escritorio
 * Acciones con clic derecho
 
 ---
@@ -103,7 +103,7 @@ Posibles configuraciones:
 
 ## Paneles laterales
 
-Posible característica futura.
+Posible caracterstica futura.
 
 No es prioridad.
 
@@ -111,12 +111,12 @@ No es prioridad.
 
 ## Centro de control
 
-Configuración de:
+Configuracin de:
 
 * SwayNC
-* Controles rápidos
+* Controles rpidos
 * Notificaciones
-* Energía
+* Energa
 * Volumen
 * Conectividad
 * No molestar
@@ -128,7 +128,7 @@ Configuración de:
 * Notificaciones
 * No molestar
 * Comportamiento
-* Duración
+* Duracin
 * Prioridades
 
 ---
@@ -142,22 +142,22 @@ Configuración de:
 
 ---
 
-## Capturas y grabación
+## Capturas y grabacin
 
 * Capturas de pantalla
-* Selección de región
-* Grabación de pantalla
+* Seleccin de regin
+* Grabacin de pantalla
 
 ---
 
 ## Pantallas
 
 * Monitores
-* Disposición
-* Resolución
+* Disposicin
+* Resolucin
 * Monitor principal
 * Luz nocturna
-* Configuración individual
+* Configuracin individual
 
 ---
 
@@ -172,15 +172,15 @@ Configuración de:
 
 ---
 
-## Batería
+## Batera
 
-Especialmente para el portátil:
+Especialmente para el porttil:
 
 * Avisos
-* Límite de carga
-* Batería baja
-* Batería crítica
-* Acciones automáticas
+* Lmite de carga
+* Batera baja
+* Batera crtica
+* Acciones automticas
 
 ---
 
@@ -188,11 +188,11 @@ Especialmente para el portátil:
 
 Posibles configuraciones:
 
-* Tiempo de activación
+* Tiempo de activacin
 * Reloj
-* Información del usuario
+* Informacin del usuario
 * Avatar
-* Música
+* Msica
 * Estado
 * Actividad
 * Clima
@@ -200,20 +200,20 @@ Posibles configuraciones:
 
 ---
 
-## Visualizador de reproducción
+## Visualizador de reproduccin
 
 Posibles elementos:
 
-* Canción
+* Cancin
 * Artista
 * Portada
 * Progreso
 * Controles
-* Información de reproducción
+* Informacin de reproduccin
 
 ---
 
-## Fuentes de información
+## Fuentes de informacin
 
 Posibles fuentes:
 
@@ -221,8 +221,8 @@ Posibles fuentes:
 * Calendario
 * Actualizaciones
 * Sistema
-* Batería
-* Música
+* Batera
+* Msica
 
 Deben ser opcionales.
 
@@ -230,7 +230,7 @@ Deben ser opcionales.
 
 ## Modo juego
 
-Posible característica futura.
+Posible caracterstica futura.
 
 No es prioridad actualmente.
 
@@ -246,7 +246,7 @@ No es prioridad actualmente.
 * Herramientas
 * Temas
 * Sistema
-* Configuración avanzada
+* Configuracin avanzada
 
 ---
 
@@ -254,35 +254,35 @@ No es prioridad actualmente.
 
 ## 3.1 Lockscreen
 
-Características que interesan:
+Caractersticas que interesan:
 
-* Diseño general
+* Diseo general
 * CPU
 * RAM
 * Temperatura
 * Notificaciones
-* Música
-* Información de reproducción
-* Organización visual
-* Información del usuario
+* Msica
+* Informacin de reproduccin
+* Organizacin visual
+* Informacin del usuario
 
-La meta es conseguir una experiencia similar sin copiar innecesariamente toda la configuración.
+La meta es conseguir una experiencia similar sin copiar innecesariamente toda la configuracin.
 
 ---
 
 ## 3.2 Selector de wallpapers
 
-Características que interesan:
+Caractersticas que interesan:
 
-* Navegación visual
+* Navegacin visual
 * Cambio sencillo de wallpaper
-* Presentación tipo acordeón
+* Presentacin tipo acorden
 * Varias opciones visibles
-* Selección rápida
+* Seleccin rpida
 * Interfaz visual
-* Integración con colores dinámicos
+* Integracin con colores dinmicos
 
-La implementación final puede utilizar otra herramienta.
+La implementacin final puede utilizar otra herramienta.
 
 No utilizar Quickshell solamente para conseguir esta interfaz.
 
@@ -290,18 +290,18 @@ No utilizar Quickshell solamente para conseguir esta interfaz.
 
 ## 3.3 Centro de control / SwayNC
 
-Características que interesan:
+Caractersticas que interesan:
 
-* Mejor organización
+* Mejor organizacin
 * Notificaciones
-* Controles rápidos
-* Modos de energía
-* Información del sistema
-* Integración con acciones de energía
-* Integración con WLogout
+* Controles rpidos
+* Modos de energa
+* Informacin del sistema
+* Integracin con acciones de energa
+* Integracin con WLogout
 * Apariencia general
 
-Antes de implementar se debe determinar qué parte corresponde realmente a SwayNC y qué parte corresponde a scripts u otros componentes.
+Antes de implementar se debe determinar qu parte corresponde realmente a SwayNC y qu parte corresponde a scripts u otros componentes.
 
 ---
 
@@ -312,7 +312,7 @@ Antes de implementar se debe determinar qué parte corresponde realmente a SwayN
 Investigar:
 
 * Layout
-* Módulos
+* Mdulos
 * Espaciado
 * Iconos
 * Indicadores
@@ -321,7 +321,7 @@ Investigar:
 * Tray
 * Audio
 * Red
-* Batería
+* Batera
 * Rendimiento
 * Scripts
 * Tooltips
@@ -334,14 +334,14 @@ Investigar:
 Investigar:
 
 * Apariencia
-* Tamaño
-* Navegación
+* Tamao
+* Navegacin
 * Temas
-* Integración con scripts
-* Menús
+* Integracin con scripts
+* Mens
 * Power menu
 * Aplicaciones
-* Configuración
+* Configuracin
 
 ---
 
@@ -351,27 +351,27 @@ Pueden aportar:
 
 * ideas visuales
 * scripts
-* módulos
-* pequeños componentes
+* mdulos
+* pequeos componentes
 * soluciones concretas
 
 No deben convertirse en bases alternativas.
 
-Si una característica no aporta suficiente valor, se descarta.
+Si una caracterstica no aporta suficiente valor, se descarta.
 
 ---
 
-# 6. Integración deseada
+# 6. Integracin deseada
 
 ## Sistema de colores
 
 ```text
 Wallpaper
-    ↓
-Extracción de colores
-    ↓
+    
+Extraccin de colores
+    
 Tema
-    ↓
+    
 Waybar
 Rofi
 SwayNC
@@ -381,21 +381,21 @@ otros
 
 ---
 
-## Configuración
+## Configuracin
 
 ```text
 GUI
- ↓
-configuración central
- ↓
+ 
+configuracin central
+ 
 componentes
 ```
 
-La configuración debe evitar que una misma opción tenga que modificarse manualmente en varios archivos.
+La configuracin debe evitar que una misma opcin tenga que modificarse manualmente en varios archivos.
 
 ---
 
-# 7. Características descartadas
+# 7. Caractersticas descartadas
 
 ## Caelestia
 
@@ -404,7 +404,7 @@ Descartado.
 Motivos:
 
 * consumo en idle;
-* características similares o inferiores;
+* caractersticas similares o inferiores;
 * poco valor adicional.
 
 ## Quickshell
@@ -417,7 +417,7 @@ No utilizar como base.
 
 ## Alta
 
-* GUI de configuración
+* GUI de configuracin
 * Lockscreen
 * Wallpaper selector
 * SwayNC / centro de control
@@ -427,10 +427,10 @@ No utilizar como base.
 ## Media
 
 * WLogout
-* Integración de colores
+* Integracin de colores
 * Widgets
-* Visualizador de reproducción
-* Configuración avanzada
+* Visualizador de reproduccin
+* Configuracin avanzada
 
 ## Baja / futura
 
@@ -441,3 +441,5 @@ No utilizar como base.
 * Fuentes adicionales
 
 La prioridad puede cambiar durante el desarrollo.
+
+
