@@ -9,7 +9,6 @@ TOBIMUNE_DIR="${TOBIMUNE_DIR:-$HOME/tobimune-shell}"
 SOURCE_DIR="$TOBIMUNE_DIR/src"
 HOME_SRC_DIR="$SOURCE_DIR/home"
 ASSETS_DIR="$TOBIMUNE_DIR/assets"
-NIX_DIR="$TOBIMUNE_DIR/nix"
 
 # Directorio de respaldo con marca de tiempo
 BACKUP_TS="$(date +%Y-%m-%d_%H-%M-%S)"
