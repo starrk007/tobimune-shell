@@ -6,14 +6,12 @@
 
 * {
     font-weight: bold;
-    transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 window#waybar {
     border-radius: 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
     color: @accent_color;
-    transition: background-color 0.3s ease;
 }
 
 .modules-left, .modules-center, .modules-right {
@@ -128,22 +126,18 @@ window#waybar {
 #custom-notification:hover {
     color: #000000;
     background-color: @accent_color;
-    min-height: 60px;
 }
 
 #custom-settings:hover,
 #backlight:hover,
 #pulseaudio:hover {
     border-radius: 20px;
-    min-height: 70px;
 }
 
 #workspaces button:hover {
-    min-height: 40px;
 }
 
 #clock:hover {
-    min-height: 140px;
 }
 
 /* ============================================================================== */

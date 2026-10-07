@@ -15,7 +15,6 @@ window#waybar {
     border-radius: 0;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4));
     color: @accent_color;
-    transition: opacity 0.5s ease-in-out;
     animation-name: fadeIn;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
@@ -33,7 +32,6 @@ window#waybar {
 #taskbar,
 #pin {
     padding: 4px;
-    transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
     background-color: transparent;
 }
 
@@ -44,7 +42,6 @@ window#waybar {
     min-width: 0;
     min-height: 0;
     background-color: transparent;
-    transition: all 0.8s cubic-bezier(0, 0.5, 0.35, 1);
     border-bottom: 3px solid transparent;
     opacity: 0.8;
 }
@@ -52,7 +49,6 @@ window#waybar {
 #taskbar button.active {
     color: @accent_color;
     background-color: rgba(50, 50, 50, 0.5);
-    transition: all 0.8s cubic-bezier(0, 0.5, 0.35, 1);
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
     border-bottom: 3px solid @accent_color;
     margin-left: 18px;
@@ -63,7 +59,6 @@ window#waybar {
 
 #taskbar button.minimized {
     opacity: 0.3;
-    transition: all 0.8s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 #taskbar button:hover,
@@ -71,12 +66,9 @@ window#waybar {
     color: @accent_color;
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 2px 30px;
-    transition: all 0.4s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 #taskbar button:active {
-    transition: all 0.4s cubic-bezier(0, 0.5, 0.35, 1);
     background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -95,7 +87,6 @@ window#waybar {
 #adjusters {
     margin: 8px 8px 6px 8px;
     padding: 8px;
-    transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -105,7 +96,6 @@ window#waybar {
 #pulseaudio,
 #battery {
     padding: 0 10px;
-    transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
     background-color: transparent;
 }
 
@@ -116,8 +106,6 @@ window#waybar {
 #battery:hover {
     background-color: @accent_color;
     color: #000000;
-    padding: 0 20px;
-    transition: all 0.4s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 /* ============================================================================== */

@@ -96,7 +96,6 @@
         },
         "modules": [
             "custom/music",
-            "cava",
             "mpris"
         ]
     },

@@ -37,8 +37,6 @@
             "click-to-reveal": true
         },
         "modules": [
-            "custom/cavaunderbar",
-            "cava",
             "mpris"
         ]
     },
@@ -184,11 +182,6 @@
         },
         "tooltip-format": "Battery: {capacity}%\nPower: {power}W\n{timeTo}",
         "tooltip": true
-    },
-
-    "custom/cavaunderbar": {
-        "format": "󰝚",
-        "tooltip-format": "Music Visualizer"
     },
 
     "custom/search": {

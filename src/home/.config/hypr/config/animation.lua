@@ -10,29 +10,29 @@
 --------------------------
 ------- ANIMATIONS -------
 --------------------------
-hl.curve( "smoothzz", { type = "bezier", points = { {0.2, 0.9}, {0.2, 1} } })
+hl.curve( "smoothzz", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.05} } })
 
 -- Window
-hl.animation({ leaf = "windows", enabled = true, duration = 1, speed = 6, bezier = "smoothzz", style = "slide" })
-hl.animation({ leaf = "windowsIn", enabled = true, duration = 1, speed = 6, bezier = "smoothzz", style = "slide" })
-hl.animation({ leaf = "windowsOut", enabled = true, duration = 1, speed = 12, bezier = "smoothzz", style = "slide" })
-hl.animation({ leaf = "windowsMove", enabled = true, duration = 1, speed = 8, bezier = "smoothzz" })
+hl.animation({ leaf = "windows", enabled = true, duration = 1, speed = 12, bezier = "smoothzz", style = "slide" })
+hl.animation({ leaf = "windowsIn", enabled = true, duration = 1, speed = 12, bezier = "smoothzz", style = "slide" })
+hl.animation({ leaf = "windowsOut", enabled = true, duration = 1, speed = 16, bezier = "smoothzz", style = "slide" })
+hl.animation({ leaf = "windowsMove", enabled = true, duration = 1, speed = 14, bezier = "smoothzz" })
 
 -- Layer
-hl.animation({ leaf = "layers", enabled = true, duration = 1, speed = 8, bezier = "smoothzz" })
-hl.animation({ leaf = "layersIn", enabled = true, duration = 1, speed = 8, bezier = "smoothzz" })
-hl.animation({ leaf = "layersOut", enabled = true, duration = 1, speed = 8, bezier = "smoothzz" })
+hl.animation({ leaf = "layers", enabled = true, duration = 1, speed = 15, bezier = "smoothzz" })
+hl.animation({ leaf = "layersIn", enabled = true, duration = 1, speed = 15, bezier = "smoothzz" })
+hl.animation({ leaf = "layersOut", enabled = true, duration = 1, speed = 15, bezier = "smoothzz" })
 
 -- Fade effects
-hl.animation({ leaf = "fade", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadeIn", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadeOut", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadeSwitch", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadeShadow", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadeDim", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadePopups", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadePopupsIn", enabled = true, duration = 1, speed = 6, bezier = "default" })
-hl.animation({ leaf = "fadePopupsOut", enabled = true, duration = 1, speed = 6, bezier = "default" })
+hl.animation({ leaf = "fade", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadeIn", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadeOut", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadeSwitch", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadeShadow", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadeDim", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadePopups", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadePopupsIn", enabled = true, duration = 1, speed = 12, bezier = "default" })
+hl.animation({ leaf = "fadePopupsOut", enabled = true, duration = 1, speed = 12, bezier = "default" })
 
 -- DPMS & BORDER
 hl.animation({ leaf = "fadeDpms", enabled = true, duration = 1, speed = 20, bezier = "default" })
@@ -40,15 +40,15 @@ hl.animation({ leaf = "border", enabled = true, duration = 1, speed = 10, bezier
 hl.animation({ leaf = "borderangle", enabled = true, duration = 1, speed = 30, bezier = "default", loop = true })
 
 -- Workspaces
-hl.animation({ leaf = "workspaces", enabled = true, duration = 1, speed = 8, bezier = "smoothzz", style = "slidevert" })
-hl.animation({ leaf = "workspacesIn", enabled = true, duration = 1, speed = 8, bezier = "smoothzz", style = "slidevert" })
-hl.animation({ leaf = "workspacesOut", enabled = true, duration = 1, speed = 8, bezier = "smoothzz", style = "slidevert" })
+hl.animation({ leaf = "workspaces", enabled = true, duration = 1, speed = 15, bezier = "smoothzz", style = "slidevert" })
+hl.animation({ leaf = "workspacesIn", enabled = true, duration = 1, speed = 15, bezier = "smoothzz", style = "slidevert" })
+hl.animation({ leaf = "workspacesOut", enabled = true, duration = 1, speed = 15, bezier = "smoothzz", style = "slidevert" })
 
 -- Special workspace
-hl.animation({ leaf = "specialWorkspace", enabled = true, duration = 1, speed = 6, bezier = "smoothzz", style = "fade" })
-hl.animation({ leaf = "specialWorkspaceIn", enabled = true, duration = 1, speed = 6, bezier = "smoothzz", style = "fade" })
-hl.animation({ leaf = "specialWorkspaceOut", enabled = true, duration = 1, speed = 8, bezier = "smoothzz", style = "fade" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, duration = 1, speed = 12, bezier = "smoothzz", style = "fade" })
+hl.animation({ leaf = "specialWorkspaceIn", enabled = true, duration = 1, speed = 12, bezier = "smoothzz", style = "fade" })
+hl.animation({ leaf = "specialWorkspaceOut", enabled = true, duration = 1, speed = 14, bezier = "smoothzz", style = "fade" })
 
 -- Others
-hl.animation({ leaf = "zoomFactor", enabled = true, duration = 1, speed = 6, bezier = "smoothzz" })
-hl.animation({ leaf = "monitorAdded", enabled = true, duration = 1, speed = 6, bezier = "smoothzz" })
+hl.animation({ leaf = "zoomFactor", enabled = true, duration = 1, speed = 12, bezier = "smoothzz" })
+hl.animation({ leaf = "monitorAdded", enabled = true, duration = 1, speed = 12, bezier = "smoothzz" })

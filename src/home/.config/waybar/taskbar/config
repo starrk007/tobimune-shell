@@ -43,8 +43,6 @@
         "homogeneous": true,
         "justify": "center",
         "ignore-list": [
-            "cavaunderbar",
-            "seycava",
             "seylavat",
             "seyclock"
         ],

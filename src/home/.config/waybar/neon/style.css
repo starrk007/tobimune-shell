@@ -6,7 +6,6 @@
 
 * {
     font-weight: bold;
-    transition: all 0.5s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 window#waybar {
@@ -156,12 +155,9 @@ window#waybar {
 #custom-logo:hover,
 #custom-recorder:hover,
 #custom-notification:hover {
-    min-width: 80px;
-    padding: 2px 20px;
 }
 
 #workspaces button:hover {
-    min-width: 35px;
 }
 
 /* Expand modules inside groups on hover */
@@ -173,15 +169,11 @@ window#waybar {
 #pulseaudio:hover,
 #backlight:hover {
     border-radius: 6px;
-    min-width: 60px;
-    padding: 0 16px;
 }
 
 #custom-monitor:hover,
 #custom-settings:hover {
     border-radius: 8px;
-    min-width: 40px;
-    padding: 0 16px;
 }
 
 /* ============================================================================== */

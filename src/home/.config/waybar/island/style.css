@@ -7,14 +7,12 @@
 * {
     font-weight: bold;
     border-radius: 4px;
-    transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 window#waybar {
     border-radius: 0;
     background-color: transparent;
     color: @accent_color;
-    transition: background-color 0.3s ease;
 }
 
 .modules-center,
@@ -27,8 +25,6 @@ window#waybar {
 /* COMMON MODULE STYLES                               */
 /* ============================================================================== */
 #custom-cpuhistory,
-#custom-cavaunderbar,
-#cava,
 #mpris,
 #tray,
 #pulseaudio,
@@ -118,8 +114,6 @@ window#waybar {
 /* ============================================================================== */
 /* HOVER EFFECTS                                   */
 /* ============================================================================== */
-#custom-cavaunderbar:hover,
-#cava:hover,
 #mpris:hover,
 #pulseaudio:hover,
 #backlight:hover,
@@ -137,18 +131,15 @@ window#waybar {
 #custom-notification:hover {
     color: #000000;
     background-color: @accent_color;
-    padding: 0 20px;
 }
 
 #workspaces button:hover {
-    padding: 0 20px;
 }
 
 
 #clock:hover {
     color: #000000;
     background-color: @accent_color;
-    padding: 0 20px;
 }
 
 /* ============================================================================== */

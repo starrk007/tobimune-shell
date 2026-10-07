@@ -7,14 +7,12 @@
 * {
     font-weight: bold;
     border-radius: 20px;
-    transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 window#waybar {
     border-radius: 0;
     background-color: transparent;
     color: @accent_color;
-    transition: background-color 0.3s ease;
 }
 
 .modules-center {
@@ -50,7 +48,6 @@ window#waybar {
 #custom-logo,
 #window,
 #mpris,
-#cava,
 #custom-recorder,
 #custom-notification,
 #pulseaudio,
@@ -188,7 +185,6 @@ window#waybar {
 #memory:hover,
 #temperature:hover,
 #mpris:hover,
-#cava:hover,
 #pulseaudio:hover,
 #backlight:hover,
 #power-profiles-daemon:hover,
@@ -196,7 +192,6 @@ window#waybar {
 #custom-notification:hover {
     color: #000000;
     background-color: @accent_color;
-    min-width: 100px;
 }
 
 #custom-monitor:hover,
@@ -205,14 +200,12 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    min-width: 35px;
 }
 
 
 #clock:hover {
     color: #000000;
     background-color: @accent_color;
-    min-width: 100px;
 }
 
 /* ============================================================================== */
