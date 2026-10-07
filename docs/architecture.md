@@ -6,7 +6,7 @@ Tobimune Shell es una configuracin de escritorio para **CachyOS / Arch Linux** y
 
 ```text
 tobimune-shell/
- assets/                 # Assets del proyecto; los wallpapers viven en tobimune-archive
+ assets/                 # Cursor y otros assets del proyecto
  docs/                   # Documentacin
  scripts/                # Funciones auxiliares
  install.sh              # Instalacin inicial
@@ -23,7 +23,7 @@ tobimune-shell/
      packages/           # Paquetes de CachyOS / Arch Linux
 ```
 
-El repositorio de wallpapers y otros assets pesados es `tobimune-archive`.
+Los assets distribuidos por el instalador viven dentro de `assets/`.
 
 ## Despliegue
 
@@ -52,4 +52,3 @@ El estado propio de Tobimune Shell se guarda en `~/.local/state/tobimune`.
 5. [Utilidades](core/util.md)
 6. [Men](core/menu.md)
 7. [Mini-aplicaciones](core/app.md)
-

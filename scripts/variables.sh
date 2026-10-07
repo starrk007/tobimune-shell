@@ -20,10 +20,6 @@ PKG_CORE="$SOURCE_DIR/packages/pkg-core.txt"
 PKG_OPTIONAL="$SOURCE_DIR/packages/pkg-optional.txt"
 PKG_HYPRLAND="$SOURCE_DIR/packages/pkg-hyprland.txt"
 
-# URL del repositorio de assets de respaldo
-ARCHIVE_REPO_URL="https://github.com/starrk007/tobimune-shell.git"
-ARCHIVE_DIR="$HOME/tobimune-archive"
-
 # Directorio de configuración personalizada del usuario (SUZAKU)
 SUZAKU_CUSTOM_DIR="$HOME_SRC_DIR/suzaku"
 DEST_CUSTOM_DIR="$HOME/suzaku"

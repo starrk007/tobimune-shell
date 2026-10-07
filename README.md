@@ -7,7 +7,7 @@ Configuracin modular de escritorio optimizada exclusivamente para **CachyOS / Ar
 Tobimune Shell utiliza Hyprland como compositor nico. No incluye configuraciones, paquetes ni guas para otros compositores o distribuciones. La prioridad es ofrecer una base ligera, estable, mantenible y fcil de personalizar.
 
 * **Repositorio principal:** `tobimune-shell`
-* **Repositorio de assets y wallpapers:** `tobimune-archive`
+* **Assets locales:** `assets/`
 * **Configuracin personal:** `~/suzaku`
 * **Estado local:** `~/.local/state/tobimune`
 

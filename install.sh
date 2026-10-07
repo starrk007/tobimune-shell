@@ -219,20 +219,20 @@ else
 fi
 
 # ============================================================================
-# BLOCK 6: CLONE TOBIMUNE-ARCHIVE AND RUN setup.sh
+# BLOCK 6: INSTALL LOCAL ASSETS
 # ============================================================================
-step_title "6 - DEPLOY EXTRA ASSETS FROM tobimune-archive"
+step_title "6 - INSTALL LOCAL ASSETS"
 
-log_info "Clone tobimune-archive for icons, themes, wallpapers"
+log_info "Install cursor, icons and theme from local assets"
 
-if ask_yes_no "===> Do you want to setup tobimune assets: Icons, Themes and Wallpapers?"; then
-    if deploy_assets_from_archive_repo; then
-        log_ok "tobimune-archive setup completed."
+if ask_yes_no "===> Do you want to setup tobimune assets: Cursor, Icons and Theme?"; then
+    if bash "$TOBIMUNE_DIR/setup.sh"; then
+        log_ok "Local assets setup completed."
     else
-        log_error "tobimune-archive setup failed."
+        log_error "Local assets setup failed."
     fi
 else
-    log_skip "Skipping tobimune-archive assets setup."
+    log_skip "Skipping local assets setup."
 fi
 
 # ============================================================================

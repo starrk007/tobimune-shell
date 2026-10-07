@@ -450,46 +450,6 @@ select_deploy_mode() {
     fi
 }
 
-deploy_assets_from_archive_repo() {
-    if ! command -v git >/dev/null 2>&1; then
-        log_error "git is required to clone $ARCHIVE_REPO_URL"
-        return 1
-    fi
-
-    if [[ -d "$ARCHIVE_DIR/.git" ]]; then
-        log_info "Archive repo already exists. Pulling latest changes..."
-        if ! git -C "$ARCHIVE_DIR" pull --ff-only; then
-            log_error "Failed to update $ARCHIVE_DIR"
-            return 1
-        fi
-    else
-        if [[ -d "$ARCHIVE_DIR" ]]; then
-            log_warn "$ARCHIVE_DIR exists but is not a git repo."
-            if ask_yes_no "===> Remove and re-clone tobimune-archive?"; then
-                rm -rf "$ARCHIVE_DIR"
-            else
-                log_warn "Cannot continue archive deployment without a valid repo."
-                return 1
-            fi
-        fi
-
-        log_info "Cloning archive repo..."
-        if ! git clone "$ARCHIVE_REPO_URL" "$ARCHIVE_DIR"; then
-            log_error "Failed to clone $ARCHIVE_REPO_URL"
-            return 1
-        fi
-    fi
-
-    if [[ ! -f "$ARCHIVE_DIR/setup.sh" ]]; then
-        log_error "setup.sh not found in $ARCHIVE_DIR"
-        return 1
-    fi
-
-    chmod +x "$ARCHIVE_DIR/setup.sh"
-    log_info "Running archive setup script..."
-    (cd "$ARCHIVE_DIR" && ./setup.sh)
-}
-
 # Check ~/suzaku directory:
 check_control_dir() {
     if [[ ! -d "$SUZAKU_CUSTOM_DIR" ]]; then

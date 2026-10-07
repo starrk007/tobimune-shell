@@ -2,7 +2,7 @@
 
 ## Identidad
 
-Tobimune Shell es el repositorio principal `tobimune-shell`, una configuracin personal para **CachyOS / Arch Linux** y **Hyprland**. El repositorio de assets y wallpapers es `tobimune-archive`.
+Tobimune Shell es el repositorio principal `tobimune-shell`, una configuracion personal para **CachyOS / Arch Linux** y **Hyprland**. Los assets distribuidos por el instalador viven en `assets/`.
 
 La configuracin personal vive en `~/suzaku`, que reemplaza a `~/hakucfg`. El estado local se almacena en `~/.local/state/tobimune`.
 
@@ -57,4 +57,3 @@ commit
 ```
 
 La configuracin debe sentirse como **Tobimune Shell**, no como una coleccin de dotfiles sin integracin.
-
