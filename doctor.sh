@@ -5,6 +5,97 @@ TOBIMUNE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$TOBIMUNE_DIR/scripts/variables.sh"
 source "$TOBIMUNE_DIR/scripts/functions.sh"
 
+RUNTIME_ONLY=0
+if [[ "${1:-}" == "--runtime" ]]; then
+    RUNTIME_ONLY=1
+fi
+
+run_runtime_checks() {
+    local failures=0
+    local command_name
+    local file
+
+    print_header ">>> TOBIMUNE RUNTIME DOCTOR <<<"
+    step_title "Checking runtime dependencies"
+
+    for command_name in hyprctl waybar rofi swaync jq luac; do
+        if command -v "$command_name" >/dev/null 2>&1; then
+            log_ok "$command_name"
+        else
+            log_error "Missing command: $command_name"
+            failures=$((failures + 1))
+        fi
+    done
+
+    step_title "Checking active Tobimune entry points"
+    for file in \
+        "$HOME/.local/bin/tobimune-menu.sh" \
+        "$HOME/.local/bin/shutdown.sh" \
+        "$HOME/.local/bin/waybar_manager.sh" \
+        "$HOME/.config/rofi/config.rasi" \
+        "$HOME/.config/waybar/config" \
+        "$HOME/.config/waybar/style.css"; do
+        if [[ -e "$file" ]]; then
+            log_ok "$file"
+        else
+            log_error "Missing active file: $file"
+            failures=$((failures + 1))
+        fi
+    done
+
+    step_title "Checking project syntax"
+    while IFS= read -r -d '' file; do
+        if ! bash -n "$file"; then
+            log_error "Invalid Bash syntax: $file"
+            failures=$((failures + 1))
+        fi
+    done < <(find "$TOBIMUNE_DIR" -type f -name '*.sh' -print0)
+
+    while IFS= read -r -d '' file; do
+        if ! luac -p "$file"; then
+            log_error "Invalid Lua syntax: $file"
+            failures=$((failures + 1))
+        fi
+    done < <(find "$TOBIMUNE_DIR/src" -type f -name '*.lua' -print0)
+
+    while IFS= read -r -d '' file; do
+        if ! jq empty "$file" >/dev/null 2>&1; then
+            log_error "Invalid JSON: $file"
+            failures=$((failures + 1))
+        fi
+    done < <(find "$TOBIMUNE_DIR/src" -type f \( -name '*.json' -o -path '*/waybar/*/config' -o -path '*/waybar/module/*' \) -print0)
+
+    if command -v hyprctl >/dev/null 2>&1; then
+        step_title "Checking live session"
+        if hyprctl configerrors 2>&1; then
+            log_ok "Hyprland configuration"
+        else
+            log_error "Hyprland configuration check failed"
+            failures=$((failures + 1))
+        fi
+    fi
+
+    for command_name in waybar swaync; do
+        if pgrep -x "$command_name" >/dev/null 2>&1; then
+            log_ok "$command_name process"
+        else
+            log_warn "$command_name process is not running"
+        fi
+    done
+
+    if [[ "$failures" -gt 0 ]]; then
+        log_error "Runtime doctor found $failures blocking issue(s)."
+        return 1
+    fi
+
+    log_ok "Runtime doctor completed without blocking issues."
+}
+
+if [[ "$RUNTIME_ONLY" -eq 1 ]]; then
+    run_runtime_checks
+    exit $?
+fi
+
 print_header ">>> TOBIMUNE DOCTOR <<<"
 step_title "Checking BASE Configs"
 

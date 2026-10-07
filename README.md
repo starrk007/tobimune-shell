@@ -25,9 +25,18 @@ Los scripts de mantenimiento son:
 
 ```fish
 ./update.sh
-./doctor.sh
 ./rollback.sh
 ```
+
+La comprobación de la sesión puede ejecutarse sin modificar archivos:
+
+```bash
+bash doctor.sh --runtime
+```
+
+`--runtime` comprueba dependencias, enlaces activos de Rofi/Waybar, sintaxis de Bash/Lua/JSON, errores de la sesión Hyprland y procesos de Waybar/SwayNC.
+
+`bash doctor.sh` mantiene el diagnóstico de integridad de symlinks existente y puede inicializar directorios de estado faltantes.
 
 Antes de instalar, realiza una copia de seguridad de tus configuraciones actuales. El instalador despliega configuraciones de Hyprland, Waybar, Rofi, SwayNC y las utilidades del sistema segn el modo de despliegue seleccionado.
 

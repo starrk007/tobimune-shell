@@ -35,14 +35,13 @@ Los archivos se copian al directorio personal. Es un modo sencillo y aislado, pe
 ```fish
 ./install.sh
 ./update.sh
-./doctor.sh
 ./rollback.sh
 ```
 
 * `install.sh` realiza el backup inicial y despliega la base.
 * `update.sh` sincroniza configuraciones y scripts.
 * `doctor.sh` informa de symlinks rotos o archivos reemplazados.
+* `bash doctor.sh --runtime` realiza una comprobación de solo lectura de dependencias, sintaxis, Hyprland, Rofi, Waybar y SwayNC.
 * `rollback.sh` elimina enlaces gestionados de forma segura y restaura un backup.
 
 Los backups se almacenan en `~/.backup/Backup_<timestamp>`.
-
