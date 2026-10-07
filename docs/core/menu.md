@@ -24,15 +24,14 @@ This tab is meant for your daily drivers and frequently used applications.
 
 ### `hm_theme.sh` (The Theme Tab)
 This is your control panel for aesthetics and desktop widgets.
-- **What it does:** It provides a list of interactive toggles for Tobimune Shell's unique visual features. You can change your wallpaper, toggle the Cava Underbar, enable Auto Random Wallpapers, toggle the Taskbar, or show/hide Desktop Icons.
-- **Dynamic State:** Notice how some options say `(ON)` or `(OFF)`? The script achieves this by reading local state files (like `/tmp/cava-layer.pid` or `/tmp/random_wallpaper_status`) before rendering the menu. When you click an option, it spawns the corresponding manager script in the background to execute your command.
+- **What it does:** It provides a list of interactive toggles for Tobimune Shell's unique visual features. You can change your wallpaper, enable Auto Random Wallpapers, toggle the Taskbar, or show/hide Desktop Icons.
+- **Dynamic State:** Notice how some options say `(ON)` or `(OFF)`? The script achieves this by reading local state files before rendering the menu. When you click an option, it spawns the corresponding manager script in the background to execute your command.
 
 ### `hm_setting.sh` (The Setting Tab)
 This tab acts as a bridge to both your system hardware settings and Tobimune Shell's internal configurations.
 - **What it does:** It gives you quick access to essential GUI tools like `nm-connection-editor` (Wifi), `blueman-manager` (Bluetooth), `gparted` (Disk Manager), `ncdu` (Storage Manager), and `pavucontrol` (Audio Control).
-- **Tobimune Shell Configs:** It also provides toggles specifically for the Taskbar (App Name, Icon Size), Cava Modes (Color Switch, Dynamic Mode), Rounded Screen Dynamic Mode, and the Opaque Theme Mode. It offers direct shortcuts to open your `~/suzaku` folder or edit your custom `general-menu.sh` script in VS Code. Like the Theme tab, it reads local configuration variables to dynamically display the current states of these settings.
+- **Tobimune Shell Configs:** It also provides toggles specifically for the Taskbar (App Name, Icon Size), Rounded Screen Dynamic Mode, and the Opaque Theme Mode. It offers direct shortcuts to open your `~/suzaku` folder or edit your custom `general-menu.sh` script in VS Code. Like the Theme tab, it reads local configuration variables to dynamically display the current states of these settings.
 
 
 ---
 **Previous:** [Utilities](util.md) | **Next:** [Mini-Apps](app.md)
-

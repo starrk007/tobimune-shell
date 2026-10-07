@@ -12,7 +12,7 @@ Over time, applications dump a lot of cache and system logs that silently eat up
 
 ### `haku.sh` (Desktop Widgets)
 Ever wanted some cool, floating widgets integrated directly into your desktop?
-- **What it does:** It spawns instances of the Kitty terminal running purely aesthetic CLI tools (such as `cava` for audio visualization, `tty-clock` for a giant retro clock, and `lavat` for a lava lamp effect). 
+- **What it does:** It spawns instances of the Kitty terminal running purely aesthetic CLI tools (such as `tty-clock` for a giant retro clock and `lavat` for a lava lamp effect).
 - **Usage:** You can pass the `--clear` argument to gracefully hunt down and kill the PIDs of all these floating windows when you're done looking at them.
 
 ### `open_browser.sh` & `open_config.sh` (Quick Access)
@@ -61,5 +61,4 @@ A desktop shortcut generator.
 
 ---
 **Previous:** [System Management](sys.md) | **Next:** [Tobimune Menu](menu.md)
-
 

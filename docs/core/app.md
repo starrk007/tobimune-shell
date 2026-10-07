@@ -7,7 +7,6 @@ Currently, the following mini-apps are available:
 - [**Desktop Icons**](#desktop-icons-srccoreappdesktop-icons)
 - [**Rounded Screen**](#rounded-screen-srccoreapprounded-screen)
 - [**Edge Trigger**](#edge-trigger-srccoreappedge-trigger)
-- [**Cava Underbar**](#cava-underbar-srccoreappcava-layer)
 
 ---
 
@@ -111,30 +110,5 @@ Manages the lifecycle of the Edge Trigger overlay.
 - **Individual Lengths:** You can specify the exact length of each trigger zone independently (e.g., `edge_top_length_percent`, `edge_right_length_percent`). Both `left` and `right` triggers are shifted down by 10% from the top.
 - You can enable/disable individual edges (`top`, `bottom`, `left`, `right`) and define the exact shell command each executes.
 
----
-
-## Cava Underbar (`src/core/app/cava-layer`)
-
-If you like having an audio visualizer on your desktop, you've probably used `cava`. Normally, it runs inside a regular terminal window. Tobimune Shell takes it to the next level by embedding `cava` directly into the background of your screen, sitting just above your wallpaper but below your windows, acting as a dynamic "Underbar". It also features an "Top Mode" to make the visualizer sit above all other windows!
-
-### `cava_layer.py` (The VTE Wrapper)
-This Python script uses `GtkLayerShell` and `VTE` (Virtual Terminal Emulator).
-- **Layer Shell Embedding:** It creates a borderless, completely transparent, and click-through terminal window. Depending on the settings, it renders either in the `BOTTOM` layer (under windows) or the `TOP` layer (above windows).
-- **Theme Syncing:** It dynamically parses your `~/.config/kitty/kitty.conf` to extract your current foreground, background, and accent colors, ensuring the visualizer perfectly matches your overall system theme.
-- **Running Cava:** It quietly spawns the actual `cava` C-binary inside this invisible terminal window to process your audio streams.
-
-### `cava_manager.sh` (The Process Controller)
-Because the Python script acts as a background daemon, it needs a manager to handle its lifecycle.
-
-**Developer Note on CLI conventions:** Be aware that unlike other manager scripts in Tobimune Shell which primarily use long flags (e.g., `--toggle`, `--reload`), `cava_manager.sh` utilizes positional sub-commands (`start`, `stop`, `toggle`, `reload`) mixed with flags (e.g., `-t`/`--top`, `-d`/`--toggle-dynamic`).
-
-- **Toggling:** You can use `cava_manager.sh toggle` (which is mapped in the Tobimune Menu's Theme tab) to spawn or gracefully kill the visualizer process and its PID file.
-- **Top Mode & Dynamic Mode:** You can use `cava_manager.sh --top` to toggle the top layer mode, or `--toggle-dynamic` to toggle Dynamic Mode (which adapts to other panels' exclusive zones). The manager gracefully saves these states to `~/.local/state/tobimune/cava_overlay_state` and `cava_dynamic_state` and makes them accessible in the Tobimune Menu.
-- **Live Reloading:** When you change your system's accent color (via `gen_style.sh`), you don't want the audio visualizer to stutter, drop frames, or restart. Calling `cava_manager.sh reload` sends a specific UNIX signal (`SIGUSR1`) to the Python daemon. The script intercepts this signal, re-reads the Kitty configuration, and instantly updates the visualizer's colors on the fly without ever interrupting the live audio stream!
-
-
-
----
 **Previous:** [Tobimune Menu](menu.md) | **Home:** [Architecture Overview](../architecture.md)
-
 

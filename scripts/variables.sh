@@ -34,7 +34,6 @@ ONCE_CONFIGS=(
     "$SOURCE_CONFIG/xfce4"
     "$SOURCE_CONFIG/mpv"
     "$SOURCE_CONFIG/btop"
-    "$SOURCE_CONFIG/cava"
     "$SOURCE_CONFIG/mimeapps.list"
 )
 

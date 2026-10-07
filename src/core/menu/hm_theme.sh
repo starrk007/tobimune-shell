@@ -15,15 +15,6 @@ if [[ $# -eq 0 ]]; then
     TOBIMUNE_SHELL_TEXT="OFF"
     [[ "$TOBIMUNE_SHELL_STATUS" == "1" ]] && TOBIMUNE_SHELL_TEXT="ON"
 
-    # Cava Layer
-    CAVA_STATUS=$([[ -f /tmp/cava-layer.pid ]] && echo "1" || echo "0")
-    CAVA_TEXT="OFF"
-    [[ "$CAVA_STATUS" == "1" ]] && CAVA_TEXT="ON"
-
-    CAVA_TOP_STATUS=$(cat "$STATE_DIR/cava_top_state" 2>/dev/null || echo "0")
-    IS_TOP=""
-    [[ "$CAVA_TOP_STATUS" == "1" ]] && IS_TOP="[Top]" || IS_TOP=""
-
     # Taskbar
     TASKBAR_STATUS=$(cat "$STATE_DIR/taskbar_manual_state" 2>/dev/null || echo "0")
     TASKBAR_TEXT="OFF"
@@ -63,7 +54,6 @@ if [[ $# -eq 0 ]]; then
   Rounded Screen ($ROUNDED_SCREEN_TEXT)
   Edge Trigger ($EDGE_TRIGGER_TEXT)
   Opaque Theme Mode $IS_OPAQUE
-󰝚  Cava Underbar ($CAVA_TEXT) $IS_TOP
   Auto Random Wallpaper ($WALL_TEXT)
 󰏜  Change Wallpaper
 󱛹  Kill Lively Wallpaper
@@ -81,7 +71,6 @@ case "$chosen" in
     *"Rounded Screen"*) spawn $HOME/.local/bin/rounded_screen_manager.sh --toggle ;;
     *"Edge Trigger"*) spawn $HOME/.local/bin/edge_trigger_manager.sh --toggle ;;
     *"Opaque Theme Mode"*) spawn $HOME/.local/bin/opaque_theme.sh --toggle ;;
-    *"Cava Underbar"*) spawn $HOME/.local/bin/cava_manager.sh ;;
     *"Auto Random Wallpaper"*) spawn $HOME/.local/bin/random_wallpaper.sh --toggle ;;
     *"Change Wallpaper"*) spawn $HOME/.local/bin/wallpaper_select.sh ;;
     *"Kill Lively Wallpaper"*) spawn $HOME/.local/bin/wallpaper_select.sh --exit ;;

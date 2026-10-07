@@ -92,13 +92,6 @@
                     "update-command": "$HOME/.local/bin/idle_inhibit.sh --check >/dev/null 2>&1 && echo true || echo false"
                 },
                 {
-                    "label": "󰝚",
-                    "type": "toggle",
-                    "active": true,
-                    "command": "$HOME/.local/bin/cava_manager.sh >/dev/null 2>&1",
-                    "update-command": "cat /tmp/cava-layer.pid && echo true || echo false"
-                },
-                {
                     "label": " ",
                     "type": "toggle",
                     "active": true,

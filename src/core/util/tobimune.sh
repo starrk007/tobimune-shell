@@ -20,7 +20,6 @@ need() { command -v "$1" >/dev/null 2>&1 || { echo "$1 is required"; exit 1; }; 
 
 # Check dependencies
 need kitty
-need cava
 need tty-clock
 need lavat
 need jq
@@ -33,17 +32,12 @@ TOBIMUNE_TERMINAL_FONT_SIZE=${TOBIMUNE_TERMINAL_FONT_SIZE:-14}
 spawn() { ( setsid "$@" & ) >/dev/null 2>&1; }
 
 clear() {
-    PIDS=$(pgrep -f "seycava|seylavat|seyclock|seycmd")
+    PIDS=$(pgrep -f "seylavat|seyclock|seycmd")
 
     for pid in $PIDS; do
         echo "Killing window with PID: $pid"
         kill -9 "$pid"
     done
-}
-
-cava() {
-    spawn kitty --title "tobimunecava" --class "seycava" -o font_size=$TOBIMUNE_GENERAL_FONT_SIZE sh -c "cava"
-    sleep 0.2
 }
 
 lavat() {
@@ -89,9 +83,6 @@ if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
         lavat
         hyprctl eval 'hl.dispatch(hl.dsp.focus({ window = "class:seyclock" }))'
         hyprctl eval 'hl.dispatch(hl.dsp.layout("consume"))'
-        cava
-        hyprctl eval 'hl.dispatch(hl.dsp.focus({ window = "class:seyclock" }))'
-        hyprctl eval 'hl.dispatch(hl.dsp.layout("consume"))'
         hyprctl eval 'hl.dispatch(hl.dsp.focus({ window = "class:seycmd" }))'
     elif [[ $LAYOUT == "dwindle" ]]; then
         clock
@@ -101,12 +92,9 @@ if [[ $XDG_CURRENT_DESKTOP == "Hyprland" ]]; then
         lavat
         hyprctl eval 'hl.dispatch(hl.dsp.window.move({ direction = "right", window = "class:seylavat" }))'
         hyprctl eval 'hl.dispatch(hl.dsp.focus({ window = "class:seylavat" }))'
-        cava
-        hyprctl eval 'hl.dispatch(hl.dsp.window.move({ direction = "right", window = "class:seycava" }))'
         hyprctl eval 'hl.dispatch(hl.dsp.window.move({ direction = "up", window = "class:seylavat" }))'
         hyprctl eval 'hl.dispatch(hl.dsp.focus({ window = "class:seycmd" }))'
     elif [[ $LAYOUT == "master" ]]; then
-        cava
         lavat
         clock
         cmd

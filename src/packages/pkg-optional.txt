@@ -4,7 +4,7 @@ wget                          # Command-line downloader
 chafa                         # Render images/videos as terminal graphics
 cmatrix                       # Matrix-style terminal animation
 lavat-git                     # Lava-lamp terminal animation (AUR)
-cava                          # Audio spectrum visualizer
+cava                          # Terminal audio spectrum visualizer
 pipes.sh                      # Animated pipes in terminal
 tty-clock                     # Terminal clock
 firefox                       # Web browser

@@ -92,7 +92,7 @@ opacityCertainApps = hl.window_rule({
 -- Rules for tobimune.sh
 tobimuneSpaceOpacityRule = hl.window_rule({
     name  = "opacity-tobimune",
-    match = { class = "seycmd|seyclock|seylavat|seycava" },
+    match = { class = "seycmd|seyclock|seylavat" },
 
     opacity = 0.8,
 })
@@ -165,7 +165,7 @@ hl.window_rule({
 
 hl.window_rule({
     name = "tobimune-right",
-    match = { class = "seyclock|seylavat|seycava" },
+    match = { class = "seyclock|seylavat" },
     scrolling_width = 0.4,
 })
 

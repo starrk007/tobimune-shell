@@ -33,7 +33,7 @@ Once we have the perfect, validated Hex color code (e.g., `#ff6699`), it is hand
 ### 5. Applying the Changes Live (`apply_style.sh`)
 Generating the config files isn't enough; the applications need to know that their configs have changed. That's where `apply_style.sh` comes in.
 - This script wakes up all the relevant applications and tells them to reload their configurations on the fly.
-- For example, it calls `reload_config.sh` (to reload the Window Manager), and sends reload commands to SwayNC, Kitty, and Cava. Note that Waybar updates its CSS automatically via its own hot-reload mechanism.
+- For example, it calls `reload_config.sh` (to reload the Window Manager), and sends reload commands to SwayNC and Kitty. Note that Waybar updates its CSS automatically via its own hot-reload mechanism.
 
 ### 6. Automated Wallpaper Transitions (`random_wallpaper.sh`)
 For those who want a dynamic desktop, `random_wallpaper.sh` automatically cycles through your wallpapers at a defined interval (`WALL_INTERVAL` in `setting.sh`).
@@ -51,5 +51,4 @@ We've designed this system to be highly customizable. If you want to tweak how i
 
 ---
 **Previous:** [Core Libraries](lib.md) | **Next:** [System Management](sys.md)
-
 

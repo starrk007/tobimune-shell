@@ -19,12 +19,10 @@ Scripts are grouped into the following categories:
 * **`lib/`**: Core library scripts (e.g., `haku_theme.sh`) that provide shared functions and variables to be sourced by other scripts.
 * **`app/`**: Application-specific managers and logic layers.
   * **`desktop-icons/`**: Scripts for rendering and managing desktop icons.
-  * **`cava-layer/`**: Background audio visualizer management.
   * **`taskbar/`**: Taskbar launcher and management utilities.
   * **`rounded-screen/`**: Rounded screen overlay.
 * **`sys/`**: System-level operations, including power management (shutdown, exit, lock), idle inhibition, and the startup welcome script.
 * **`util/`**: General-purpose utilities such as screen recording, screenshot tools, Waybar mode management, and the clipboard menu.
 * **`theme/`**: Appearance and styling scripts, including wallpaper selection, accent color generation, and Rofi theme switching.
 * **`menu/`**: Scripts powering the Tobimune Menu interface and its various sub-menus (general, settings, theme).
-
 

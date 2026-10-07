@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script manages Tobimune Shell Mode (combining Rounded Screen dynamic, Cava dynamic, Opaque Theme and Edge Trigger).
+# This script manages Tobimune Shell Mode (combining Rounded Screen dynamic, Opaque Theme and Edge Trigger).
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 if [[ -f "$SCRIPT_DIR/tobimune_theme.sh" ]]; then
@@ -32,12 +32,7 @@ turn_on() {
         ~/.local/bin/opaque_theme.sh --toggle
     fi
 
-    # 3. Cava
-    if [[ "$(cat "$STATE_DIR/cava_dynamic_state" 2>/dev/null || echo "0")" != "1" ]]; then
-        ~/.local/bin/cava_manager.sh --toggle-dynamic
-    fi
-
-    # 4. Edge Trigger
+    # 3. Edge Trigger
     if [[ "$(cat "$STATE_DIR/edge_trigger_state" 2>/dev/null || echo "0")" != "1" ]]; then
         ~/.local/bin/edge_trigger_manager.sh --toggle
     fi
@@ -52,17 +47,12 @@ turn_off() {
         ~/.local/bin/rounded_screen_manager.sh --toggle
     fi
 
-    # 2. Cava
-    if [[ "$(cat "$STATE_DIR/cava_dynamic_state" 2>/dev/null || echo "0")" == "1" ]]; then
-        ~/.local/bin/cava_manager.sh --toggle-dynamic
-    fi
-
-    # 3. Opaque Theme
+    # 2. Opaque Theme
     if [[ "$(cat "$STATE_DIR/opaque_theme_state" 2>/dev/null || echo "0")" == "1" ]]; then
         ~/.local/bin/opaque_theme.sh --toggle
     fi
 
-    # 4. Edge Trigger
+    # 3. Edge Trigger
     if [[ "$(cat "$STATE_DIR/edge_trigger_state" 2>/dev/null || echo "0")" == "1" ]]; then
         ~/.local/bin/edge_trigger_manager.sh --toggle
     fi

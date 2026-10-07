@@ -15,7 +15,6 @@ paths=(
     "$HOME/.config/swaync"
     "$HOME/.config/kitty"
     "$HOME/.config/fastfetch"
-    "$HOME/.config/cava"
     "$HOME/.zshrc"
 )
 

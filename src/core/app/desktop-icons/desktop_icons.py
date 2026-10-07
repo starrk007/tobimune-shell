@@ -1571,19 +1571,6 @@ class DesktopLayout(Gtk.Fixed):
         space_menu.get_style_context().add_class('desktop-context-menu')
         space_item.set_submenu(space_menu)
         
-        cava_on = False
-        try:
-            with open("/tmp/cava-layer.pid", "r") as f:
-                cava_on = len(f.read().strip()) > 0
-        except:
-            pass
-        cava_item = Gtk.CheckMenuItem(label="Cava Underbar")
-        cava_item.set_active(cava_on)
-        def on_cava_toggle(w):
-            subprocess.Popen([os.path.expanduser("~/.local/bin/cava_manager.sh"), "toggle"])
-        cava_item.connect("activate", on_cava_toggle)
-        space_menu.append(cava_item)
-        
         rw_on = False
         try:
             with open("/tmp/random_wallpaper_status", "r") as f:

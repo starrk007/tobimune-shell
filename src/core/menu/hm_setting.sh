@@ -14,18 +14,6 @@ if [[ $# -eq 0 ]]; then
     DOCK_ICON_SIZE_TEXT="$DOCK_ICON_SIZE"
     DOCK_ICON_SIZE_TEXT+="px"
 
-    CAVA_TOP_STATUS=$(cat "$STATE_DIR/cava_top_state" 2>/dev/null || echo "0")
-    IS_TOP=""
-    [[ "$CAVA_TOP_STATUS" == "1" ]] && IS_TOP="(ON)" || IS_TOP="(OFF)"
-
-    CAVA_COLOR_STATUS=$(cat "$STATE_DIR/cava_color_state" 2>/dev/null || echo "1")
-    IS_COLOR=""
-    [[ "$CAVA_COLOR_STATUS" == "1" ]] && IS_COLOR="(Accent)" || IS_COLOR="(Black)"
-
-    CAVA_DYNAMIC_STATUS=$(cat "$STATE_DIR/cava_dynamic_state" 2>/dev/null || echo "0")
-    IS_CAVA_DYNAMIC=""
-    [[ "$CAVA_DYNAMIC_STATUS" == "1" ]] && IS_CAVA_DYNAMIC="(ON)" || IS_CAVA_DYNAMIC="(OFF)"
-
     DYNAMIC_STATUS=$(cat "$STATE_DIR/rounded_screen_dynamic_state" 2>/dev/null || echo "1")
     IS_DYNAMIC=""
     [[ "$DYNAMIC_STATUS" == "1" ]] && IS_DYNAMIC="(ON)" || IS_DYNAMIC="(OFF)"
@@ -33,9 +21,6 @@ if [[ $# -eq 0 ]]; then
     cat <<INNEREOF
 󱂩  Taskbar App Name ($DOCK_APP_NAME)
 󱂩  Taskbar Icon Size Change ($DOCK_ICON_SIZE_TEXT)
-󰝚  Cava Top Toggle $IS_TOP
-󰝚  Cava Color Switch $IS_COLOR
-󰝚  Cava Dynamic Exclusive $IS_CAVA_DYNAMIC
 󰍹  Rounded Screen Dynamic Exclusive $IS_DYNAMIC
 󱁤  Settings Folder
 󱁤  TobimuneMenu General Tab
@@ -52,9 +37,6 @@ chosen="$*"
 case "$chosen" in
     *"Taskbar App Name"*) spawn $HOME/.local/bin/taskbar_manager.sh --app-name ;;
     *"Taskbar Icon Size Change"*) spawn $HOME/.local/bin/taskbar_manager.sh --icon-size ;;
-    *"Cava Top Toggle"*) spawn $HOME/.local/bin/cava_manager.sh --top ;;
-    *"Cava Color Switch"*) spawn $HOME/.local/bin/cava_manager.sh --color-switch ;;
-    *"Cava Dynamic Exclusive"*) spawn $HOME/.local/bin/cava_manager.sh --toggle-dynamic ;;
     *"Rounded Screen Dynamic Exclusive"*) spawn $HOME/.local/bin/rounded_screen_manager.sh --toggle-dynamic ;;
     *"Settings Folder"*) spawn xdg-open "$HOME/suzaku" ;;
     *"TobimuneMenu General Tab"*) spawn code $HOME/suzaku/general-menu.sh ;;
