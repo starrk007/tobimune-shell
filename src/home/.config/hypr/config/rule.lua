@@ -142,6 +142,16 @@ floatingApps = hl.window_rule({
     float = true,
 })
 
+tobimuneSettings = hl.window_rule({
+    name = "tobimune-settings",
+    match = { class = "tobimune_gui.py" },
+
+    float = true,
+    center = true,
+    pin = true,
+    size = "980 680",
+})
+
 -- Browser popups like save, etc. should usually be floating
 floatingXdgPortal = hl.window_rule({
     name  = "xdg-desktop-portal-gtk",

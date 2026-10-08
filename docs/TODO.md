@@ -139,27 +139,28 @@ Debe actualizarse conforme avancemos.
 
 ## Base
 
-* [ ] Elegir tecnologa
-* [ ] Disear estructura
+* [x] Elegir tecnologa: GTK/PyGObject
+* [x] Disear estructura inicial
 * [ ] Definir configuracin central
 * [ ] Definir comunicacin con archivos Lua
-* [ ] Crear primera ventana
-* [ ] Crear navegacin
+* [x] Crear primera ventana
+* [x] Crear navegacin por categoras
+* [x] Ventana flotante y centrada
 
 ## General
 
-* [ ] Wallpaper
+* [ ] Wallpaper (selector independiente en progreso)
 * [ ] Fecha
 * [ ] Idioma
 * [ ] Atajos
 
 ## Apariencia
 
-* [ ] Colores
+* [ ] Colores (conectar todos los controles)
 * [ ] Tema
 * [ ] Modo oscuro/claro
-* [ ] Color de acento
-* [ ] Fuentes
+* [x] Color de acento
+* [x] Fuentes
 * [ ] Iconos
 * [ ] Bordes
 * [ ] Blur
@@ -223,6 +224,8 @@ Debe actualizarse conforme avancemos.
 * [ ] Herramientas
 * [ ] Temas
 * [ ] Opciones avanzadas
+
+Nota: el taskbar queda fuera del alcance del GUI y se eliminará en una etapa posterior.
 
 ---
 

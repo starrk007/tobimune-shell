@@ -52,3 +52,29 @@ El estado propio de Tobimune Shell se guarda en `~/.local/state/tobimune`.
 5. [Utilidades](core/util.md)
 6. [Men](core/menu.md)
 7. [Mini-aplicaciones](core/app.md)
+
+## GUI de configuración
+
+La configuración gráfica se implementa como una aplicación GTK/PyGObject
+independiente. La GUI funciona como frontend y reutiliza los scripts existentes
+en `~/.local/bin` para aplicar wallpapers, temas y acciones del sistema.
+Rofi se conserva como lanzador de aplicaciones; las demás opciones se migrarán
+progresivamente al GUI. El selector de wallpapers se abre como una ventana
+independiente desde la sección General, en vez de ocupar el panel principal.
+La ventana de configuración es flotante, centrada y fijada sobre las demás
+aplicaciones mediante una regla de Hyprland. El taskbar no forma parte de esta
+migración.
+Se abre con `SUPER + COMMA` o ejecutando `~/.local/bin/tobimune-settings.sh`.
+
+### Componentes y backend
+
+En este proyecto, backend no significa necesariamente un servidor. Para las
+funciones propias del sistema es el script o estado que ya controla Hyprland,
+Waybar, SwayNC o el motor de temas. La GUI presenta ese estado y ejecuta la
+operación existente. Por ejemplo, el selector de Waybar usa
+`waybar_manager.sh` y el tema usa `gen_style.sh`.
+
+Solo se necesita un backend nuevo cuando una característica no tiene todavía
+un script, un archivo de estado o una interfaz de sistema reutilizable. En ese
+caso se crea primero un componente pequeño y comprobable; la GUI no duplica la
+lógica dentro de Python.

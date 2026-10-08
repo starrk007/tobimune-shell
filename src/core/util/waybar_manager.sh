@@ -25,6 +25,7 @@ Select and manage the active Waybar mode.
 Options:
     --cycle             Switch to the next Waybar mode
     --select            Select a Waybar mode with Rofi
+    --set MODE          Apply a specific Waybar mode
     --reload            Reload Waybar
     --toggle            Toggle Waybar on or off
     -h, --help          Show this help message
@@ -137,6 +138,24 @@ if [[ "$1" == "--select" ]]; then
     if [[ "$choice" != "$CURRENT_STATE" ]]; then
         link_mode "$choice"
         restart_waybar
+    fi
+
+    if [[ "$1" == "--set" ]]; then
+        [[ "$WAYBAR_STATUS" == "0" ]] && exit 0
+        requested_mode="${2:-}"
+        if [[ -z "$requested_mode" ]]; then
+            echo "Missing Waybar mode" >&2
+            exit 2
+        fi
+        if [[ ! " ${WAYBAR_MODES[*]} " == *" $requested_mode "* ]]; then
+            notify-send "Waybar Error" "Unknown mode: $requested_mode"
+            exit 1
+        fi
+        if [[ "$requested_mode" != "$CURRENT_STATE" ]]; then
+            link_mode "$requested_mode"
+            restart_waybar
+        fi
+        exit 0
     fi
     exit 0
 fi
