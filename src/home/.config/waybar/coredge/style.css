@@ -20,7 +20,7 @@ window#waybar {
 }
 
 .modules-right {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: @system_background;
     border-radius: 0 0 0 30px;
     padding: 4px 14px 4px 14px;
     margin: 0 0 4px 0;
@@ -55,7 +55,7 @@ window#waybar {
 #hworkspaces {
     margin: 4px;
     padding: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: @system_background;
 }
 
 #workspaces {
@@ -98,7 +98,7 @@ window#waybar {
 /* SPECIFIC MODULES                                 */
 /* ============================================================================== */
 #custom-logo {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: @system_background;
     min-width: 40px;
     margin: 4px;
     padding: 1px 6px;

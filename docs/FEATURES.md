@@ -343,6 +343,14 @@ Investigar:
 * Aplicaciones
 * Configuracin
 
+Estado actual de la base existente:
+
+* Lanzador de aplicaciones y men Tobimune funcionando.
+* Temas para aplicaciones, energa y seleccin de wallpapers integrados.
+* Selector de temas con soporte para temas del repositorio y de `~/suzaku`.
+* El tema `line.rasi` es el tema nico del lanzador principal: compacto, oscuro y con acento dinmico.
+* El diseo del lanzador principal est en modificacin; los temas de wallpaper y energa siguen siendo variantes especializadas.
+
 ---
 
 # 5. Otros rices estudiados
@@ -441,5 +449,3 @@ No utilizar como base.
 * Fuentes adicionales
 
 La prioridad puede cambiar durante el desarrollo.
-
-

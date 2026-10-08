@@ -29,6 +29,7 @@ Not every color pulled from an image is suitable for a user interface. For examp
 Once we have the perfect, validated Hex color code (e.g., `#ff6699`), it is handed over to `gen_style.sh`. This is the workhorse of the theming engine.
 - The script takes the Hex code and translates it into various color formats (RGB, RGBA) so different applications can understand it.
 - It then dynamically generates and overwrites the `.css` and `.conf` configuration files for your desktop components. It updates the styling variables for Waybar, configures Rofi's color scheme, changes Kitty's terminal colors, and updates SwayNC's notification aesthetics.
+- Shared transparency is generated centrally as two levels: system surfaces (Waybar, Rofi, and SwayNC) use the same background opacity, while application surfaces such as Kitty, GTK, Brave, and browser panels use a separate application opacity. Hyprland applies the application level to supported window classes as well.
 
 ### 5. Applying the Changes Live (`apply_style.sh`)
 Generating the config files isn't enough; the applications need to know that their configs have changed. That's where `apply_style.sh` comes in.
@@ -51,4 +52,3 @@ We've designed this system to be highly customizable. If you want to tweak how i
 
 ---
 **Previous:** [Core Libraries](lib.md) | **Next:** [System Management](sys.md)
-

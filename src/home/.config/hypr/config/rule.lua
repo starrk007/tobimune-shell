@@ -84,7 +84,7 @@ specificWidth_ScrollingLayout = hl.window_rule({
 --------------------------------
 opacityCertainApps = hl.window_rule({
     name  = "opacity-for-certain-apps",
-    match = { class = "thunar|Thunar|kitty|code|com.microsoft.VSCode|jetbrains.*" },
+    match = { class = "thunar|Thunar|kitty|code|com.microsoft.VSCode|jetbrains.*|brave-browser|Brave-browser" },
 
     opacity = 0.9,
 })

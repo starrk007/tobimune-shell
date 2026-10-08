@@ -5,8 +5,8 @@ menupopup, panel {
     border-radius: 12px !important;
     overflow: hidden !important;
 
-    --menu-background-color: rgba(0, 0, 0, 0.8) !important;
-    --panel-background: rgba(0, 0, 0, 0.8) !important;
+    --menu-background-color: rgba(0, 0, 0, 0.9) !important;
+    --panel-background: rgba(0, 0, 0, 0.9) !important;
 }
 
 menuitem:hover, menu:hover {
@@ -48,7 +48,7 @@ menupopup menu {
 tooltip {
     appearance: none !important; 
     
-    background-color: rgba(0, 0, 0, 0.8) !important;
+    background-color: rgba(0, 0, 0, 0.9) !important;
     
     font-size: 14px !important;
     color: #c9c9c9 !important;

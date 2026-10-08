@@ -34,7 +34,7 @@ cd ~/tobimune-shell
 
 * Hyprland: ventanas, reglas, keybindings, workspaces y monitores.
 * Waybar: barra, mdulos, indicadores y estilos.
-* Rofi: lanzador, mens de energa, aplicaciones y wallpapers.
+* Rofi: lanzador, men de Tobimune, energa, aplicaciones y wallpapers; el lanzador principal usa un nico tema compacto integrado al estado de colores dinmicos.
 * SwayNC: notificaciones y centro de control.
 * Lockscreen: bloqueo e informacin del sistema.
 * Motor de temas: colores derivados del wallpaper.

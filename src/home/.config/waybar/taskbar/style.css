@@ -13,7 +13,7 @@
 
 window#waybar {
     border-radius: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4));
+    background: @system_background;
     color: @accent_color;
     animation-name: fadeIn;
     animation-duration: 0.5s;

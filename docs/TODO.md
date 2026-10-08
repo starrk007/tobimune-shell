@@ -75,16 +75,17 @@ Debe actualizarse conforme avancemos.
 
 # 5. SwayNC / Centro de control
 
-* [ ] Revisar implementacin actual
-* [ ] Estudiar SwayNC de Serpantinum
-* [ ] Identificar qu pertenece a SwayNC
-* [ ] Identificar scripts adicionales
-* [ ] Disear estructura final
-* [ ] Integrar notificaciones
-* [ ] Integrar controles rpidos
-* [ ] Integrar energa
-* [ ] Integrar WLogout
-* [ ] Probar
+* [x] Revisar implementacin actual
+* [x] Estudiar SwayNC de Serpantinum
+* [x] Identificar qu pertenece a SwayNC
+* [x] Identificar scripts adicionales
+* [x] Disear estructura final
+* [x] Integrar notificaciones
+* [x] Integrar controles rpidos
+* [x] Integrar energa
+* [x] Integrar WLogout
+* [x] Probar
+* [x] Terminar la implementacin actual por el momento
 * [ ] Crear commit
 
 ---
@@ -107,16 +108,17 @@ Debe actualizarse conforme avancemos.
 
 # 7. Rofi
 
-* [ ] Revisar Rofi actual de Tobimune Shell
+* [x] Revisar Rofi actual de Tobimune Shell
 * [ ] Estudiar Rofi de Noro18
 * [ ] Revisar otras ideas previamente estudiadas
-* [ ] Definir estructura final
-* [ ] Revisar aplicaciones
-* [ ] Revisar configuracin
-* [ ] Revisar power menu
-* [ ] Revisar wallpaper menu
-* [ ] Revisar scripts
-* [ ] Optimizar apariencia
+* [x] Definir estructura final
+* [x] Revisar aplicaciones
+* [x] Revisar configuracin
+* [x] Revisar power menu
+* [x] Revisar wallpaper menu
+* [x] Revisar scripts
+* [ ] Optimizar apariencia del lanzador principal
+* [ ] Definir el diseño final del único tema principal
 * [ ] Crear commit
 
 ---
@@ -229,7 +231,7 @@ Debe actualizarse conforme avancemos.
 * [ ] Integrar colores dinmicos
 * [ ] Integrar wallpaper  colores
 * [ ] Integrar colores  Waybar
-* [ ] Integrar colores  Rofi
+* [x] Integrar colores  Rofi
 * [ ] Integrar colores  SwayNC
 * [ ] Integrar colores  Lockscreen
 * [ ] Revisar scripts compartidos
@@ -327,5 +329,3 @@ Commit
     
 Continuar
 ```
-
-

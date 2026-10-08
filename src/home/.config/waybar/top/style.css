@@ -10,7 +10,7 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: @system_background;
     color: @accent_color;
     border-radius: 0;
 }
@@ -113,7 +113,7 @@ window#waybar {
 #cpu,
 #memory,
 #temperature {
-    background-color: rgba(32, 32, 32, 0.6);
+    background-color: @system_background;
     margin: 1px;
     padding: 0 12px;
     min-width: 20px;
@@ -147,7 +147,7 @@ window#waybar {
 #custom-settings:hover,
 #custom-logo:hover {
     color: @accent_color;
-    background-color: #000000;
+    background-color: @system_background;
 }
 
 #workspaces button:hover {
@@ -162,7 +162,7 @@ window#waybar {
 /* TOOLTIPS                                     */
 /* ============================================================================== */
 tooltip {
-    background: rgba(0, 0, 0, 1);
+    background: @system_background;
     border-radius: 12px;
     padding: 10px;
 }

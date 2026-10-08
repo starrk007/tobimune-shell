@@ -7,16 +7,17 @@
 
 // Tobimune Shell Rofi Theme
 // Theme: line.rasi
+// Main application launcher theme for Tobimune Shell.
 
 @import "../../../.local/state/tobimune/theme/rofi-style.rasi"
 
 /* ===== GLOBAL VARIABLES ===== */
 * {
-    background:          rgba(0, 0, 0, 0.7);
-    foreground:          #dfdfdf;
+    background:          @system-background;
+    foreground:          #e7e2e7;
     background-color:    transparent;
     text-color:          @foreground;
-    
+    border-color:        @accent-dim;
     margin:              0;
     padding:             0;
     spacing:             0;
@@ -25,111 +26,73 @@
 /* ===== MAIN WINDOW ===== */
 window {
     width:               35%;
-    height:              50%;
+    height:              43%;
     background-color:    @background;
-    padding:             20px;
-    border-radius:       20px;
+    border:              2px;
+    border-color:        @accent;
+    border-radius:       3px;
+    padding:             14px 16px;
 }
 
 mainbox {
-    spacing:             12px;
-    children:            [ inputbar, content-area ];
-}
-
-/* ===== CONTENT AREA ===== */
-content-area {
-    orientation:         vertical;
-    spacing:             0;
-    children:            [ mode-switcher, listview ];
+    spacing:             8px;
+    children:            [ inputbar, listview ];
 }
 
 /* ===== INPUT BAR ===== */
 inputbar {
-    margin:              0 6px;
     children:            [ prompt, entry ];
-    border:              0 0 3px 0;
-    border-color:        @accent;
-    border-radius:       0;
+    border:              0 0 1px 0;
+    border-color:        rgba(255, 255, 255, 0.14);
+    padding:              0 0 7px 0;
 }
 
 prompt {
-    padding:             10px;
-    background-color:    @accent;
-    text-color:          @background;
-    border-radius:       12px 12px 0 0;
+    padding:             2px 8px 2px 0;
+    text-color:          @accent;
 }
 
 entry {
-    padding:             10px;
-    margin:              0 10px;
-    text-color:          @accent;
-    placeholder:         "Search...";
-    placeholder-color:   rgba(223, 223, 223, 0.3);
-}
-
-/* ===== MODE SWITCHER (Apps/Run/Window) ===== */
-mode-switcher {
-    margin:              0 6px 6px 6px;
-    padding:             0;
-    background-color:    transparent;
-    spacing:             6px;
-    border:              3px 0 0 0;
-    border-color:        @accent;
-    border-radius:       0;
-}
-
-button {
-    padding:             8px 14px;
-    background-color:    transparent;
-    text-color:          @accent;
-    border-radius:       0 0 12px 12px;
-}
-
-button selected {
-    background-color:    @accent;
-    text-color:          @background;
+    padding:             2px 0;
+    text-color:          @foreground;
+    placeholder:         "Search";
+    placeholder-color:   rgba(231, 226, 231, 0.42);
 }
 
 /* ===== LISTVIEW ===== */
 listview {
-    scrollbar:           true;
+    scrollbar:           false;
     cycle:               true;
     dynamic:             true;
-    border-radius:       0;
+    spacing:             2px;
+    padding:             2px 0;
 }
 
 /* ===== ELEMENTS ===== */
 element {
-    padding:             6px;
-    margin:              6px;
+    padding:             6px 8px;
+    margin:              0;
     orientation:         horizontal;
-    vertical-align:      0.5; 
-    border-radius:       6px;
+    vertical-align:      0.5;
+    border-radius:       2px;
 }
 
 element-icon {
-    size:                24px;
-    margin:              0 10px 0 0;
+    size:                20px;
+    margin:              0 9px 0 0;
     vertical-align:      0.5;
 }
 
 element-text {
-    text-color:          @accent;
+    text-color:          @foreground;
     vertical-align:      0.5;
 }
 
 /* ===== ELEMENT STATES ===== */
 element selected {
-    background-color:    @accent;
+    background-color:    @accent-dim;
 }
 
 element-text selected {
-    text-color:          @background;
-}
-
-/* ===== SCROLLBAR ===== */
-scrollbar {
-    handle-width:           6px;
-    handle-color:           @accent;
-    padding:                0px 0px 0px 6px;
+    text-color:          @foreground;
 }
