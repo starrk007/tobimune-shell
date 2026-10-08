@@ -2,9 +2,9 @@
     "$schema": "/etc/xdg/swaync/configSchema.json",
     "positionX": "right",
     "positionY": "top",
-    "control-center-margin-top": 24,
-    "control-center-margin-bottom": 24,
-    "control-center-margin-right": 18,
+    "control-center-margin-top": 10,
+    "control-center-margin-bottom": 0,
+    "control-center-margin-right": 10,
     "control-center-margin-left": 0,
     "notification-body-image-height": 200,
     "notification-body-image-width": 200,
@@ -14,37 +14,38 @@
     "timeout-critical": 0,
 
     "fit-to-screen": true,
-    "_comment": "The five-column quick-action grid is sized in style.css for this panel width.",
-    "control-center-width": 500,
-    "notification-window-width": 520,
+    "_comment": "The quick-action row and cards are sized in style.css.",
+    "control-center-width": 460,
+    "notification-window-width": 480,
     "keyboard-shortcuts": true,
+    "notification-grouping": false,
     "image-visibility": "when-available",
-    "transition-time": 300,
+    "transition-time": 0,
 
     "hide-on-clear": false,
     "hide-on-action": true,
     
     "widgets": [
-        "title",
-        "mpris",
-        "buttons-grid",
+        "buttons-grid#account-actions",
         "volume",
         "backlight",
-        "dnd",
-        "menubar",
-        "notifications"
+        "buttons-grid#quick-actions",
+        "notifications",
+        "buttons-grid#power-actions",
+        "buttons-grid#profile-actions"
     ],
     "widget-config": {
-        "title": {
-            "text": "Control Center",
-            "clear-all-button": true,
-            "button-text": "Clear"
-        },
-        "dnd": {
-            "text": "Do Not Disturb"
-        },
-        "mpris": {
-            "autohide": true
+        "buttons-grid#account-actions": {
+            "actions": [
+                {
+                    "label": "starrk\nCachyOS",
+                    "command": ":"
+                },
+                {
+                    "label": "󰍃",
+                    "command": "$HOME/.local/bin/exit.sh"
+                }
+            ]
         },
         "volume": {
             "label": ""
@@ -54,7 +55,7 @@
         },
         "notifications": {
         },
-        "buttons-grid": {
+        "buttons-grid#quick-actions": {
             "actions": [
                 {
                     "label": "󰖩",
@@ -71,13 +72,6 @@
                     "update-command": "bluetoothctl show | grep -q 'Powered: yes' && echo true || echo false"
                 },
                 {
-                    "label": "󰖔",
-                    "type": "toggle",
-                    "active": true,
-                    "command": "$HOME/.local/bin/nightlight_toggle.sh >/dev/null 2>&1",
-                    "update-command": "$HOME/.local/bin/nightlight_toggle.sh --check >/dev/null 2>&1 && echo true || echo false"
-                },
-                {
                     "label": "󰝟",
                     "type": "toggle",
                     "active": true,
@@ -92,62 +86,49 @@
                     "update-command": "$HOME/.local/bin/idle_inhibit.sh --check >/dev/null 2>&1 && echo true || echo false"
                 },
                 {
-                    "label": " ",
-                    "type": "toggle",
-                    "active": true,
-                    "command": "$HOME/.local/bin/random_wallpaper.sh >/dev/null 2>&1",
-                    "update-command": "cat /tmp/random_wallpaper_status | grep -q '1' && echo true || echo false"
-                },
-                {
                     "label": "󰆧",
                     "type": "toggle",
                     "active": true,
-                    "command": "$HOME/.local/bin/tobimune_shell_mode.sh --toggle >/dev/null 2>&1",
+                    "command": "sh -c 'swaync-client --close-panel >/dev/null 2>&1; \"$HOME/.local/bin/tobimune_shell_mode.sh\" --toggle >/dev/null 2>&1; swaync-client --open-panel >/dev/null 2>&1'",
                     "update-command": "cat $HOME/.local/state/tobimune/state/tobimune_shell_state | grep -q '1' && echo true || echo false"
                 }
             ]
         },
-        "menubar": {
-            "menu#power-buttons": {
-                "label": "󰤆",
-                "position": "left",
-                "actions": [
-                    {
-                        "label": "󰑓   Reboot",
-                        "command": "systemctl reboot"
-                    },
-                    {
-                        "label": "   Lock",
-                        "command": "$HOME/.local/bin/lock.sh"
-                    },
-                    {
-                        "label": "   Exit",
-                        "command": "$HOME/.local/bin/exit.sh"
-                    },
-                    {
-                        "label": "󰤆   Shut down",
-                        "command": "systemctl poweroff"
-                    }
-                ]
-            },
-            "menu#powermode-buttons": {
-                "label": "󱓞",
-                "position": "left",
-                "actions": [
-                    {
-                        "label": "Performance",
-                        "command": "powerprofilesctl set performance"
-                    },
-                    {
-                        "label": "Balanced",
-                        "command": "powerprofilesctl set balanced"
-                    },
-                    {
-                        "label": "Power-saver",
-                        "command": "powerprofilesctl set power-saver"
-                    }
-                ]
-            }
+        "buttons-grid#power-actions": {
+            "actions": [
+                {
+                    "label": "󰑓",
+                    "command": "systemctl reboot"
+                },
+                {
+                    "label": "",
+                    "command": "$HOME/.local/bin/lock.sh"
+                },
+                {
+                    "label": "󰤄",
+                    "command": "systemctl suspend"
+                },
+                {
+                    "label": "󰤆",
+                    "command": "systemctl poweroff"
+                }
+            ]
+        },
+        "buttons-grid#profile-actions": {
+            "actions": [
+                {
+                    "label": "󱓞 Ahorro",
+                    "command": "powerprofilesctl set power-saver"
+                },
+                {
+                    "label": "󰾅 Balance",
+                    "command": "powerprofilesctl set balanced"
+                },
+                {
+                    "label": "󰓅 Rend.",
+                    "command": "powerprofilesctl set performance"
+                }
+            ]
         }
     }
 }

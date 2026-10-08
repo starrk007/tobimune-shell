@@ -4,21 +4,22 @@
 * {
     border: none;
     outline: none;
-    transition: 180ms ease;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 /* ========================================================================== */
-/* Panel                                                                       */
+/* Panel and cards                                                            */
 /* ========================================================================== */
 
 .control-center {
-    background: rgba(12, 12, 16, 0.88);
-    border: 1px solid alpha(@accent_color, 0.28);
-    border-radius: 28px;
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.48);
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid alpha(@accent_color, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
     color: @accent_color;
     margin: 0;
-    padding: 16px;
+    padding: 12px;
+    transition: none;
 }
 
 .control-center viewport > * {
@@ -29,98 +30,103 @@
     color: @accent_color;
 }
 
+.widget-volume,
+.widget-backlight,
+.widget-notifications,
+.widget-buttons-grid.account-actions {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid alpha(@accent_color, 0.14);
+    border-radius: 14px;
+}
+
 /* ========================================================================== */
-/* Header and notifications                                                    */
+/* Account header                                                             */
 /* ========================================================================== */
 
-.widget-title {
-    background: transparent;
-    color: @accent_color;
-    font-size: 20px;
+.widget-buttons-grid.account-actions {
+    margin: 0 0 5px;
+    padding: 3px;
+}
+
+.widget-buttons-grid.account-actions flowbox {
+    width: 100%;
+}
+
+.widget-buttons-grid.account-actions flowboxchild {
+    flex-grow: 1;
+}
+
+.widget-buttons-grid.account-actions flowboxchild:first-child {
+    flex-grow: 3;
+}
+
+.widget-buttons-grid.account-actions flowboxchild:last-child {
+    flex-grow: 0;
+    margin-left: auto;
+}
+
+.widget-buttons-grid.account-actions flowboxchild > button {
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid alpha(@accent_color, 0.14);
+    border-radius: 10px;
+    min-height: 48px;
+    padding: 5px 10px;
+}
+
+.widget-buttons-grid.account-actions flowboxchild:first-child > button {
+    background-image: url("/home/starrk/.local/state/tobimune/swaync/avatar.png");
+    background-position: 8px center;
+    background-repeat: no-repeat;
+    background-size: 44px 44px;
+    font-size: 17px;
     font-weight: bold;
-    margin: 2px 4px 12px;
-    padding: 0;
+    min-width: 320px;
+    padding-left: 45px;
+    text-align: left;
+    halign: start;
 }
 
-.widget-title > button {
-    background: alpha(@accent_color, 0.12);
-    border: 1px solid alpha(@accent_color, 0.24);
-    border-radius: 12px;
-    color: @accent_color;
-    padding: 7px 12px;
+.widget-buttons-grid.account-actions flowboxchild:first-child > button label {
+    halign: start;
+    margin-left: -220px;
+    xalign: 0;
 }
 
-.widget-title > button:hover {
-    background: @accent_color;
-    color: #0c0c10;
+.widget-buttons-grid.account-actions flowboxchild:last-child > button {
+    font-size: 12px;
+    min-width: 42px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
-.widget-mpris {
-    background: alpha(@accent_color, 0.08);
-    border: 1px solid alpha(@accent_color, 0.16);
-    border-radius: 18px;
-    margin: 0 0 12px;
-    padding: 10px;
+.widget-buttons-grid.account-actions flowboxchild > button:hover {
+    background-color: alpha(@accent_color, 0.16);
+    border-color: alpha(@accent_color, 0.4);
 }
 
-.widget-mpris:empty {
-    margin: 0;
-    padding: 0;
-}
-
-.widget-notifications {
-    background: transparent;
-    margin: 12px 0 0;
-    padding: 0;
-}
-
-.notification-row {
-    margin: 0;
-    padding: 0;
-}
-
-.notification {
-    background: alpha(@accent_color, 0.08);
-    border: 1px solid alpha(@accent_color, 0.18);
-    border-left: 3px solid @accent_color;
-    border-radius: 16px;
-    color: @accent_color;
-    margin: 6px 0;
-    padding: 12px;
-}
-
-.notification:hover {
-    background: alpha(@accent_color, 0.16);
-}
-
-.notification-content .summary {
-    color: @accent_color;
-    font-weight: bold;
-}
-
-.notification-content .body,
-.notification-content .time {
-    color: alpha(@accent_color, 0.78);
+.widget-buttons-grid.account-actions flowboxchild:first-child > button:hover {
+    background-image: url("/home/starrk/.local/state/tobimune/swaync/avatar.png");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 44px 44px;
 }
 
 /* ========================================================================== */
-/* Sliders                                                                     */
+/* Sliders                                                                    */
 /* ========================================================================== */
 
 .widget-volume,
 .widget-backlight {
-    background: alpha(@accent_color, 0.07);
-    border: 1px solid alpha(@accent_color, 0.15);
-    border-radius: 16px;
-    margin: 5px 0;
-    padding: 10px 14px;
+    margin: 3px 0;
+    min-height: 26px;
+    padding: 5px 11px;
 }
 
 .widget-volume scale trough,
 .widget-backlight scale trough {
-    background: alpha(@accent_color, 0.16);
+    background: alpha(@accent_color, 0.13);
     border-radius: 999px;
-    min-height: 8px;
+    min-height: 6px;
 }
 
 .widget-volume scale highlight,
@@ -136,18 +142,39 @@
     background: @accent_color;
     border: 2px solid alpha(@accent_color, 0.35);
     border-radius: 999px;
-    min-height: 14px;
-    min-width: 14px;
+    min-height: 11px;
+    min-width: 11px;
 }
 
 /* ========================================================================== */
-/* Quick actions                                                               */
+/* Quick actions                                                              */
 /* ========================================================================== */
 
 .widget-buttons-grid {
     background: transparent;
-    margin: 8px -4px 4px;
+    margin: 4px -3px 3px;
     padding: 0;
+}
+
+.widget-buttons-grid.quick-actions flowboxchild > button {
+    min-width: 70px;
+}
+
+.widget-buttons-grid.quick-actions {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.widget-buttons-grid.quick-actions flowboxchild {
+    flex-grow: 1;
+}
+
+.widget-buttons-grid.power-actions flowboxchild > button {
+    min-width: 96px;
+}
+
+.widget-buttons-grid.profile-actions flowboxchild > button {
+    min-width: 135px;
 }
 
 .widget-buttons-grid flowboxchild {
@@ -156,18 +183,18 @@
 }
 
 .widget-buttons-grid flowboxchild > button {
-    background: alpha(@accent_color, 0.08);
-    border: 1px solid alpha(@accent_color, 0.18);
-    border-radius: 16px;
-    margin: 4px;
-    min-height: 58px;
-    min-width: 84px;
-    padding: 8px 0;
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid alpha(@accent_color, 0.14);
+    border-radius: 12px;
+    margin: 3px;
+    min-height: 44px;
+    min-width: 0;
+    padding: 5px 7px;
 }
 
 .widget-buttons-grid flowboxchild > button:hover {
-    background: alpha(@accent_color, 0.2);
-    border-color: alpha(@accent_color, 0.6);
+    background: alpha(@accent_color, 0.16);
+    border-color: alpha(@accent_color, 0.4);
 }
 
 .widget-buttons-grid flowboxchild > button.toggle:checked {
@@ -180,55 +207,128 @@
 }
 
 .widget-buttons-grid flowboxchild > button label {
-    font-size: 20px;
+    font-size: 17px;
+}
+
+.widget-buttons-grid.power-actions,
+.widget-buttons-grid.profile-actions {
+    margin-top: 3px;
+}
+
+.widget-buttons-grid.power-actions flowboxchild > button,
+.widget-buttons-grid.profile-actions flowboxchild > button {
+    font-size: 12px;
+    padding: 4px 5px;
+}
+
+.widget-buttons-grid.quick-actions flowboxchild > button,
+.widget-buttons-grid.profile-actions flowboxchild > button {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.widget-buttons-grid.quick-actions flowboxchild > button label,
+.widget-buttons-grid.power-actions flowboxchild > button label {
+    font-size: 21px;
+}
+
+.widget-buttons-grid.profile-actions flowboxchild:first-child > button {
+    margin-left: 6px;
 }
 
 /* ========================================================================== */
-/* Do not disturb and bottom controls                                         */
+/* Notifications                                                              */
 /* ========================================================================== */
 
-.widget-dnd {
-    background: alpha(@accent_color, 0.07);
-    border: 1px solid alpha(@accent_color, 0.15);
-    border-radius: 16px;
-    margin: 8px 0 4px;
-    padding: 10px 14px;
+.widget-notifications {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid alpha(@accent_color, 0.14);
+    border-radius: 14px;
+    min-height: 260px;
+    margin: 3px 0;
+    padding: 6px;
 }
 
-.widget-dnd > switch {
-    background: alpha(@accent_color, 0.2);
-    border-radius: 999px;
-}
-
-.widget-dnd > switch:checked {
-    background: @accent_color;
-}
-
-.widget-menubar {
-    background: transparent;
-    margin: 8px 0 0;
+.notification-row {
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid alpha(@accent_color, 0.7);
+    border-radius: 12px;
+    margin: 3px 0;
     padding: 0;
 }
 
-.widget-menubar > box > .menu-button-bar > .widget-menubar-container > button,
-.widget-menubar > revealer button {
-    background: alpha(@accent_color, 0.1);
-    border: 1px solid alpha(@accent_color, 0.2);
-    border-radius: 14px;
-    color: @accent_color;
-    margin: 3px;
-    min-height: 40px;
-    padding: 6px 10px;
+.notification {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 10px;
 }
 
-.widget-menubar > box > .menu-button-bar > .widget-menubar-container > button:hover,
-.widget-menubar > revealer button:hover {
-    background: @accent_color;
-    color: #0c0c10;
+.notification-row:hover {
+    background: rgba(0, 0, 0, 0.64);
+    border-color: @accent_color;
+}
+
+.notification-content {
+    padding-right: 34px;
+}
+
+.notification-content .summary {
+    color: @accent_color;
+    font-weight: bold;
+}
+
+.notification-content .body,
+.notification-content .time {
+    color: alpha(@accent_color, 0.72);
+}
+
+.notification-content .body {
+    margin-top: 3px;
+}
+
+.notification-content .time {
+    font-size: 11px;
+}
+
+.notification-action,
+.notification-default-action {
+    background: alpha(@accent_color, 0.09);
+    border: 1px solid alpha(@accent_color, 0.16);
+    border-radius: 8px;
+    color: @accent_color;
+    margin: 6px 3px 0 0;
+    padding: 4px 8px;
+}
+
+.notification-action:hover,
+.notification-default-action:hover {
+    background: alpha(@accent_color, 0.2);
+    border-color: alpha(@accent_color, 0.4);
+}
+
+.notification-close,
+.close-button {
+    background: transparent;
+    border: 1px solid alpha(@accent_color, 0.22);
+    border-radius: 8px;
+    color: alpha(@accent_color, 0.7);
+    margin: 4px;
+    min-height: 22px;
+    min-width: 22px;
+    padding: 2px;
+}
+
+.notification-close:hover,
+.close-button:hover {
+    background: alpha(@accent_color, 0.14);
+    border-color: @accent_color;
+    color: @accent_color;
 }
 
 /* ========================================================================== */
-/* Scrollbar                                                                  */
+/* Bottom controls                                                            */
 /* ========================================================================== */
 
 .control-center scrollbar,
@@ -239,7 +339,7 @@
 }
 
 .control-center scrollbar slider {
-    background: alpha(@accent_color, 0.28);
+    background: alpha(@accent_color, 0.25);
     border-radius: 999px;
     min-width: 5px;
 }
@@ -248,4 +348,79 @@
     background: @accent_color;
 }
 
+.control-center {
+    margin-bottom: 8px;
+}
+
 @import url("../../.local/state/tobimune/theme/opaque/swaync.css");
+
+/* Keep only the content card; the outer notification wrapper is transparent. */
+.notification-row .notification-background {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 3px 0;
+    padding: 0;
+}
+
+.notification-row .notification-background .notification {
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid alpha(@accent_color, 0.7);
+    border-radius: 12px;
+    box-shadow: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.control-center .control-center-list .notification-row,
+.floating-notifications .notification-row,
+.control-center .control-center-list .notification-row:focus,
+.floating-notifications .notification-row:focus,
+.control-center .control-center-list .notification-row .notification-background,
+.floating-notifications .notification-row .notification-background,
+.control-center .control-center-list .notification-row:focus .notification-background,
+.floating-notifications .notification-row:focus .notification-background,
+.notification-row .notification-background .notification .notification-default-action {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.control-center .control-center-list .notification-row .notification-background .notification,
+.floating-notifications .notification-row .notification-background .notification {
+    background: rgba(0, 0, 0, 0.48);
+    border: 1px solid alpha(@accent_color, 0.7);
+    border-radius: 12px;
+    margin: 3px 0;
+    padding: 10px;
+}
+
+.control-center .control-center-list .notification-row:focus .notification-background .notification,
+.floating-notifications .notification-row:focus .notification-background .notification,
+.notification-row .notification-background .notification:focus,
+.notification-row .notification-background .notification .notification-default-action:focus,
+.notification-row .notification-background .notification .notification-default-action:focus-visible,
+.notification-row .notification-background .notification .notification-content:focus {
+    background: rgba(0, 0, 0, 0.48);
+    border-color: alpha(@accent_color, 0.7);
+    box-shadow: none;
+    outline: none;
+}
+
+.notification-row:hover .notification-background .notification {
+    background: rgba(0, 0, 0, 0.64);
+    border-color: @accent_color;
+}
+
+/* GTK focuses the first notification when the panel opens. */
+.notification-row:focus,
+.notification-row:focus-visible,
+.notification-row:focus .notification-background,
+.notification-row:focus .notification-background .notification,
+.notification-row:focus .notification-background .notification-default-action,
+.notification-row:focus .notification-background .notification-content {
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+}
