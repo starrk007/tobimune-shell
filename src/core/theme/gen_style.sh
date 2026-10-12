@@ -140,9 +140,46 @@ font_family      family="${FONT_FAMILY}"
 font_size        ${FONT_SIZE}
 background_opacity 0.90
 foreground ${ACCENT_COLOR}
-color7 ${ACCENT_COLOR}
-color15 ${ACCENT_COLOR}
+cursor ${ACCENT_COLOR}
+
+# Mapeo de la paleta ANSI al color de acento
+color1 ${ACCENT_COLOR}
+color2 ${ACCENT_COLOR}
+color3 ${ACCENT_COLOR}
+color4 ${ACCENT_COLOR}
+color5 ${ACCENT_COLOR}
+color6 ${ACCENT_COLOR}
+color9 ${ACCENT_COLOR}
+color10 ${ACCENT_COLOR}
+color11 ${ACCENT_COLOR}
+color12 ${ACCENT_COLOR}
+color13 ${ACCENT_COLOR}
+color14 ${ACCENT_COLOR}
 EOF
+}
+
+render_cli_tools() {
+    mkdir -p "$HOME/.local/bin"
+
+    cat > "$HOME/.local/bin/pipes" <<'EOF'
+#!/usr/bin/env bash
+pipes.sh -p 1 -f 25 -c 1 "$@"
+EOF
+    chmod +x "$HOME/.local/bin/pipes"
+
+    # Wrapper para tty-clock
+    cat > "$HOME/.local/bin/clock" <<'EOF'
+#!/usr/bin/env bash
+tty-clock -c -C 1 "$@"
+EOF
+    chmod +x "$HOME/.local/bin/clock"
+
+    # Wrapper para cmatrix
+    cat > "$HOME/.local/bin/matrix" <<'EOF'
+#!/usr/bin/env bash
+cmatrix -C red "$@"
+EOF
+    chmod +x "$HOME/.local/bin/matrix"
 }
 
 render_btop() {
@@ -172,7 +209,38 @@ render_newtab() {
 EOF
 }
 
-RENDERERS=(colors fonts hyprland rofi kitty btop newtab)
+render_vscode() {
+    local vscode_settings="$HOME/.config/Code/User/settings.json"
+    
+    if [[ -f "$vscode_settings" ]] && command -v jq >/dev/null 2>&1; then
+        local tmp_file
+        tmp_file=$(mktemp)
+        
+        # Inyecta el color de acento en las personalizaciones de color de VSCode
+        jq --arg accent "$ACCENT_COLOR" \
+           '.["workbench.colorCustomizations"]["activityBar.activeBorder"] = $accent |
+            .["workbench.colorCustomizations"]["statusBar.background"] = $accent |
+            .["workbench.colorCustomizations"]["focusBorder"] = $accent' \
+           "$vscode_settings" > "$tmp_file" && mv "$tmp_file" "$vscode_settings"
+    fi
+}
+
+render_cava() {
+    local cava_config="$HOME/.config/cava/config"
+    mkdir -p "$HOME/.config/cava"
+
+    if [[ -f "$cava_config" ]]; then
+        sed -i "s/^foreground = .*/foreground = '${ACCENT_COLOR}'/" "$cava_config" 2>/dev/null || true
+        sed -i "s/^gradient_color_1 = .*/gradient_color_1 = '${ACCENT_COLOR}'/" "$cava_config" 2>/dev/null || true
+    else
+        cat > "$cava_config" <<EOF
+[color]
+foreground = '${ACCENT_COLOR}'
+EOF
+    fi
+}
+
+RENDERERS=(colors fonts hyprland rofi kitty btop newtab vscode cava cli_tools)
 for renderer in "${RENDERERS[@]}"; do
     "render_${renderer}"
 done

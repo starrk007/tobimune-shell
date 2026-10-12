@@ -19,14 +19,32 @@ if [[ -f "$HOME/.local/bin/desktop_icons_manager.sh" ]]; then
     "$HOME/.local/bin/desktop_icons_manager.sh" --reload >/dev/null 2>&1 || true
 fi
 
-# if [[ -f "$HOME/.local/bin/taskbar_manager.sh" ]]; then
-#     "$HOME/.local/bin/taskbar_manager.sh" --reload >/dev/null 2>&1 || true
-# fi
+# ... (resto de apply_style.sh) ...
 
-swaync-client --reload-config --reload-css >/dev/null 2>&1 || true
+# Extraer el color actual para inyectarlo en Kitty
+ACCENT_COLOR=$(grep '@define-color accent_color' "$HOME/.local/state/tobimune/theme/colors.css" | awk '{print $3}' | tr -d ';')
 
 for s in /tmp/kitty-*; do
     [[ -S "$s" ]] || continue
-    kitty @ --to "unix:$s" ls >/dev/null 2>&1 || continue
     kitty @ --to "unix:$s" load-config >/dev/null 2>&1 || true
+    kitty @ --to "unix:$s" set-colors -a \
+        "foreground=$ACCENT_COLOR" \
+        "cursor=$ACCENT_COLOR" \
+        "color1=$ACCENT_COLOR" \
+        "color2=$ACCENT_COLOR" \
+        "color3=$ACCENT_COLOR" \
+        "color4=$ACCENT_COLOR" \
+        "color5=$ACCENT_COLOR" \
+        "color6=$ACCENT_COLOR" >/dev/null 2>&1 || true
 done
+
+# Quickshell
+pkill -x quickshell 2>/dev/null || true
+sleep 0.5
+export QML_XHR_ALLOW_FILE_READ=1
+quickshell -p "$HOME/.config/tobimune/shell.qml" >/dev/null 2>&1 &
+disown
+
+# Refrescar CAVA si está abierto
+pkill -USR2 cava >/dev/null 2>&1 || true
+
